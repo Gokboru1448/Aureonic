@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUREONIC | Shop</title>
+    <style>
+      :root {
+        --bg: #f5f5f5;
+        --panel: rgba(255, 255, 255, 0.82);
+        --white: #ffffff;
+        --soft-white: #f1f3f5;
+        --silver: #c5c9ce;
+        --text: #111111;
+        --text-soft: #4a4d52;
+        --red: #e31b23;
+        --red-soft: #ff6a6a;
+        --red-deep: #b70e16;
+        --shadow: rgba(227, 27, 35, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          radial-gradient(circle at top center, rgba(227, 27, 35, 0.12), transparent 18%),
+          linear-gradient(180deg, #fdfdfd 0%, #f3f3f3 100%);
+        color: var(--text);
+      }
+
+      body { min-height: 100vh; }
+      a { text-decoration: none; color: inherit; }
+      img { display: block; max-width: 100%; }
+      .page-shell { width: 100%; min-height: 100vh; }
+
+      .topbar {
+        width: 100%;
+        padding: 18px 28px;
+        background: rgba(255, 255, 255, 0.76);
+        backdrop-filter: blur(6px);
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        border-bottom: 1px solid rgba(17,17,17,0.06);
+      }
+
+      .header-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 180px;
+      }
+
+      .brand-mark {
+        position: relative;
+        width: 142px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-mark::before {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(227, 27, 35, 0.36) 0%, rgba(227, 27, 35, 0.18) 28%, rgba(255,255,255,0) 70%);
+        filter: blur(22px);
+      }
+
+      .brand-mark img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 26px;
+        flex: 1;
+      }
+
+      .nav a {
+        position: relative;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--text-soft);
+        text-transform: uppercase;
+      }
+
+      .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), var(--red-soft));
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      .nav a:hover { color: var(--red-deep); }
+      .nav a:hover::after { transform: scaleX(1); }
+
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .header-link {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+      }
+
+      .header-link:hover { color: var(--red); }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .socials a {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid rgba(17,17,17,0.06);
+        box-shadow: 0 6px 16px rgba(17,17,17,0.04);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .socials a:hover {
+        transform: translateY(-2px);
+        border-color: rgba(227,27,35,0.25);
+        box-shadow: 0 10px 20px rgba(227,27,35,0.12);
+      }
+
+      .socials svg {
+        width: 16px;
+        height: 16px;
+        fill: var(--text);
+        transition: fill 0.25s ease;
+      }
+
+      .socials a:hover svg { fill: var(--red); }
+
+      .shop-main {
+        max-width: 1360px;
+        margin: 28px auto 0;
+        padding: 10px 22px 70px;
+      }
+
+      .shop-hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,245,245,0.96));
+        border: 1px solid rgba(17,17,17,0.05);
+        box-shadow: 0 22px 54px rgba(0,0,0,0.04);
+        padding: 42px 48px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .shop-hero-copy .eyebrow {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(227, 27, 35, 0.08);
+        color: var(--red-deep);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .shop-hero h1 {
+        margin: 18px 0 14px;
+        font-size: clamp(2.4rem, 4vw, 4.2rem);
+        line-height: 1.04;
+        letter-spacing: -0.06em;
+      }
+
+      .shop-hero p {
+        margin: 0 0 26px;
+        max-width: 580px;
+        color: var(--text-soft);
+        line-height: 1.8;
+        font-size: 1.04rem;
+      }
+
+      .shop-cta-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .primary-btn, .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 26px;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .primary-btn {
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        box-shadow: 0 18px 28px rgba(227,27,35,0.18);
+      }
+
+      .secondary-btn {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid rgba(17,17,17,0.08);
+        color: var(--text);
+      }
+
+      .primary-btn:hover,
+      .secondary-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .shop-hero-visual {
+        position: relative;
+        min-height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .shop-hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 20% 18% 12% 18%;
+        border-radius: 34px;
+        background: linear-gradient(135deg, rgba(227,27,35,0.06), rgba(255,255,255,0.9));
+      }
+
+      .shop-hero-visual img {
+        position: relative;
+        z-index: 1;
+        width: min(88%, 420px);
+        height: 300px;
+        object-fit: cover;
+        border-radius: 30px;
+        box-shadow: 0 26px 46px rgba(0,0,0,0.12);
+      }
+
+      .shop-badge {
+        position: absolute;
+        right: 34px;
+        top: 22px;
+        z-index: 2;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(17,17,17,0.6);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: var(--white);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .section {
+        padding-top: 32px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+        letter-spacing: -0.05em;
+      }
+
+      .section-head span {
+        color: var(--text-soft);
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .mini-carousel {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-viewport {
+        overflow: hidden;
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 18px;
+        width: max-content;
+        animation: marquee 18s linear infinite;
+        padding: 8px 4px 12px;
+      }
+
+      .category-carousel .carousel-track {
+        animation: marquee-right 18s linear infinite;
+      }
+
+      .mini-carousel:hover .carousel-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+
+      @keyframes marquee-right {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+      }
+
+      .mini-card {
+        flex: 0 0 220px;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(17,17,17,0.06);
+        border-radius: 22px;
+        position: relative;
+        box-shadow: 0 18px 28px rgba(0,0,0,0.02);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .mini-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 30px rgba(0,0,0,0.06);
+      }
+
+      .mini-card-image {
+        position: relative;
+        height: 150px;
+        overflow: hidden;
+      }
+
+      .mini-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 22px 22px 0 0;
+      }
+
+      .mini-card-badge {
+        position: absolute;
+        left: 50%;
+        bottom: -18px;
+        transform: translateX(-50%);
+        background: rgba(17, 17, 17, 0.74);
+        color: var(--white);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 999px;
+        padding: 9px 16px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 18px rgba(17,17,17,0.14);
+      }
+
+      .mini-card-body {
+        padding: 24px 14px 18px;
+      }
+
+      .mini-card-body h3 {
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+      }
+
+      .mini-card-body p {
+        margin: 0;
+        line-height: 1.7;
+        color: var(--text-soft);
+        font-size: 0.9rem;
+      }
+
+      .catalog-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin: 32px 0 22px;
+      }
+
+      .filter-chips {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.7);
+        border: 1px solid rgba(17,17,17,0.06);
+        color: var(--text-soft);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .chip.active {
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        border-color: transparent;
+        color: var(--white);
+        box-shadow: 0 12px 22px rgba(227,27,35,0.18);
+      }
+
+      .sort-box {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255,255,255,0.72);
+        border: 1px solid rgba(17,17,17,0.06);
+        border-radius: 999px;
+        padding: 10px 16px;
+        color: var(--text-soft);
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(220px, 1fr));
+        gap: 22px;
+        margin-top: 10px;
+      }
+
+      .product-card {
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(17,17,17,0.06);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 18px 28px rgba(0,0,0,0.02);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 22px 30px rgba(0,0,0,0.06);
+      }
+
+      .product-visual {
+        height: 260px;
+        background: rgba(245,245,245,0.8);
+      }
+
+      .product-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-meta {
+        padding: 18px 18px 20px;
+      }
+
+      .product-meta h3 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        color: var(--text-soft);
+        font-size: 0.8rem;
+      }
+
+      .stars { color: #f7b733; letter-spacing: 0.1em; }
+
+      .price-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .price-row .price {
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .old-price {
+        margin-left: 8px;
+        color: var(--text-soft);
+        text-decoration: line-through;
+        font-size: 0.78rem;
+      }
+
+      .mini-btn {
+        border: none;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        border-radius: 999px;
+        min-width: 72px;
+        min-height: 36px;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      footer {
+        margin-top: 70px;
+        background: linear-gradient(180deg, #0d0d0e 0%, #181818 100%);
+        color: rgba(255,255,255,0.8);
+        position: relative;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(227,27,35,0.16), transparent 30%);
+        pointer-events: none;
+      }
+
+      .footer-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 54px 22px 28px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+        gap: 28px;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding: 14px 18px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 16px 30px rgba(0,0,0,0.12);
+      }
+
+      .footer-brand img {
+        width: 148px;
+        height: auto;
+        display: block;
+      }
+
+      .footer-copy {
+        margin: 0;
+        max-width: 360px;
+        line-height: 1.9;
+        color: rgba(255,255,255,0.72);
+      }
+
+      .footer-col h4 {
+        margin: 0 0 18px;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.85);
+      }
+
+      .footer-col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-col a {
+        color: rgba(255,255,255,0.72);
+        transition: color 0.2s ease;
+      }
+
+      .footer-col a:hover { color: var(--white); }
+
+      .footer-socials {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .footer-socials a {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .footer-socials a:hover {
+        transform: translateY(-2px);
+        border-color: rgba(227,27,35,0.4);
+      }
+
+      .footer-socials svg {
+        width: 16px;
+        height: 16px;
+        fill: rgba(255,255,255,0.8);
+      }
+
+      .newsletter {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .newsletter input {
+        flex: 1;
+        height: 46px;
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        color: var(--white);
+        padding: 0 16px;
+        outline: none;
+      }
+
+      .newsletter input::placeholder {
+        color: rgba(255,255,255,0.42);
+      }
+
+      .newsletter button {
+        border: none;
+        height: 46px;
+        border-radius: 999px;
+        padding: 0 18px;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-top: 18px;
+        margin-top: 26px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.56);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .scroll-top {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        width: 52px;
+        height: 52px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        box-shadow: 0 16px 30px rgba(227, 27, 35, 0.24);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        z-index: 60;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(16px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .scroll-top svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      @media (max-width: 980px) {
+        .header-inner { flex-wrap: wrap; justify-content: center; }
+        .header-tools { justify-content: center; }
+        .shop-hero { grid-template-columns: 1fr; }
+        .product-grid { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .topbar { padding: 14px 16px; }
+        .nav { gap: 16px; }
+        .shop-main { padding: 8px 16px 56px; }
+        .shop-hero { padding: 28px 22px; }
+        .section-head { flex-direction: column; align-items: flex-start; }
+        .product-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .newsletter { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="header-inner">
+          <div class="brand" aria-label="AUREONIC logo">
+            <div class="brand-mark">
+              <img src="assets/head.png" alt="AUREONIC logo" />
+            </div>
+          </div>
+
+          <nav class="nav" aria-label="Main navigation">
+            <a href="home.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+            <a href="#">Cart</a>
+            <a href="#">My Order</a>
+            <a href="#">Profile</a>
+          </nav>
+
+          <div class="header-tools">
+            <a href="#" class="header-link">Login</a>
+            <div class="socials" aria-label="Social media links">
+              <a href="#" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"/></svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg>
+              </a>
+              <a href="#" aria-label="X">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"/></svg>
+              </a>
+              <a href="#" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="shop-main">
+        <!-- <section class="shop-hero">
+          <div class="shop-hero-copy">
+            <span class="eyebrow">Curated selection</span>
+            <h1>Find the right sound for every setup.</h1>
+            <p>Premium headphones, earbuds, travel audio, and everyday essentials designed for comfort, performance, and elevated listening.</p>
+            <div class="shop-cta-row">
+              <a href="#" class="primary-btn">Shop now</a>
+              <a href="#" class="secondary-btn">Best deals</a>
+            </div>
+          </div>
+          <div class="shop-hero-visual">
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80" alt="Premium headphones" />
+            <span class="shop-badge">Noise Cancel</span>
+          </div> -->
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Featured picks</h2>
+            <span>Professional audio</span>
+          </div>
+
+          <div class="mini-carousel category-carousel" data-carousel>
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80" alt="Over-ear headphones" /></div>
+                  <div class="mini-card-body"><h3>Over-ear</h3><p>Comfort-first sound with deep bass and crisp clarity.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=900&q=80" alt="Wireless earbuds" /></div>
+                  <div class="mini-card-body"><h3>Earbuds</h3><p>Compact, airy, and built for fast daily listening.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80" alt="Travel audio" /></div>
+                  <div class="mini-card-body"><h3>Travel</h3><p>Lightweight audio designed to move with you.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80" alt="Work audio" /></div>
+                  <div class="mini-card-body"><h3>Work</h3><p>Clear calls, focused listening, and clean setup.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=900&q=80" alt="Accessories" /></div>
+                  <div class="mini-card-body"><h3>Accessories</h3><p>Cases, chargers, and premium travel add-ons.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="Gaming audio" /></div>
+                  <div class="mini-card-body"><h3>Gaming</h3><p>Clear positional sound and rich detail for focus.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="Sport audio" /></div>
+                  <div class="mini-card-body"><h3>Sport</h3><p>Secure fit and active-ready performance for movement.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" alt="Studio sound" /></div>
+                  <div class="mini-card-body"><h3>Studio</h3><p>Balanced tuning for music lovers and creators.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=80" alt="Everyday audio" /></div>
+                  <div class="mini-card-body"><h3>Everyday</h3><p>Simple, refined gear for daily lifestyle use.</p></div>
+                </article>
+                <article class="mini-card">
+                  <div class="mini-card-image"><img src="https://images.unsplash.com/photo-1555445091-5a3d5d2c66a7?auto=format&fit=crop&w=900&q=80" alt="Charging audio" /></div>
+                  <div class="mini-card-body"><h3>Charging</h3><p>Portable power picks for seamless all-day use.</p></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="catalog-toolbar">
+            <div class="filter-chips" aria-label="Shop filter buttons">
+              <button class="chip active" type="button" data-filter="all">All</button>
+              <button class="chip" type="button" data-filter="wireless">Wireless</button>
+              <button class="chip" type="button" data-filter="noise-cancel">Noise Cancel</button>
+              <button class="chip" type="button" data-filter="travel">Travel</button>
+              <button class="chip" type="button" data-filter="studio">Studio</button>
+            </div>
+            <div class="sort-box">Sort by: Featured</div>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card" data-category="wireless">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80" alt="Over-ear headphones" /></div>
+              <div class="product-meta">
+                <h3>Wireless Headphones</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.8</span></div>
+                <div class="price-row"><div><span class="price">$129</span> <span class="old-price">$149</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="wireless">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=900&q=80" alt="Wireless earbuds" /></div>
+              <div class="product-meta">
+                <h3>Air Earbuds</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.9</span></div>
+                <div class="price-row"><div><span class="price">$99</span> <span class="old-price">$119</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="studio">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80" alt="Premium audio device" /></div>
+              <div class="product-meta">
+                <h3>Studio Pro</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.7</span></div>
+                <div class="price-row"><div><span class="price">$149</span> <span class="old-price">$179</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="noise-cancel">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80" alt="Compact earbuds" /></div>
+              <div class="product-meta">
+                <h3>Compact Buds</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.8</span></div>
+                <div class="price-row"><div><span class="price">$89</span> <span class="old-price">$99</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="travel">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=900&q=80" alt="Travel audio set" /></div>
+              <div class="product-meta">
+                <h3>Travel Set</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.6</span></div>
+                <div class="price-row"><div><span class="price">$119</span> <span class="old-price">$139</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="studio">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="Premium sound bar" /></div>
+              <div class="product-meta">
+                <h3>Sound Bar Mini</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.9</span></div>
+                <div class="price-row"><div><span class="price">$219</span> <span class="old-price">$249</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="noise-cancel">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="Comfort audio" /></div>
+              <div class="product-meta">
+                <h3>Comfort Fit</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.7</span></div>
+                <div class="price-row"><div><span class="price">$109</span> <span class="old-price">$129</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+
+            <article class="product-card" data-category="travel">
+              <div class="product-visual"><img src="https://images.unsplash.com/photo-1555445091-5a3d5d2c66a7?auto=format&fit=crop&w=900&q=80" alt="Portable audio gear" /></div>
+              <div class="product-meta">
+                <h3>Portable Max</h3>
+                <div class="rating"><span class="stars">★★★★★</span> <span>4.8</span></div>
+                <div class="price-row"><div><span class="price">$139</span> <span class="old-price">$169</span></div><button class="mini-btn">Add</button></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div>
+              <div class="footer-brand">
+                <img src="assets/logo.png" alt="AUREONIC logo" />
+              </div>
+              <p class="footer-copy">Premium audio essentials for daily listening, travel, work, and performance. Clean design, dependable quality, and everyday comfort.</p>
+              <div class="footer-socials" aria-label="Social media links">
+                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"/></svg></a>
+                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg></a>
+                <a href="#" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"/></svg></a>
+                <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg></a>
+              </div>
+            </div>
+
+            <div class="footer-col">
+              <h4>Shop</h4>
+              <ul>
+                <li><a href="#">Headphones</a></li>
+                <li><a href="#">Earbuds</a></li>
+                <li><a href="#">Portable audio</a></li>
+                <li><a href="#">Accessories</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Journal</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Newsletter</h4>
+              <p class="footer-copy">Get product updates and exclusive offers.</p>
+              <div class="newsletter">
+                <input type="email" placeholder="Your email" />
+                <button type="button">Join</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span>© 2026 AUREONIC</span>
+            <span>Premium audio essentials</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a1 1 0 0 1 .71.29l6.5 6.5-1.42 1.42-4.79-4.79V20h-2V7.92l-4.79 4.79-1.42-1.42 6.5-6.5A1 1 0 0 1 12 4.5Z"/></svg>
+    </button>
+
+    <script>
+      const filterButtons = document.querySelectorAll('.chip');
+      const productCards = document.querySelectorAll('.product-card');
+      const scrollTopBtn = document.querySelector('.scroll-top');
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const selectedFilter = button.dataset.filter;
+
+          filterButtons.forEach((chip) => {
+            chip.classList.toggle('active', chip === button);
+          });
+
+          productCards.forEach((card) => {
+            const category = card.dataset.category;
+            const showCard = selectedFilter === 'all' || category === selectedFilter;
+            card.style.display = showCard ? 'block' : 'none';
+          });
+        });
+      });
+
+      const toggleScrollTopButton = () => {
+        if (window.scrollY > 260) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      };
+
+      window.addEventListener('scroll', toggleScrollTopButton);
+      toggleScrollTopButton();
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+  </body>
+</html>
