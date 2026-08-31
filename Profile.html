@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUREONIC | Profile</title>
+    <style>
+      :root {
+        --bg: #f5f5f5;
+        --white: #ffffff;
+        --soft-white: #f1f3f5;
+        --silver: #c5c9ce;
+        --text: #111111;
+        --text-soft: #4a4d52;
+        --red: #e31b23;
+        --red-soft: #ff6a6a;
+        --red-deep: #b70e16;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          radial-gradient(circle at top center, rgba(227, 27, 35, 0.12), transparent 18%),
+          linear-gradient(180deg, #fdfdfd 0%, #f3f3f3 100%);
+        color: var(--text);
+      }
+
+      body { min-height: 100vh; }
+      a { text-decoration: none; color: inherit; }
+      img { display: block; max-width: 100%; }
+      button, input, textarea { font: inherit; }
+
+      .page-shell { width: 100%; min-height: 100vh; }
+
+      .topbar {
+        width: 100%;
+        padding: 18px 28px;
+        background: rgba(255,255,255,0.76);
+        backdrop-filter: blur(6px);
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        border-bottom: 1px solid rgba(17,17,17,0.06);
+      }
+
+      .header-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 180px;
+      }
+
+      .brand-mark {
+        position: relative;
+        width: 142px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-mark::before {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(227, 27, 35, 0.36) 0%, rgba(227, 27, 35, 0.18) 28%, rgba(255,255,255,0) 70%);
+        filter: blur(22px);
+      }
+
+      .brand-mark img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 26px;
+        flex: 1;
+      }
+
+      .nav a {
+        position: relative;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--text-soft);
+        text-transform: uppercase;
+      }
+
+      .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), var(--red-soft));
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      .nav a:hover,
+      .nav a.active {
+        color: var(--red-deep);
+      }
+
+      .nav a:hover::after,
+      .nav a.active::after {
+        transform: scaleX(1);
+      }
+
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .header-link {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+      }
+
+      .header-link:hover { color: var(--red); }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .socials a {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid rgba(17,17,17,0.06);
+        box-shadow: 0 6px 16px rgba(17,17,17,0.04);
+      }
+
+      .socials svg {
+        width: 16px;
+        height: 16px;
+        fill: var(--text);
+      }
+
+      .profile-shell {
+        max-width: 1200px;
+        margin: 28px auto 0;
+        padding: 0 22px 70px;
+      }
+
+      .profile-card {
+        background: rgba(255,255,255,0.9);
+        border: 1px solid rgba(17,17,17,0.05);
+        border-radius: 28px;
+        box-shadow: 0 22px 54px rgba(0,0,0,0.04);
+        padding: 28px;
+      }
+
+      .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .user-box {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .avatar-wrap {
+        position: relative;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #efefef;
+        border: 3px solid rgba(227,27,35,0.12);
+      }
+
+      .avatar-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .upload-label {
+        position: absolute;
+        right: 4px;
+        bottom: 4px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        cursor: pointer;
+        box-shadow: 0 10px 18px rgba(227,27,35,0.18);
+      }
+
+      .upload-label svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+      }
+
+      .user-meta h1 {
+        margin: 0 0 6px;
+        font-size: clamp(1.9rem, 2.6vw, 2.7rem);
+        letter-spacing: -0.05em;
+      }
+
+      .user-meta p {
+        margin: 0;
+        color: var(--text-soft);
+      }
+
+      .edit-btn {
+        border: none;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 16px 26px rgba(227,27,35,0.18);
+      }
+
+      .save-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 16px 26px rgba(227,27,35,0.18);
+      }
+
+      .save-btn.hidden {
+        display: none;
+      }
+
+      .profile-layout {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+        margin-top: 22px;
+      }
+
+      .panel {
+        background: rgba(255,255,255,0.78);
+        border: 1px solid rgba(17,17,17,0.05);
+        border-radius: 22px;
+        padding: 24px 20px;
+      }
+
+      .panel h2 {
+        margin: 0 0 18px;
+        font-size: 1.3rem;
+        letter-spacing: -0.04em;
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field label {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border: 1px solid rgba(17,17,17,0.08);
+        border-radius: 14px;
+        background: rgba(245,245,245,0.72);
+        color: var(--text);
+        padding: 12px 14px;
+        outline: none;
+      }
+
+      .field textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-color: rgba(227,27,35,0.28);
+        box-shadow: 0 0 0 4px rgba(227,27,35,0.08);
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      .order-box {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .order-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 8px;
+        min-height: 118px;
+        padding: 18px 16px;
+        background: rgba(245,245,245,0.75);
+        border: 1px solid rgba(17,17,17,0.05);
+        border-radius: 16px;
+      }
+
+      .order-item strong {
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+      }
+
+      .order-count {
+        font-size: clamp(2rem, 3vw, 2.7rem);
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        color: var(--red-deep);
+      }
+
+      .order-label {
+        font-size: 0.75rem;
+        color: var(--text-soft);
+      }
+
+      footer {
+        margin-top: 70px;
+        background: linear-gradient(180deg, #0d0d0e 0%, #181818 100%);
+        color: rgba(255,255,255,0.8);
+      }
+
+      .footer-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 54px 22px 28px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+        gap: 28px;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding: 14px 18px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .footer-brand img {
+        width: 148px;
+        height: auto;
+      }
+
+      .footer-copy {
+        margin: 0;
+        max-width: 360px;
+        line-height: 1.9;
+        color: rgba(255,255,255,0.72);
+      }
+
+      .footer-col h4 {
+        margin: 0 0 18px;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.85);
+      }
+
+      .footer-col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-col a {
+        color: rgba(255,255,255,0.72);
+      }
+
+      .footer-socials {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .footer-socials a {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .footer-socials svg {
+        width: 16px;
+        height: 16px;
+        fill: rgba(255,255,255,0.8);
+      }
+
+      .newsletter {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .newsletter input {
+        flex: 1;
+        height: 46px;
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        color: var(--white);
+        padding: 0 16px;
+        outline: none;
+      }
+
+      .newsletter button {
+        border: none;
+        height: 46px;
+        border-radius: 999px;
+        padding: 0 18px;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .footer-bottom {
+        margin-top: 34px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.65);
+      }
+
+      .scroll-top {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        width: 52px;
+        height: 52px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--red), var(--red-soft));
+        color: var(--white);
+        box-shadow: 0 16px 30px rgba(227, 27, 35, 0.24);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        z-index: 60;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(16px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .scroll-top svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      @media (max-width: 980px) {
+        .header-inner { flex-wrap: wrap; justify-content: center; }
+        .brand { min-width: auto; }
+        .nav { order: 3; width: 100%; }
+        .header-tools { justify-content: center; }
+        .profile-layout,
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 680px) {
+        .topbar { padding: 14px 16px; }
+        .nav { gap: 16px; }
+        .nav a { font-size: 0.72rem; }
+        .header-link { font-size: 0.7rem; }
+        .profile-shell { padding-left: 14px; padding-right: 14px; }
+        .profile-layout,
+        .field-grid,
+        .footer-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="header-inner">
+          <div class="brand" aria-label="AUREONIC logo">
+            <div class="brand-mark">
+              <img src="assets/head.png" alt="AUREONIC logo" />
+            </div>
+          </div>
+
+          <nav class="nav" aria-label="Main navigation">
+            <a href="home.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+            <a href="#">Cart</a>
+            <a href="#">My Order</a>
+            <a href="Profile.html" class="active">Profile</a>
+          </nav>
+
+          <div class="header-tools">
+            <a href="#" class="header-link">Login</a>
+            <div class="socials" aria-label="Social media links">
+              <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg></a>
+              <a href="#" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="profile-shell">
+        <section class="profile-card">
+          <div class="profile-header">
+            <div class="user-box">
+              <div class="avatar-wrap">
+                <img id="profileImage" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Profile photo" />
+                <label class="upload-label" for="avatarInput" aria-label="Upload profile picture">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 7.8A7.5 7.5 0 0 0 5.7 9.5a5.2 5.2 0 0 0 .4 10.3h12.8a5.5 5.5 0 0 0 .5-10.9ZM13 9v4h-2V9H8l4-4 4 4h-3Zm-1 7h2v-1h-2v1Z"/></svg>
+                </label>
+                <input id="avatarInput" type="file" accept="image/*" hidden />
+              </div>
+
+              <div class="user-meta">
+                <h1>Hamza Ali</h1>
+                <p>Karachi, Pakistan</p>
+              </div>
+            </div>
+
+            <button class="edit-btn" type="button">Edit profile</button>
+          </div>
+
+          <div class="profile-layout">
+            <div class="panel">
+              <h2>Profile details</h2>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" type="text" value="Hamza Ali" disabled />
+                </div>
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" type="tel" value="+92 300 123 4567" disabled />
+                </div>
+                <div class="field full">
+                  <label for="email">Email</label>
+                  <input id="email" type="email" value="hamza.ali@email.com" disabled />
+                </div>
+                <div class="field full">
+                  <label for="password">Password</label>
+                  <input id="password" type="password" value="password123" disabled />
+                </div>
+                <div class="field full">
+                  <label for="address">Address</label>
+                  <textarea id="address" disabled>24 Gulshan Avenue, Karachi, Pakistan</textarea>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; display: flex; justify-content: flex-end;">
+                <button class="save-btn hidden" type="button">Save</button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h2>Order history</h2>
+              <div class="order-box">
+                <div class="order-item">
+                  <strong>Total Orders</strong>
+                  <span class="order-count">08</span>
+                  <span class="order-label">Completed</span>
+                </div>
+                <div class="order-item">
+                  <strong>Delivered</strong>
+                  <span class="order-count">05</span>
+                  <span class="order-label">On record</span>
+                </div>
+                <div class="order-item">
+                  <strong>In Transit</strong>
+                  <span class="order-count">02</span>
+                  <span class="order-label">Current</span>
+                </div>
+                <div class="order-item">
+                  <strong>Returns</strong>
+                  <span class="order-count">01</span>
+                  <span class="order-label">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div>
+              <div class="footer-brand">
+                <img src="assets/logo.png" alt="AUREONIC logo" />
+              </div>
+              <p class="footer-copy">Premium audio essentials for daily listening, travel, work, and performance. Clean design, dependable quality, and everyday comfort.</p>
+              <div class="footer-socials" aria-label="Social media links">
+                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"/></svg></a>
+                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg></a>
+                <a href="#" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"/></svg></a>
+                <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg></a>
+              </div>
+            </div>
+
+            <div class="footer-col">
+              <h4>Shop</h4>
+              <ul>
+                <li><a href="#">Headphones</a></li>
+                <li><a href="#">Earbuds</a></li>
+                <li><a href="#">Portable audio</a></li>
+                <li><a href="#">Accessories</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Journal</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Newsletter</h4>
+              <p class="footer-copy">Get product updates and exclusive offers.</p>
+              <div class="newsletter">
+                <input type="email" placeholder="Your email" />
+                <button type="button">Join</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span>© 2026 AUREONIC</span>
+            <span>Premium audio essentials</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <button class="scroll-top" aria-label="Scroll to top">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a1 1 0 0 1 .71.29l6.5 6.5-1.42 1.42-4.79-4.79V20h-2V7.92l-4.79 4.79-1.42-1.42 6.5-6.5A1 1 0 0 1 12 4.5Z"/></svg>
+    </button>
+
+    <script>
+      const scrollTopBtn = document.querySelector('.scroll-top');
+      const editBtn = document.querySelector('.edit-btn');
+      const saveBtn = document.querySelector('.save-btn');
+      const fields = document.querySelectorAll('input, textarea');
+      const avatarInput = document.getElementById('avatarInput');
+      const profileImage = document.getElementById('profileImage');
+
+      const toggleScrollTopButton = () => {
+        if (window.scrollY > 260) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      };
+
+      const setEditingState = (isEditing) => {
+        fields.forEach((field) => {
+          field.disabled = !isEditing;
+        });
+        saveBtn.classList.toggle('hidden', !isEditing);
+      };
+
+      window.addEventListener('scroll', toggleScrollTopButton);
+      toggleScrollTopButton();
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      editBtn.addEventListener('click', () => {
+        setEditingState(true);
+      });
+
+      saveBtn.addEventListener('click', () => {
+        setEditingState(false);
+      });
+
+      avatarInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          profileImage.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    </script>
+  </body>
+</html>

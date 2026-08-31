@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AUREONIC | Login</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #e31b23;
+      --red-dark: #b70e16;
+      --red-light: #ff5c63;
+      --black: #111111;
+      --gray: #6b7280;
+      --white: #ffffff;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      height: 100vh;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 16px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(227, 27, 35, 0.18),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(227, 27, 35, 0.12),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #f8f8f8,
+          #ececec
+        );
+    }
+
+
+    /* =========================
+       BACKGROUND ANIMATION
+    ========================== */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+
+      width: 350px;
+      height: 350px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(227, 27, 35, 0.18),
+          transparent 70%
+        );
+
+      top: -120px;
+      left: -100px;
+
+      border-radius: 50%;
+
+      animation:
+        floating 7s ease-in-out infinite;
+
+      pointer-events: none;
+    }
+
+
+    body::after {
+      content: "";
+
+      position: fixed;
+
+      width: 280px;
+      height: 280px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(227, 27, 35, 0.12),
+          transparent 70%
+        );
+
+      bottom: -100px;
+      right: -80px;
+
+      border-radius: 50%;
+
+      animation:
+        floating 9s ease-in-out infinite reverse;
+
+      pointer-events: none;
+    }
+
+
+    @keyframes floating {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================== */
+
+    .login-container {
+
+      width: 100%;
+      max-width: 1100px;
+
+      height: calc(100vh - 32px);
+      max-height: 680px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      background:
+        rgba(255, 255, 255, 0.9);
+
+      border-radius: 30px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 30px 80px
+        rgba(0, 0, 0, 0.12);
+
+      position: relative;
+
+      z-index: 2;
+
+      animation:
+        containerShow 0.8s ease forwards;
+    }
+
+
+    @keyframes containerShow {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(40px)
+          scale(0.97);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+      }
+
+    }
+
+
+    /* =========================
+       LEFT FORM SECTION
+    ========================== */
+
+    .form-container {
+
+      height: 100%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding:
+        35px 55px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #f8f8f8
+        );
+
+    }
+
+
+    .form-box {
+
+      width: 100%;
+
+      max-width: 390px;
+
+      animation:
+        formShow
+        1s
+        ease
+        forwards;
+
+    }
+
+
+    @keyframes formShow {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateX(-35px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateX(0);
+
+      }
+
+    }
+
+
+    /* =========================
+       LOGO
+    ========================== */
+
+    .logo-container {
+
+      position: relative;
+
+      text-align: center;
+
+      margin-bottom: 24px;
+
+    }
+
+
+    .logo-container::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: 200px;
+      height: 200px;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(227, 27, 35, 0.62),
+          rgba(227, 27, 35, 0.22) 35%,
+          transparent 70%
+        );
+
+      filter: blur(28px);
+
+      z-index: 0;
+
+    }
+
+
+    .logo-container img {
+
+      position: relative;
+      z-index: 1;
+
+      width: 145px;
+
+      max-width: 100%;
+
+      margin:
+        0 auto 10px;
+
+      animation:
+        logoPulse
+        3s
+        ease-in-out
+        infinite;
+
+    }
+
+
+    @keyframes logoPulse {
+
+      0%,
+      100% {
+
+        transform:
+          scale(1);
+
+      }
+
+      50% {
+
+        transform:
+          scale(1.04);
+
+      }
+
+    }
+
+
+    .logo-container h2 {
+
+      font-size: 30px;
+
+      color:
+        var(--black);
+
+      margin-bottom: 7px;
+
+    }
+
+
+    .logo-container p {
+
+      color:
+        var(--gray);
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+    }
+
+
+    /* =========================
+       FORM
+    ========================== */
+
+    form {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 16px;
+
+    }
+
+
+    .input-group {
+
+      position: relative;
+
+    }
+
+
+    .input-group label {
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color:
+        var(--black);
+
+    }
+
+
+    .input-group input {
+
+      width: 100%;
+
+      height: 52px;
+
+      border:
+        1px solid #e2e2e2;
+
+      border-radius: 15px;
+
+      padding:
+        0 50px 0 16px;
+
+      font-size: 14px;
+
+      outline: none;
+
+      background:
+        white;
+
+      transition:
+        0.25s ease;
+
+    }
+
+
+    .input-group input:focus {
+
+      border-color:
+        var(--red);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(227, 27, 35, 0.08);
+
+    }
+
+
+    .input-icon {
+
+      position: absolute;
+
+      right: 17px;
+
+      bottom: 16px;
+
+      font-size: 17px;
+
+      opacity: 0.55;
+
+      pointer-events: none;
+
+    }
+
+
+    /* =========================
+       PASSWORD TOGGLE
+    ========================== */
+
+    .password-toggle {
+
+      position: absolute;
+
+      right: 15px;
+
+      bottom: 13px;
+
+      border: none;
+
+      background: transparent;
+
+      font-size: 18px;
+
+      cursor: pointer;
+
+      opacity: 0.6;
+
+      transition:
+        0.2s ease;
+
+    }
+
+
+    .password-toggle:hover {
+
+      opacity: 1;
+
+      transform:
+        scale(1.1);
+
+    }
+
+
+    /* =========================
+       REMEMBER + FORGOT
+    ========================== */
+
+    .form-options {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-top: -3px;
+
+    }
+
+
+    .remember-me {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      font-size: 13px;
+
+      color:
+        var(--gray);
+
+      cursor: pointer;
+
+    }
+
+
+    .remember-me input {
+
+      width: 16px;
+
+      height: 16px;
+
+      accent-color:
+        var(--red);
+
+      cursor: pointer;
+
+    }
+
+
+    .forgot-password {
+
+      color:
+        var(--red);
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+    }
+
+
+    .forgot-password:hover {
+
+      text-decoration:
+        underline;
+
+    }
+
+
+    /* =========================
+       LOGIN BUTTON
+    ========================== */
+
+    .login-btn {
+
+      width: 100%;
+
+      height: 52px;
+
+      border: none;
+
+      border-radius: 16px;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-light)
+        );
+
+      color:
+        white;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      text-transform:
+        uppercase;
+
+      box-shadow:
+        0 15px 30px
+        rgba(227, 27, 35, 0.25);
+
+      transition:
+        0.3s ease;
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+
+    .login-btn::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+
+      left: -100%;
+
+      width: 100%;
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+
+      transition:
+        0.6s ease;
+
+    }
+
+
+    .login-btn:hover::before {
+
+      left: 100%;
+
+    }
+
+
+    .login-btn:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 20px 40px
+        rgba(227, 27, 35, 0.35);
+
+    }
+
+
+    /* =========================
+       SIGNUP LINK
+    ========================== */
+
+    .signup-link {
+
+      text-align: center;
+
+      margin-top: 20px;
+
+      font-size: 13px;
+
+      color:
+        var(--gray);
+
+    }
+
+
+    .signup-link a {
+
+      color:
+        var(--red);
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+      margin-left: 5px;
+
+    }
+
+
+    .signup-link a:hover {
+
+      text-decoration:
+        underline;
+
+    }
+
+
+    /* =========================
+       RIGHT IMAGE SECTION
+    ========================== */
+
+    .image-container {
+
+      position: relative;
+
+      height: 100%;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.2),
+          rgba(227, 27, 35, 0.45)
+        );
+
+    }
+
+
+    .image-container img {
+
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+
+      inset: 0;
+
+      object-fit: cover;
+
+      animation:
+        imageZoom
+        12s
+        ease-in-out
+        infinite
+        alternate;
+
+    }
+
+
+    @keyframes imageZoom {
+
+      from {
+
+        transform:
+          scale(1);
+
+      }
+
+      to {
+
+        transform:
+          scale(1.08);
+
+      }
+
+    }
+
+
+    .image-overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.08),
+          rgba(0, 0, 0, 0.78)
+        );
+
+    }
+
+
+    /* =========================
+       FLOATING AUDIO CARD
+    ========================== */
+
+    .floating-card {
+
+      position: absolute;
+
+      top: 30px;
+      right: 35px;
+
+      padding:
+        12px 16px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      border-radius: 18px;
+
+      background:
+        rgba(255, 255, 255, 0.14);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
+
+      backdrop-filter:
+        blur(12px);
+
+      color:
+        white;
+
+      z-index: 3;
+
+      animation:
+        cardFloat
+        4s
+        ease-in-out
+        infinite;
+
+    }
+
+
+    @keyframes cardFloat {
+
+      0%,
+      100% {
+
+        transform:
+          translateY(0);
+
+      }
+
+      50% {
+
+        transform:
+          translateY(-10px);
+
+      }
+
+    }
+
+
+    .sound-icon {
+
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-light)
+        );
+
+      font-size: 18px;
+
+    }
+
+
+    .floating-card span {
+
+      font-size: 12px;
+
+      color:
+        rgba(255, 255, 255, 0.8);
+
+    }
+
+
+    .floating-card strong {
+
+      display: block;
+
+      font-size: 13px;
+
+      margin-top: 3px;
+
+    }
+
+
+    /* =========================
+       IMAGE CONTENT
+    ========================== */
+
+    .image-content {
+
+      position: absolute;
+
+      left: 40px;
+      right: 40px;
+      bottom: 45px;
+
+      color:
+        white;
+
+      z-index: 2;
+
+      animation:
+        contentSlide
+        1s
+        ease
+        forwards;
+
+    }
+
+
+    @keyframes contentSlide {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateX(30px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateX(0);
+
+      }
+
+    }
+
+
+    .brand-tag {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      padding:
+        8px 14px;
+
+      border-radius: 30px;
+
+      background:
+        rgba(255, 255, 255, 0.15);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.2);
+
+      backdrop-filter:
+        blur(10px);
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 15px;
+
+    }
+
+
+    .image-content h1 {
+
+      font-size: 38px;
+
+      line-height: 1.12;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    .image-content p {
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+      color:
+        rgba(255, 255, 255, 0.85);
+
+      max-width: 400px;
+
+    }
+
+
+    /* =========================
+       TABLET RESPONSIVE
+    ========================== */
+
+    @media (max-width: 850px) {
+
+      body {
+
+        height: auto;
+
+        min-height: 100vh;
+
+        overflow-y: auto;
+
+        padding: 20px;
+
+      }
+
+
+      .login-container {
+
+        height: auto;
+
+        max-height: none;
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .form-container {
+
+        padding:
+          45px 30px;
+
+      }
+
+
+      .image-container {
+
+        min-height: 350px;
+
+      }
+
+
+      .image-container {
+
+        order: 2;
+
+      }
+
+
+      .form-container {
+
+        order: 1;
+
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE RESPONSIVE
+    ========================== */
+
+    @media (max-width: 500px) {
+
+      body {
+
+        padding: 10px;
+
+      }
+
+
+      .login-container {
+
+        border-radius: 22px;
+
+      }
+
+
+      .form-container {
+
+        padding:
+          35px 22px;
+
+      }
+
+
+      .image-container {
+
+        min-height: 300px;
+
+      }
+
+
+      .image-content {
+
+        left: 25px;
+
+        right: 25px;
+
+        bottom: 30px;
+
+      }
+
+
+      .image-content h1 {
+
+        font-size: 29px;
+
+      }
+
+
+      .image-content p {
+
+        font-size: 13px;
+
+      }
+
+
+      .floating-card {
+
+        top: 20px;
+
+        right: 20px;
+
+      }
+
+
+      .form-options {
+
+        flex-wrap: wrap;
+
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- MAIN LOGIN CONTAINER -->
+
+  <div class="login-container">
+
+
+    <!-- LEFT LOGIN FORM -->
+
+    <div class="form-container">
+
+
+      <div class="form-box">
+
+
+        <!-- LOGO -->
+
+        <div class="logo-container">
+
+
+          <img
+            src="assets/logo.png"
+            alt="AUREONIC Logo"
+          >
+
+
+          <h2>
+
+            Welcome Back
+
+          </h2>
+
+
+          <p>
+
+            Login to continue your premium AUREONIC experience.
+
+          </p>
+
+
+        </div>
+
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="loginForm">
+
+
+          <!-- EMAIL -->
+
+          <div class="input-group">
+
+
+            <label>
+
+              Email Address
+
+            </label>
+
+
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+            >
+
+
+            <span class="input-icon">
+
+              ✉
+
+            </span>
+
+
+          </div>
+
+
+
+          <!-- PASSWORD -->
+
+          <div class="input-group">
+
+
+            <label>
+
+              Password
+
+            </label>
+
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            >
+
+
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword()"
+            >
+
+              👁
+
+            </button>
+
+
+          </div>
+
+
+
+          <!-- REMEMBER + FORGOT -->
+
+          <div class="form-options">
+
+
+            <label class="remember-me">
+
+
+              <input type="checkbox">
+
+
+              Remember me
+
+
+            </label>
+
+
+            <a
+              href="#"
+              class="forgot-password"
+            >
+
+              Forgot Password?
+
+            </a>
+
+
+          </div>
+
+
+
+          <!-- LOGIN BUTTON -->
+
+          <button
+            type="submit"
+            class="login-btn"
+          >
+
+            Login
+
+          </button>
+
+
+        </form>
+
+
+
+        <!-- SIGNUP LINK -->
+
+        <div class="signup-link">
+
+
+          Don't have an account?
+
+
+          <a href="signup.html">
+
+            Create Account
+
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- RIGHT IMAGE SECTION -->
+
+    <div class="image-container">
+
+
+      <img
+        src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=85"
+        alt="Premium Audio"
+      >
+
+
+      <div class="image-overlay"></div>
+
+
+
+      <!-- FLOATING CARD -->
+
+      <div class="floating-card">
+
+
+        <div class="sound-icon">
+
+          ♫
+
+        </div>
+
+
+        <div>
+
+
+          <span>
+
+            Premium Sound
+
+          </span>
+
+
+          <strong>
+
+            AUREONIC Audio
+
+          </strong>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- IMAGE CONTENT -->
+
+      <div class="image-content">
+
+
+        <div class="brand-tag">
+
+          AUREONIC PREMIUM AUDIO
+
+        </div>
+
+
+        <h1>
+
+          Your Premium
+          Sound Experience.
+
+        </h1>
+
+
+        <p>
+
+          Welcome back to AUREONIC. Discover premium audio,
+          exceptional electronics and a modern shopping
+          experience built around you.
+
+        </p>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <script>
+
+
+    /* =========================
+       SHOW / HIDE PASSWORD
+    ========================== */
+
+    function togglePassword() {
+
+
+      const password =
+        document.getElementById(
+          "password"
+        );
+
+
+      const button =
+        document.querySelector(
+          ".password-toggle"
+        );
+
+
+      if (
+        password.type === "password"
+      ) {
+
+
+        password.type =
+          "text";
+
+
+        button.innerHTML =
+          "🙈";
+
+
+      } else {
+
+
+        password.type =
+          "password";
+
+
+        button.innerHTML =
+          "👁";
+
+
+      }
+
+
+    }
+
+
+  </script>
+
+
+</body>
+</html>
