@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUREONIC | Orders</title>
+    <style>
+      :root { --bg:#f5f6f8; --panel:#fff; --line:#eceff3; --text:#101827; --text-soft:#59657a; --muted:#7f8ca3; --primary:#e50914; --primary-dark:#b20710; --primary-soft:#ff6b72; --primary-soft-2:#ffe5e7; --success:#1fa66b; --success-soft:#e8fff4; --warning:#f59e0b; --warning-soft:#fff4d8; --info:#2563eb; --info-soft:#eaf2ff; --danger:#ef4444; --danger-soft:#ffe4e6; --shadow:0 18px 40px rgba(17,24,39,.08); --radius:20px; }
+      *{box-sizing:border-box} body{margin:0;font-family:"Segoe UI", Tahoma,sans-serif;background:linear-gradient(180deg,#f7f8fa,#f2f4f7);color:var(--text)} a{text-decoration:none;color:inherit} button,input,select{font:inherit} .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:18px 14px;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:12px;padding:8px 10px 26px}.brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-soft));color:#fff;font-weight:800;letter-spacing:.08em}.brand-text{display:flex;flex-direction:column}.brand-text strong{letter-spacing:.08em}.brand-text small{color:var(--text-soft)}.menu-group{margin-top:18px}.menu-label{padding:0 12px 10px;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}.nav{display:grid;gap:6px}.nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;color:var(--text-soft);font-weight:600}.nav a.active,.nav a:hover{background:var(--primary-soft-2);color:var(--primary-dark)}.nav a svg{width:17px;height:17px;fill:currentColor}.badge{margin-left:auto;min-width:22px;height:22px;border-radius:999px;display:grid;place-items:center;background:var(--primary-soft-2);color:var(--primary-dark);font-size:.66rem;font-weight:700;padding:0 6px}.content{padding:24px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.page-title h1{margin:0;font-size:clamp(1.7rem,2vw,2.2rem);letter-spacing:-.06em}.page-title small{color:var(--text-soft)}.topbar-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.searchbox{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;min-width:250px;height:46px;padding:0 14px}.searchbox svg{width:16px;height:16px;fill:currentColor;color:var(--text-soft)}.searchbox input{border:none;outline:none;width:100%;background:transparent;color:var(--text)}.searchbox input::placeholder{color:var(--muted)}.primary-btn,.secondary-btn,.filter-btn{height:42px;padding:0 18px;border-radius:14px;cursor:pointer;font-weight:700}.primary-btn{background:linear-gradient(135deg,var(--primary),var(--primary-soft));border:none;color:#fff;box-shadow:0 12px 26px rgba(229,9,20,.2)}.secondary-btn,.filter-btn{background:#fff;border:1px solid var(--line);color:var(--text)}.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.section-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.section-header h2{margin:0;font-size:1.1rem}.table-wrap{overflow-x:auto}.table{width:100%;border-collapse:collapse;min-width:820px}.table th,.table td{text-align:left;padding:14px 10px;border-bottom:1px solid var(--line)}.table th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft)}.table td{font-size:.9rem}.status{display:inline-flex;padding:7px 10px;border-radius:999px;font-size:.72rem;font-weight:700}.status.pending{background:var(--warning-soft);color:var(--warning)}.status.processing{background:var(--info-soft);color:var(--info)}.status.delivered{background:var(--success-soft);color:var(--success)}.status.cancelled{background:var(--danger-soft);color:var(--danger)}.actions{display:flex;gap:8px;flex-wrap:wrap}.mini-btn{padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:.75rem;font-weight:700;cursor:pointer}.mini-btn.view{background:#f8fafc}.mini-btn.edit{background:#fef2f2;color:var(--primary-dark)}@media (max-width:900px){.app{grid-template-columns:1fr}. .sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}@media (max-width:640px){.content{padding:18px 14px 28px}. .topbar{flex-wrap:wrap}. .topbar-tools{width:100%;justify-content:space-between}. .searchbox{min-width:0;width:100%}}
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-mark">A</div><div class="brand-text"><strong>AUREONIC</strong><small>Admin Center</small></div></div>
+        <div class="menu-group">
+          <div class="menu-label">Overview</div>
+          <nav class="nav">
+            <a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-8H9v8H4a1 1 0 0 1-1-1v-9.5Z"/></svg>Dashboard</a>
+            <a href="products.html"><svg viewBox="0 0 24 24"><path d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm10 0h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1ZM10 13H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1Zm10 0h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1Z"/></svg>Products</a>
+            <a href="categories.html"><svg viewBox="0 0 24 24"><path d="M7 6h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm3 0V4h4v2m-9 6h16"/></svg>Categories</a>
+            <a href="orders.html" class="active"><svg viewBox="0 0 24 24"><path d="M5 19V7h3v12H5Zm5 0V4h3v15h-3Zm5 0v-8h3v8h-3Z"/></svg>Orders<span class="badge">42</span></a>
+            <a href="customers.html"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.87 0-7 2.24-7 5v1h14v-1c0-2.76-3.13-5-7-5Z"/></svg>Customers</a>
+          </nav>
+        </div>
+        <div class="menu-group">
+          <div class="menu-label">Management</div>
+          <nav class="nav">
+            <a href="messages.html"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2 5h12v2H6V9Zm0 4h8v2H6v-2Z"/></svg>Messages<span class="badge">8</span></a>
+            <a href="reports.html"><svg viewBox="0 0 24 24"><path d="M19 3h-8a2 2 0 0 0-2 2v1H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm-10 7V5h8v3h-8Zm0 6v-3h8v3h-8Z"/></svg>Reports</a>
+            <a href="settings.html"><svg viewBox="0 0 24 24"><path d="M19.14 12.94a7.49 7.49 0 0 0 .05-.94 7.49 7.49 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.18l-2.39.96a7.13 7.13 0 0 0-1.63-.94L14.5 2.5a.5.5 0 0 0-.5-.5h-3.99a.5.5 0 0 0-.5.5l-.25 2.5a7.13 7.13 0 0 0-1.63.94l-2.39-.96a.5.5 0 0 0-.61.18L2.71 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.49 7.49 0 0 0-.05.94 7.49 7.49 0 0 0 .05.94L2.83 14.52a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .61.18l2.39-.96c.5.39 1.04.7 1.63.94l.25 2.5a.5.5 0 0 0 .5.5h3.99a.5.5 0 0 0 .5-.5l.25-2.5c.59-.24 1.13-.55 1.63-.94l2.39.96a.5.5 0 0 0 .61-.18l1.92-3.32a.5.5 0 0 0-.12-.64ZM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5Z"/></svg>Settings</a>
+            <a href="profile.html"><svg viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5A9.5 9.5 0 0 0 12 2.5Zm0 17a7.5 7.5 0 1 1 7.5-7.5A7.5 7.5 0 0 1 12 19.5Zm1-11h-2v6h5v-2h-3Z"/></svg>Admin Profile</a>
+            <a href="login.html"><svg viewBox="0 0 24 24"><path d="M10 17 5 12l1.41-1.41L10 14.17l7.59-7.58L19 8l-9 9Zm-7 3h18v2H3v-2Z"/></svg>Logout</a>
+          </nav>
+        </div>
+      </aside>
+      <main class="content">
+        <header class="topbar">
+          <div class="page-title"><h1>Orders</h1><small>Track and process customer purchases.</small></div>
+          <div class="topbar-tools">
+            <label class="searchbox"><svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 6.32 13.7l4.39 4.39 1.41-1.41-4.38-4.42A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 6 6 6 6 0 0 0-6-6Z"/></svg><input type="text" placeholder="Search order..." /></label>
+            <button class="secondary-btn">Export</button>
+          </div>
+        </header>
+
+        <section class="panel">
+          <div class="section-header">
+            <h2>Recent Orders</h2>
+            <div class="actions"><button class="filter-btn">Filter</button></div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Amount</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#AUR-2048</td>
+                  <td>Maya Stone</td>
+                  <td>$1,240</td>
+                  <td>Cash on Delivery</td>
+                  <td><span class="status pending">Pending</span></td>
+                  <td>2026-08-25</td>
+                  <td><div class="actions"><button class="mini-btn view">View</button><button class="mini-btn edit">Update</button></div></td>
+                </tr>
+                <tr>
+                  <td>#AUR-2049</td>
+                  <td>Aaron James</td>
+                  <td>$860</td>
+                  <td>Cash on Delivery</td>
+                  <td><span class="status processing">Processing</span></td>
+                  <td>2026-08-22</td>
+                  <td><div class="actions"><button class="mini-btn view">View</button><button class="mini-btn edit">Update</button></div></td>
+                </tr>
+                <tr>
+                  <td>#AUR-2050</td>
+                  <td>Khalid Hassan</td>
+                  <td>$520</td>
+                  <td>Cash on Delivery</td>
+                  <td><span class="status delivered">Delivered</span></td>
+                  <td>2026-08-18</td>
+                  <td><div class="actions"><button class="mini-btn view">View</button><button class="mini-btn edit">Update</button></div></td>
+                </tr>
+                <tr>
+                  <td>#AUR-2051</td>
+                  <td>Elisa Turner</td>
+                  <td>$1,660</td>
+                  <td>Cash on Delivery</td>
+                  <td><span class="status cancelled">Cancelled</span></td>
+                  <td>2026-08-12</td>
+                  <td><div class="actions"><button class="mini-btn view">View</button><button class="mini-btn edit">Update</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
