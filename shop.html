@@ -96,6 +96,11 @@
         flex: 1;
       }
 
+      .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 1px solid rgba(17,17,17,.1); border-radius: 10px; background: var(--white); color: var(--text); cursor: pointer; }
+      .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 20px; height: 2px; margin: auto; background: currentColor; content: ""; }
+      .menu-toggle span::before { transform: translateY(-6px); }
+      .menu-toggle span::after { transform: translateY(4px); }
+
       .nav a {
         position: relative;
         font-size: 0.9rem;
@@ -807,7 +812,16 @@
 
       @media (max-width: 640px) {
         .topbar { padding: 14px 16px; }
-        .nav { gap: 16px; }
+        .header-inner { justify-content: space-between; }
+        .brand-mark { width: 118px; height: 54px; }
+        .menu-toggle { display: grid; place-items: center; }
+        .nav { display: none; order: 4; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0; }
+        .nav.is-open { display: flex; }
+        .nav a { padding: 12px 8px; font-size: 0.78rem; border-bottom: 1px solid rgba(17,17,17,.07); }
+        .nav a::after { display: none; }
+        .header-tools { display: none; order: 3; width: 100%; }
+        .header-tools.is-open { display: flex; }
+        .header-search { min-width: 0; max-width: none; flex: 1; }
         .shop-main { padding: 8px 16px 56px; }
         .shop-hero { padding: 28px 22px; }
         .section-head { flex-direction: column; align-items: flex-start; }
@@ -826,6 +840,8 @@
               <img src="assets/head.png" alt="AUREONIC logo" />
             </div>
           </div>
+
+          <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
 
           <nav class="nav" aria-label="Main navigation">
             <a href="home.html">Home</a>
@@ -1111,6 +1127,15 @@
       scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    </script>
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileNav = document.querySelector('.nav');
+      const headerTools = document.querySelector('.header-tools');
+      const closeMenu = () => { mobileNav.classList.remove('is-open'); headerTools.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded', 'false'); };
+      menuToggle.addEventListener('click', () => { const isOpen = mobileNav.classList.toggle('is-open'); headerTools.classList.toggle('is-open', isOpen); menuToggle.setAttribute('aria-expanded', String(isOpen)); });
+      mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.addEventListener('resize', () => { if (window.innerWidth > 640) closeMenu(); });
     </script>
   </body>
 </html>
