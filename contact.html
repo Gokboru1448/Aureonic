@@ -1,948 +1,1747 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AUREONIC | Contact</title>
-    <style>
-      :root {
-        --bg: #f5f5f5;
-        --panel: rgba(255, 255, 255, 0.82);
-        --white: #ffffff;
-        --soft-white: #f1f3f5;
-        --silver: #c5c9ce;
-        --text: #111111;
-        --text-soft: #4a4d52;
-        --red: #e31b23;
-        --red-soft: #ff6a6a;
-        --red-deep: #b70e16;
-        --shadow: rgba(227, 27, 35, 0.14);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUREONIC | Contact</title>
 
-      * { box-sizing: border-box; }
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --panel: rgba(255, 255, 255, 0.82);
+      --white: #ffffff;
+      --soft-white: #f1f3f5;
+      --silver: #c5c9ce;
+      --text: #111111;
+      --text-soft: #4a4d52;
+      --red: #e31b23;
+      --red-soft: #ff6a6a;
+      --red-deep: #b70e16;
+      --shadow: rgba(227, 27, 35, 0.14);
+    }
 
-      html, body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background:
-          radial-gradient(circle at top center, rgba(227, 27, 35, 0.12), transparent 18%),
-          linear-gradient(180deg, #fdfdfd 0%, #f3f3f3 100%);
-        color: var(--text);
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      body { min-height: 100vh; }
-      a { text-decoration: none; color: inherit; }
-      img { display: block; max-width: 100%; }
+    html,
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at top center,
+          rgba(227, 27, 35, 0.12),
+          transparent 18%
+        ),
+        linear-gradient(
+          180deg,
+          #fdfdfd 0%,
+          #f3f3f3 100%
+        );
+      color: var(--text);
+    }
 
-      .page-shell { width: 100%; min-height: 100vh; }
+    body {
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page-shell {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+
+    /* =====================================================
+       SHOP PAGE HEADER - EXACT SAME
+    ===================================================== */
+
+    .topbar {
+      width: 100%;
+      padding: 14px 24px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 142px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(227, 27, 35, 0.36) 0%,
+          rgba(227, 27, 35, 0.18) 28%,
+          rgba(255, 255, 255, 0) 70%
+        );
+      filter: blur(22px);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 2.5vw, 34px);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .nav a {
+      position: relative;
+      white-space: nowrap;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      padding: 8px 2px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 2px;
+      border-radius: 10px;
+      background: linear-gradient(
+        90deg,
+        var(--red),
+        var(--red-soft)
+      );
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+
+    .nav a:hover {
+      color: var(--red-deep);
+    }
+
+    .nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .header-tools {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .header-search {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 210px;
+      min-width: 0;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(17, 17, 17, 0.07);
+      box-shadow:
+        inset 0 1px 2px rgba(17, 17, 17, 0.02),
+        0 5px 15px rgba(0, 0, 0, 0.025);
+    }
+
+    .header-search svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--text-soft);
+      flex-shrink: 0;
+    }
+
+    .header-search input {
+      width: 100%;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.88rem;
+    }
+
+    .header-search input::placeholder {
+      color: #7b7f85;
+    }
+
+    .toolbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      width: 37px;
+      height: 37px;
+      flex: 0 0 37px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(17, 17, 17, 0.07);
+      box-shadow: 0 6px 16px rgba(17, 17, 17, 0.04);
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(227, 27, 35, 0.25);
+      box-shadow:
+        0 10px 20px rgba(227, 27, 35, 0.12);
+    }
+
+    .icon-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--text);
+      transition: fill 0.25s ease;
+    }
+
+    .icon-btn:hover svg {
+      fill: var(--red);
+    }
+
+    .header-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      min-width: 76px;
+      min-height: 38px;
+      padding: 0 17px;
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        var(--red),
+        var(--red-soft)
+      );
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow:
+        0 10px 22px rgba(227, 27, 35, 0.18);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .header-link:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 28px rgba(227, 27, 35, 0.25);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      padding: 0;
+      border: 1px solid rgba(17, 17, 17, 0.1);
+      border-radius: 11px;
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      margin: auto;
+      border-radius: 5px;
+      background: currentColor;
+      content: "";
+      transition: transform 0.2s ease;
+    }
+
+    .menu-toggle span::before {
+      transform: translateY(-6px);
+    }
+
+    .menu-toggle span::after {
+      transform: translateY(4px);
+    }
+
+
+    /* =====================================================
+       SHOP HEADER RESPONSIVE - EXACT SAME
+    ===================================================== */
+
+    @media (max-width: 1180px) {
 
       .topbar {
-        width: 100%;
-        padding: 18px 28px;
-        background: rgba(255, 255, 255, 0.76);
-        backdrop-filter: blur(6px);
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
       .header-inner {
-        max-width: 1360px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        min-width: 180px;
+        gap: 14px;
       }
 
       .brand-mark {
-        position: relative;
-        width: 142px;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .brand-mark::before {
-        content: "";
-        position: absolute;
-        width: 130px;
-        height: 130px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(227, 27, 35, 0.36) 0%, rgba(227, 27, 35, 0.18) 28%, rgba(255,255,255,0) 70%);
-        filter: blur(22px);
-      }
-
-      .brand-mark img {
-        width: 100%;
-        height: auto;
-        position: relative;
-        z-index: 1;
+        width: 125px;
       }
 
       .nav {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 26px;
-        flex: 1;
+        gap: 18px;
       }
-
-      .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 1px solid rgba(17,17,17,.1); border-radius: 10px; background: var(--white); color: var(--text); cursor: pointer; }
-      .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 20px; height: 2px; margin: auto; background: currentColor; content: ""; }
-      .menu-toggle span::before { transform: translateY(-6px); }
-      .menu-toggle span::after { transform: translateY(4px); }
 
       .nav a {
-        position: relative;
-        font-size: 0.9rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        color: var(--text-soft);
-        text-transform: uppercase;
-      }
-
-      .nav a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -8px;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, var(--red), var(--red-soft));
-        transform: scaleX(0);
-        transition: transform 0.25s ease;
-      }
-
-      .nav a:hover { color: var(--red-deep); }
-      .nav a:hover::after { transform: scaleX(1); }
-
-      .header-tools {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        font-size: 0.78rem;
       }
 
       .header-search {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        min-width: 220px;
-        max-width: 280px;
-        width: 100%;
-        padding: 10px 14px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(17, 17, 17, 0.06);
-        box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.02);
+        width: 175px;
       }
 
-      .header-search svg {
-        width: 16px;
-        height: 16px;
-        fill: var(--text-soft);
-        flex-shrink: 0;
+      .header-link {
+        min-width: 70px;
+        padding: 0 14px;
+      }
+    }
+
+    @media (max-width: 900px) {
+
+      .topbar {
+        padding: 12px 16px;
       }
 
-      .header-search input {
-        width: 100%;
-        border: none;
-        background: transparent;
-        font: inherit;
-        color: var(--text);
-        outline: none;
+      .header-inner {
+        flex-wrap: wrap;
       }
 
-      .header-search input::placeholder {
-        color: #7b7f85;
+      .brand-mark {
+        width: 118px;
+        height: 54px;
+      }
+
+      .nav {
+        gap: 15px;
+      }
+
+      .nav a {
+        font-size: 0.74rem;
+      }
+
+      .header-tools {
+        gap: 7px;
+      }
+
+      .header-search {
+        width: 155px;
       }
 
       .toolbar-icons {
+        gap: 5px;
+      }
+
+      .icon-btn {
+        width: 35px;
+        height: 35px;
+        flex-basis: 35px;
+      }
+
+      .header-link {
+        min-width: 65px;
+        min-height: 35px;
+        padding: 0 12px;
+        font-size: 0.64rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      body {
+        min-width: 0;
+      }
+
+      .topbar {
+        padding: 9px 12px;
+      }
+
+      .header-inner {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 112px;
+        height: 50px;
+      }
+
+      .brand-mark::before {
+        width: 100px;
+        height: 100px;
+      }
+
+      .menu-toggle {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav {
+        display: none;
+        grid-column: 1 / -1;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        margin-top: 7px;
+        padding: 3px 0 0;
+        border-top: 1px solid rgba(17, 17, 17, 0.05);
+      }
+
+      .nav.is-open {
         display: flex;
+      }
+
+      .nav a {
+        width: 100%;
+        padding: 11px 3px;
+        font-size: 0.74rem;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.07);
+      }
+
+      .nav a::after {
+        display: none;
+      }
+
+      .header-tools {
+        display: none;
+        grid-column: 1 / -1;
+        width: 100%;
+        margin-top: 9px;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
+        justify-content: flex-start;
+        gap: 9px;
+      }
+
+      .header-tools.is-open {
+        display: flex;
+      }
+
+      .toolbar-icons {
+        order: 1;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 9px;
       }
 
       .icon-btn {
         width: 38px;
         height: 38px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(17, 17, 17, 0.06);
-        box-shadow: 0 6px 16px rgba(17, 17, 17, 0.04);
-        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        flex-basis: 38px;
       }
 
-      .icon-btn:hover {
-        transform: translateY(-2px);
-        border-color: rgba(227, 27, 35, 0.25);
-        box-shadow: 0 10px 20px rgba(227, 27, 35, 0.12);
+      .header-search {
+        order: 2;
+        width: min(100%, 430px);
+        min-height: 39px;
+        padding: 9px 13px;
+      }
+
+      .header-link {
+        order: 3;
+        width: auto;
+        min-width: 72px;
+        min-height: 37px;
+        padding: 0 17px;
+        font-size: 0.66rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .topbar {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .brand-mark {
+        width: 103px;
+        height: 47px;
+      }
+
+      .menu-toggle {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+      }
+
+      .toolbar-icons {
+        gap: 7px;
+      }
+
+      .icon-btn {
+        width: 35px;
+        height: 35px;
+        flex-basis: 35px;
       }
 
       .icon-btn svg {
-        width: 17px;
-        height: 17px;
-        fill: var(--text);
-        transition: fill 0.25s ease;
+        width: 15px;
+        height: 15px;
       }
 
-      .icon-btn:hover svg { fill: var(--red); }
-
-      .header-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 11px 20px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--red), var(--red-soft));
-        color: var(--white);
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        box-shadow: 0 12px 24px rgba(227, 27, 35, 0.18);
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      .header-search {
+        width: 100%;
       }
+    }
 
-      .header-link:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 30px rgba(227, 27, 35, 0.25);
-      }
 
-      .hero-slider {
-        max-width: 1360px;
-        margin: 24px auto 0;
-        padding: 0 22px;
-      }
+    /* =====================================================
+       CONTACT PAGE
+    ===================================================== */
 
-      .slider-card {
-        position: relative;
-        overflow: hidden;
-        min-height: 220px;
-        border-radius: 28px;
-        border: 1px solid rgba(17,17,17,0.05);
-        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,245,245,0.96));
-        box-shadow: 0 22px 54px rgba(0,0,0,0.04);
-      }
+    .hero-slider {
+      max-width: 1360px;
+      margin: 24px auto 0;
+      padding: 0 22px;
+    }
+
+    .slider-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      border-radius: 28px;
+      border: 1px solid rgba(17,17,17,0.05);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.9),
+          rgba(245,245,245,0.96)
+        );
+      box-shadow:
+        0 22px 54px rgba(0,0,0,0.04);
+    }
 
     .slider-track {
-  display: flex;
-  width: 100%;
-  transition: transform 0.8s ease-in-out;
-}
+      display: flex;
+      width: 100%;
+      transition: transform 0.8s ease-in-out;
+    }
 
-.slide {
-  min-width: 100%;
-  width: 100%;
-  flex-shrink: 0;
-  min-height: 220px;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  align-items: center;
-  padding: 34px 42px;
-}
+    .slide {
+      min-width: 100%;
+      width: 100%;
+      flex-shrink: 0;
+      min-height: 220px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      padding: 34px 42px;
+    }
 
-      .slide-copy {
-        position: relative;
-        z-index: 1;
+    .slide-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(227, 27, 35, 0.08);
+      color: var(--red-deep);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .slide-copy h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .slide-copy p {
+      margin: 0;
+      max-width: 560px;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    .slide-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-image img {
+      width: min(78%, 360px);
+      height: 180px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow:
+        0 18px 34px rgba(0,0,0,0.12);
+    }
+
+
+    /* =====================================================
+       CONTACT MAIN
+    ===================================================== */
+
+    .contact-main {
+      max-width: 1360px;
+      margin: 34px auto 0;
+      padding: 10px 22px 70px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      background: rgba(255,255,255,0.24);
+      border-radius: 30px;
+    }
+
+    .contact-details,
+    .contact-form {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.92),
+          rgba(245,245,245,0.96)
+        );
+      border: 1px solid rgba(17,17,17,0.05);
+      border-radius: 28px;
+      box-shadow:
+        0 22px 54px rgba(0,0,0,0.04);
+    }
+
+    .contact-details {
+      padding: 36px 26px;
+    }
+
+    .contact-details h2,
+    .contact-form h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 2.4vw, 2.9rem);
+      letter-spacing: -0.05em;
+    }
+
+    .contact-details p,
+    .contact-form p {
+      margin: 0 0 24px;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(17,17,17,0.04);
+    }
+
+    .detail-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(227,27,35,0.12),
+          rgba(255,255,255,0.9)
+        );
+      color: var(--red-deep);
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .detail-item h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+
+    .detail-item span {
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .contact-form {
+      padding: 36px 26px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(
+        2,
+        minmax(0, 1fr)
+      );
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(17,17,17,0.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.7);
+      color: var(--text);
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(227,27,35,0.28);
+      box-shadow:
+        0 0 0 4px rgba(227,27,35,0.08);
+    }
+
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      width: fit-content;
+      padding: 0 24px;
+      border: none;
+      border-radius: 999px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-soft)
+        );
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow:
+        0 18px 28px rgba(227,27,35,0.18);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+      margin-top: 70px;
+      background:
+        linear-gradient(
+          180deg,
+          #0d0d0e 0%,
+          #181818 100%
+        );
+      color: rgba(255,255,255,0.8);
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(227,27,35,0.16),
+          transparent 30%
+        );
+      pointer-events: none;
+    }
+
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 54px 22px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns:
+        1.5fr 1fr 1fr 1.3fr;
+      gap: 28px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 16px 30px rgba(0,0,0,0.12);
+    }
+
+    .footer-brand img {
+      width: 148px;
+      height: auto;
+      display: block;
+    }
+
+    .footer-copy {
+      margin: 0;
+      max-width: 360px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .footer-col h4 {
+      margin: 0 0 18px;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.72);
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .footer-socials a {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .footer-socials a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(227,27,35,0.4);
+    }
+
+    .footer-socials svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(255,255,255,0.8);
+    }
+
+    .newsletter {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .newsletter input {
+      flex: 1;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--white);
+      padding: 0 16px;
+      outline: none;
+    }
+
+    .newsletter input::placeholder {
+      color: rgba(255,255,255,0.42);
+    }
+
+    .newsletter button {
+      border: none;
+      height: 46px;
+      border-radius: 999px;
+      padding: 0 18px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-soft)
+        );
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      margin-top: 26px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.56);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       SCROLL TOP
+    ===================================================== */
+
+    .scroll-top {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-soft)
+        );
+      color: var(--white);
+      box-shadow:
+        0 16px 30px rgba(227, 27, 35, 0.24);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 60;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+
+    /* =====================================================
+       CONTACT RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 980px) {
+
+      .slide {
+        grid-template-columns: 1fr;
+        padding: 28px 22px;
       }
 
-      .eyebrow {
-        display: inline-block;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(227, 27, 35, 0.08);
-        color: var(--red-deep);
-        font-size: 0.68rem;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+      .contact-wrap,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
       }
+    }
+
+    @media (max-width: 680px) {
+
+      .hero-slider,
+      .contact-main {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .contact-wrap,
+      .form-row,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
 
       .slide-copy h1 {
-        margin: 16px 0 10px;
-        font-size: clamp(2rem, 3vw, 3rem);
-        line-height: 1.08;
-        letter-spacing: -0.06em;
+        overflow-wrap: anywhere;
       }
 
-      .slide-copy p {
-        margin: 0;
-        max-width: 560px;
-        line-height: 1.8;
-        color: var(--text-soft);
+      .detail-item span {
+        overflow-wrap: anywhere;
       }
 
-      .slide-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .newsletter input,
+      .newsletter button {
+        width: 100%;
+        min-width: 0;
       }
+    }
 
-      .slide-image img {
-        width: min(78%, 360px);
-        height: 180px;
-        object-fit: cover;
-        border-radius: 24px;
-        box-shadow: 0 18px 34px rgba(0,0,0,0.12);
-      }
+    @media (max-width: 380px) {
 
-      @keyframes slide {
-        0%, 28% { transform: translateX(0); }
-        33%, 61% { transform: translateX(-33.333%); }
-        66%, 94% { transform: translateX(-66.666%); }
-        100% { transform: translateX(0); }
-      }
-
-      .contact-main {
-        max-width: 1360px;
-        margin: 34px auto 0;
-        padding: 10px 22px 70px;
-      }
-
-      .contact-wrap {
-        display: grid;
-        grid-template-columns: 0.95fr 1.05fr;
-        gap: 28px;
-        background: rgba(255,255,255,0.24);
-        border-radius: 30px;
+      .slide {
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
       .contact-details,
       .contact-form {
-        background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(245,245,245,0.96));
-        border: 1px solid rgba(17,17,17,0.05);
-        border-radius: 28px;
-        box-shadow: 0 22px 54px rgba(0,0,0,0.04);
+        padding-left: 16px;
+        padding-right: 16px;
       }
+    }
+  </style>
+</head>
 
-      .contact-details {
-        padding: 36px 26px;
-      }
+<body>
 
-      .contact-details h2,
-      .contact-form h2 {
-        margin: 0 0 12px;
-        font-size: clamp(1.8rem, 2.4vw, 2.9rem);
-        letter-spacing: -0.05em;
-      }
+<div class="page-shell">
 
-      .contact-details p,
-      .contact-form p {
-        margin: 0 0 24px;
-        line-height: 1.8;
-        color: var(--text-soft);
-      }
+  <!-- =====================================================
+       SHOP PAGE HEADER - SAME
+  ====================================================== -->
 
-      .detail-list {
-        display: grid;
-        gap: 16px;
-      }
+  <header class="topbar">
+    <div class="header-inner">
 
-      .detail-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-        padding: 18px 16px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.7);
-        border: 1px solid rgba(17,17,17,0.04);
-      }
-
-      .detail-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, rgba(227,27,35,0.12), rgba(255,255,255,0.9));
-        color: var(--red-deep);
-        font-size: 1.2rem;
-        font-weight: 800;
-      }
-
-      .detail-item h3 {
-        margin: 0 0 5px;
-        font-size: 1rem;
-      }
-
-      .detail-item span {
-        color: var(--text-soft);
-        line-height: 1.7;
-      }
-
-      .contact-form {
-        padding: 36px 26px;
-      }
-
-      form {
-        display: grid;
-        gap: 16px;
-      }
-
-      .form-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      input, textarea {
-        width: 100%;
-        border: 1px solid rgba(17,17,17,0.08);
-        border-radius: 16px;
-        background: rgba(255,255,255,0.7);
-        color: var(--text);
-        padding: 14px 16px;
-        font: inherit;
-        outline: none;
-      }
-
-      input:focus, textarea:focus {
-        border-color: rgba(227,27,35,0.28);
-        box-shadow: 0 0 0 4px rgba(227,27,35,0.08);
-      }
-
-      textarea {
-        min-height: 170px;
-        resize: vertical;
-      }
-
-      .primary-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 48px;
-        width: fit-content;
-        padding: 0 24px;
-        border: none;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--red), var(--red-soft));
-        color: var(--white);
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        cursor: pointer;
-        box-shadow: 0 18px 28px rgba(227,27,35,0.18);
-      }
-
-      footer {
-        margin-top: 70px;
-        background: linear-gradient(180deg, #0d0d0e 0%, #181818 100%);
-        color: rgba(255,255,255,0.8);
-        position: relative;
-      }
-
-      footer::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at top left, rgba(227,27,35,0.16), transparent 30%);
-        pointer-events: none;
-      }
-
-      .footer-inner {
-        max-width: 1360px;
-        margin: 0 auto;
-        padding: 54px 22px 28px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
-        gap: 28px;
-      }
-
-      .footer-brand {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-        margin-bottom: 18px;
-        padding: 14px 18px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 16px 30px rgba(0,0,0,0.12);
-      }
-
-      .footer-brand img {
-        width: 148px;
-        height: auto;
-        display: block;
-      }
-
-      .footer-copy {
-        margin: 0;
-        max-width: 360px;
-        line-height: 1.9;
-        color: rgba(255,255,255,0.72);
-      }
-
-      .footer-col h4 {
-        margin: 0 0 18px;
-        font-size: 0.8rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.85);
-      }
-
-      .footer-col ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .footer-col a {
-        color: rgba(255,255,255,0.72);
-        transition: color 0.2s ease;
-      }
-
-      .footer-col a:hover { color: var(--white); }
-
-      .footer-socials {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
-      .footer-socials a {
-        width: 36px;
-        height: 36px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-
-      .footer-socials a:hover {
-        transform: translateY(-2px);
-        border-color: rgba(227,27,35,0.4);
-      }
-
-      .footer-socials svg {
-        width: 16px;
-        height: 16px;
-        fill: rgba(255,255,255,0.8);
-      }
-
-      .newsletter {
-        display: flex;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .newsletter input {
-        flex: 1;
-        height: 46px;
-        border: 1px solid rgba(255,255,255,0.12);
-        border-radius: 999px;
-        background: rgba(255,255,255,0.04);
-        color: var(--white);
-        padding: 0 16px;
-        outline: none;
-      }
-
-      .newsletter input::placeholder {
-        color: rgba(255,255,255,0.42);
-      }
-
-      .newsletter button {
-        border: none;
-        height: 46px;
-        border-radius: 999px;
-        padding: 0 18px;
-        background: linear-gradient(135deg, var(--red), var(--red-soft));
-        color: var(--white);
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-
-      .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding-top: 18px;
-        margin-top: 26px;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        color: rgba(255,255,255,0.56);
-        font-size: 0.76rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .scroll-top {
-        position: fixed;
-        right: 28px;
-        bottom: 28px;
-        width: 52px;
-        height: 52px;
-        border: none;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--red), var(--red-soft));
-        color: var(--white);
-        box-shadow: 0 16px 30px rgba(227, 27, 35, 0.24);
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        z-index: 60;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(16px);
-        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-      }
-
-      .scroll-top.visible {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .scroll-top svg {
-        width: 20px;
-        height: 20px;
-        fill: currentColor;
-      }
-
-      @media (max-width: 980px) {
-        .header-inner { flex-wrap: wrap; justify-content: center; }
-        .brand { min-width: auto; }
-        .nav { order: 3; width: 100%; }
-        .header-tools { justify-content: center; }
-
-        .slide {
-          grid-template-columns: 1fr;
-          padding: 28px 22px;
-        }
-
-        .contact-wrap,
-        .footer-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      @media (max-width: 680px) {
-        .topbar { padding: 14px 16px; }
-        .header-inner { justify-content: space-between; }
-        .brand-mark { width: 118px; height: 54px; }
-        .menu-toggle { display: grid; place-items: center; }
-        .nav { display: none; order: 4; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0; }
-        .nav.is-open { display: flex; }
-        .nav a { padding: 12px 8px; font-size: 0.78rem; border-bottom: 1px solid rgba(17,17,17,.07); }
-        .nav a::after { display: none; }
-        .header-tools { display: none; order: 3; width: 100%; }
-        .header-tools.is-open { display: flex; }
-        .header-search { min-width: 0; max-width: none; flex: 1; }
-        .header-link { font-size: 0.7rem; padding: 10px 15px; }
-        .hero-slider,
-        .contact-main {
-          padding-left: 14px;
-          padding-right: 14px;
-        }
-
-        .contact-wrap,
-        .form-row,
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .newsletter { flex-direction: column; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div class="header-inner">
-          <div class="brand" aria-label="AUREONIC logo">
-            <div class="brand-mark">
-              <img src="assets/head.png" alt="AUREONIC logo" />
-            </div>
-          </div>
-
-          <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
-
-          <nav class="nav" aria-label="Main navigation">
-            <a href="home.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="contact.html">Contact</a>
-          </nav>
-
-          <div class="header-tools">
-            <label class="header-search" aria-label="Search products">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></svg>
-              <input type="search" placeholder="Search" aria-label="Search" />
-            </label>
-
-            <div class="toolbar-icons" aria-label="Quick actions">
-              <a href="#" class="icon-btn" aria-label="Cart">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM6.2 6h14.5l-1.9 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.1 3H2V1h4.5l.7 3.1H20v2H6.2Zm2.2 4h9.5l1.1-4.8H7.2l1.2 4.8Z"/></svg>
-              </a>
-              <a href="#" class="icon-btn" aria-label="Checkout">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12a2 2 0 0 1 2 2v16l-4-3-4 3-4-3-4 3V4a2 2 0 0 1 2-2Zm0 2v12.5l2-1.5 4 3 4-3 2 1.5V4H6Zm2 3h8v2H8V7Zm0 4h8v2H8v-2Z"/></svg>
-              </a>
-              <a href="#" class="icon-btn" aria-label="My orders">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5 12 2l9 5.5v9L12 22l-9-5.5v-9Zm2.2 1.3v6.8l6.8 4.2 6.8-4.2V8.8L12 13 5.2 8.8Zm7.8-3.5L6.4 7.8 12 11.3l5.6-3.5-6.6-4.1Z"/></svg>
-              </a>
-              <a href="Profile.html" class="icon-btn" aria-label="Profile">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm-7 8a7 7 0 0 1 14 0H5Zm2-2h10a5 5 0 0 0-10 0Z"/></svg>
-              </a>
-            </div>
-
-            <a href="login.html" class="header-link">Login</a>
-          </div>
+      <div class="brand" aria-label="AUREONIC logo">
+        <div class="brand-mark">
+          <img src="assets/head.png" alt="AUREONIC logo" />
         </div>
-      </header>
+      </div>
 
-      <section class="hero-slider" aria-label="Featured contact slider">
-        <div class="slider-card">
-          <div class="slider-track">
-            <div class="slide">
-              <div class="slide-copy">
-                <span class="eyebrow">Support</span>
-                <h1>We’re here for your audio needs.</h1>
-                <p>Talk to the AUREONIC team for recommendations, setup advice, or support on your premium sound gear.</p>
-              </div>
-              <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80" alt="Premium headphones" />
-              </div>
-            </div>
-
-            <div class="slide">
-              <div class="slide-copy">
-                <span class="eyebrow">Fast help</span>
-                <h1>Quick answers from real experts.</h1>
-                <p>From product matching to troubleshooting, our specialists help you make the right choice with confidence.</p>
-              </div>
-              <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=900&q=80" alt="Wireless earbuds" />
-              </div>
-            </div>
-
-            <div class="slide">
-              <div class="slide-copy">
-                <span class="eyebrow">Visit us</span>
-                <h1>Premium sound. Personal service.</h1>
-                <p>Enjoy guidance that fits your lifestyle, whether you listen at home, on the move, or in the studio.</p>
-              </div>
-              <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80" alt="Studio audio equipment" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <main class="contact-main">
-        <section class="contact-wrap">
-          <div class="contact-details">
-            <h2>Get in touch</h2>
-            <p>We help you find the perfect listening setup for work, travel, gaming, or everyday luxury.</p>
-
-            <div class="detail-list">
-              <div class="detail-item">
-                <div class="detail-icon">☎</div>
-                <div>
-                  <h3>Call us</h3>
-                  <span>+92 300 123 4567</span>
-                </div>
-              </div>
-
-              <div class="detail-item">
-                <div class="detail-icon">✉</div>
-                <div>
-                  <h3>Email</h3>
-                  <span>hello@aureonic.com</span>
-                </div>
-              </div>
-
-              <div class="detail-item">
-                <div class="detail-icon">⌂</div>
-                <div>
-                  <h3>Visit</h3>
-                  <span>24 Gulshan Avenue, Karachi</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-form">
-            <h2>Send a message</h2>
-            <p>Tell us what you need and our team will get back to you with the best recommendation.</p>
-
-            <form>
-              <div class="form-row">
-                <input type="text" placeholder="Your name" aria-label="Your name" />
-                <input type="email" placeholder="Email address" aria-label="Email address" />
-              </div>
-
-              <div class="form-row">
-                <input type="text" placeholder="Phone number" aria-label="Phone number" />
-                <input type="text" placeholder="Subject" aria-label="Subject" />
-              </div>
-
-              <textarea placeholder="Your message..." aria-label="Your message"></textarea>
-              <button class="primary-btn" type="submit">Send message</button>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      <button class="scroll-top" type="button" aria-label="Scroll to top">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 3.5 12l1.4 1.4 6.1-6.1V21h2V7.3l6.1 6.1 1.4-1.4L12 3.5Z"/></svg>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        <span></span>
       </button>
 
-      <footer>
-        <div class="footer-inner">
-          <div class="footer-grid">
-            <div>
-              <div class="footer-brand">
-                <img src="assets/logo.png" alt="AUREONIC logo" />
-              </div>
-              <p class="footer-copy">Premium audio essentials for daily listening, travel, work, and performance. Clean design, dependable quality, and everyday comfort.</p>
-              <div class="footer-socials" aria-label="Social media links">
-                <a href="#" aria-label="Facebook">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"/></svg>
-                </a>
-                <a href="#" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg>
-                </a>
-                <a href="#" aria-label="X">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"/></svg>
-                </a>
-                <a href="#" aria-label="YouTube">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
-                </a>
-              </div>
-            </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-            <div class="footer-col">
-              <h4>Company</h4>
-              <ul>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Our story</a></li>
-                <li><a href="#">Journal</a></li>
-                <li><a href="#">Careers</a></li>
-              </ul>
-            </div>
+      <div class="header-tools">
 
-            <div class="footer-col">
-              <h4>Support</h4>
-              <ul>
-                <li><a href="#">Shipping</a></li>
-                <li><a href="#">Returns</a></li>
-                <li><a href="#">Warranty</a></li>
-                <li><a href="#">FAQs</a></li>
-              </ul>
-            </div>
+        <div class="toolbar-icons" aria-label="Quick actions">
 
-            <div class="footer-col">
-              <h4>Newsletter</h4>
-              <p class="footer-copy">Get product updates and exclusive offers.</p>
-              <div class="newsletter">
-                <input type="email" placeholder="Email address" aria-label="Email address" />
-                <button>Join</button>
-              </div>
-            </div>
-          </div>
+          <a href="#" class="icon-btn" aria-label="Cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 18a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM6.2 6h14.5l-1.9 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.1 3H2V1h4.5l.7 3.1H20v2H6.2Zm2.2 4h9.5l1.1-4.8H7.2l1.2 4.8Z"/>
+            </svg>
+          </a>
 
-          <div class="footer-bottom">
-            <span>© 2026 AUREONIC. All rights reserved.</span>
-            <span>Privacy • Terms • Cookies</span>
-          </div>
+          <a href="#" class="icon-btn" aria-label="Checkout">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 2h12a2 2 0 0 1 2 2v16l-4-3-4 3-4-3-4 3V4a2 2 0 0 1 2-2Zm0 2v12.5l2-1.5 4 3 4-3 2 1.5V4H6Zm2 3h8v2H8V7Zm0 4h8v2H8v-2Z"/>
+            </svg>
+          </a>
+
+          <a href="#" class="icon-btn" aria-label="My orders">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 7.5 12 2l9 5.5v9L12 22l-9-5.5v-9Zm2.2 1.3v6.8l6.8 4.2 6.8-4.2V8.8L12 13 5.2 8.8Zm7.8-3.5L6.4 7.8 12 11.3l5.6-3.5-6.6-4.1Z"/>
+            </svg>
+          </a>
+
+          <a href="Profile.html" class="icon-btn" aria-label="Profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm-7 8a7 7 0 0 1 14 0H5Zm2-2h10a5 5 0 0 0-10 0Z"/>
+            </svg>
+          </a>
+
         </div>
-      </footer>
+
+        <label class="header-search" aria-label="Search products">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/>
+          </svg>
+          <input
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </label>
+
+        <a href="login.html" class="header-link">
+          Login
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =====================================================
+       CONTACT SLIDER
+  ====================================================== -->
+
+  <section
+    class="hero-slider"
+    aria-label="Featured contact slider"
+  >
+    <div class="slider-card">
+
+      <div class="slider-track">
+
+        <div class="slide">
+
+          <div class="slide-copy">
+
+            <span class="eyebrow">
+              Support
+            </span>
+
+            <h1>
+              We’re here for your audio needs.
+            </h1>
+
+            <p>
+              Talk to the AUREONIC team for
+              recommendations, setup advice, or
+              support on your premium sound gear.
+            </p>
+
+          </div>
+
+          <div class="slide-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80"
+              alt="Premium headphones"
+            />
+
+          </div>
+
+        </div>
+
+
+        <div class="slide">
+
+          <div class="slide-copy">
+
+            <span class="eyebrow">
+              Fast help
+            </span>
+
+            <h1>
+              Quick answers from real experts.
+            </h1>
+
+            <p>
+              From product matching to troubleshooting,
+              our specialists help you make the right
+              choice with confidence.
+            </p>
+
+          </div>
+
+          <div class="slide-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=900&q=80"
+              alt="Wireless earbuds"
+            />
+
+          </div>
+
+        </div>
+
+
+        <div class="slide">
+
+          <div class="slide-copy">
+
+            <span class="eyebrow">
+              Visit us
+            </span>
+
+            <h1>
+              Premium sound. Personal service.
+            </h1>
+
+            <p>
+              Enjoy guidance that fits your lifestyle,
+              whether you listen at home, on the move,
+              or in the studio.
+            </p>
+
+          </div>
+
+          <div class="slide-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80"
+              alt="Studio audio equipment"
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       CONTACT MAIN
+  ====================================================== -->
+
+  <main class="contact-main">
+
+    <section class="contact-wrap">
+
+      <div class="contact-details">
+
+        <h2>
+          Get in touch
+        </h2>
+
+        <p>
+          We help you find the perfect listening
+          setup for work, travel, gaming, or
+          everyday luxury.
+        </p>
+
+        <div class="detail-list">
+
+          <div class="detail-item">
+
+            <div class="detail-icon">
+              ☎
+            </div>
+
+            <div>
+
+              <h3>
+                Call us
+              </h3>
+
+              <span>
+                +92 300 123 4567
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-icon">
+              ✉
+            </div>
+
+            <div>
+
+              <h3>
+                Email
+              </h3>
+
+              <span>
+                hello@aureonic.com
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <div class="detail-icon">
+              ⌂
+            </div>
+
+            <div>
+
+              <h3>
+                Visit
+              </h3>
+
+              <span>
+                24 Gulshan Avenue, Karachi
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-form">
+
+        <h2>
+          Send a message
+        </h2>
+
+        <p>
+          Tell us what you need and our team
+          will get back to you with the best
+          recommendation.
+        </p>
+
+        <form>
+
+          <div class="form-row">
+
+            <input
+              type="text"
+              placeholder="Your name"
+              aria-label="Your name"
+            />
+
+            <input
+              type="email"
+              placeholder="Email address"
+              aria-label="Email address"
+            />
+
+          </div>
+
+
+          <div class="form-row">
+
+            <input
+              type="text"
+              placeholder="Phone number"
+              aria-label="Phone number"
+            />
+
+            <input
+              type="text"
+              placeholder="Subject"
+              aria-label="Subject"
+            />
+
+          </div>
+
+
+          <textarea
+            placeholder="Your message..."
+            aria-label="Your message"
+          ></textarea>
+
+
+          <button
+            class="primary-btn"
+            type="submit"
+          >
+            Send message
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       SCROLL TOP
+  ====================================================== -->
+
+  <button
+    class="scroll-top"
+    type="button"
+    aria-label="Scroll to top"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path d="M12 3.5 3.5 12l1.4 1.4 6.1-6.1V21h2V7.3l6.1 6.1 1.4-1.4L12 3.5Z"/>
+    </svg>
+  </button>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="footer-brand">
+
+            <img
+              src="assets/logo.png"
+              alt="AUREONIC logo"
+            />
+
+          </div>
+
+          <p class="footer-copy">
+            Premium audio essentials for daily
+            listening, travel, work, and performance.
+            Clean design, dependable quality, and
+            everyday comfort.
+          </p>
+
+          <div
+            class="footer-socials"
+            aria-label="Social media links"
+          >
+
+            <a href="#" aria-label="Facebook">
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"/>
+              </svg>
+
+            </a>
+
+
+            <a href="#" aria-label="Instagram">
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 0 0 1 1.1-1.1Z"/>
+              </svg>
+
+            </a>
+
+
+            <a href="#" aria-label="X">
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"/>
+              </svg>
+
+            </a>
+
+
+            <a href="#" aria-label="YouTube">
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"/>
+              </svg>
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>
+            Company
+          </h4>
+
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our story</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>
+            Support
+          </h4>
+
+          <ul>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Warranty</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>
+            Newsletter
+          </h4>
+
+          <p class="footer-copy">
+            Get product updates and exclusive offers.
+          </p>
+
+          <div class="newsletter">
+
+            <input
+              type="email"
+              placeholder="Email address"
+              aria-label="Email address"
+            />
+
+            <button>
+              Join
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 AUREONIC. All rights reserved.
+        </span>
+
+        <span>
+          Privacy • Terms • Cookies
+        </span>
+
+      </div>
+
     </div>
 
-   <script>
-  const scrollTopBtn = document.querySelector('.scroll-top');
+  </footer>
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollTopBtn.classList.add('visible');
-    } else {
-      scrollTopBtn.classList.remove('visible');
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+  /* =====================================================
+     SCROLL TO TOP
+  ===================================================== */
+
+  const scrollTopBtn =
+    document.querySelector(".scroll-top");
+
+  window.addEventListener(
+    "scroll",
+    () => {
+
+      if (window.scrollY > 300) {
+
+        scrollTopBtn.classList.add(
+          "visible"
+        );
+
+      } else {
+
+        scrollTopBtn.classList.remove(
+          "visible"
+        );
+
+      }
+
     }
-  });
+  );
 
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
+  scrollTopBtn.addEventListener(
+    "click",
+    () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
 
 
-  /* =========================
+  /* =====================================================
      SEAMLESS INFINITE SLIDER
-  ========================= */
+  ===================================================== */
 
   const sliderTrack =
-    document.querySelector('.slider-track');
+    document.querySelector(".slider-track");
 
   const originalSlides =
-    document.querySelectorAll('.slider-track .slide');
+    document.querySelectorAll(
+      ".slider-track .slide"
+    );
 
-  /* Clone first slide */
   const firstSlideClone =
     originalSlides[0].cloneNode(true);
 
-  sliderTrack.appendChild(firstSlideClone);
+  sliderTrack.appendChild(
+    firstSlideClone
+  );
 
   let currentSlide = 0;
 
   const totalOriginalSlides =
     originalSlides.length;
 
-
   setInterval(() => {
 
     currentSlide++;
 
     sliderTrack.style.transition =
-      'transform 0.8s ease-in-out';
+      "transform 0.8s ease-in-out";
 
     sliderTrack.style.transform =
       `translateX(-${currentSlide * 100}%)`;
 
-
-    /* When cloned first slide appears */
-
-    if (currentSlide === totalOriginalSlides) {
+    if (
+      currentSlide ===
+      totalOriginalSlides
+    ) {
 
       setTimeout(() => {
 
-        sliderTrack.style.transition = 'none';
+        sliderTrack.style.transition =
+          "none";
 
         currentSlide = 0;
 
         sliderTrack.style.transform =
-          'translateX(0)';
+          "translateX(0)";
 
       }, 800);
 
@@ -950,15 +1749,102 @@
 
   }, 5000);
 
+
+  /* =====================================================
+     SHOP PAGE HEADER MOBILE MENU - EXACT SAME
+  ===================================================== */
+
+  const menuToggle =
+    document.querySelector(".menu-toggle");
+
+  const mobileNav =
+    document.querySelector(".nav");
+
+  const headerTools =
+    document.querySelector(".header-tools");
+
+  const closeMenu = () => {
+
+    mobileNav.classList.remove(
+      "is-open"
+    );
+
+    headerTools.classList.remove(
+      "is-open"
+    );
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    menuToggle.setAttribute(
+      "aria-label",
+      "Open navigation"
+    );
+
+  };
+
+
+  menuToggle.addEventListener(
+    "click",
+    () => {
+
+      const isOpen =
+        !mobileNav.classList.contains(
+          "is-open"
+        );
+
+      mobileNav.classList.toggle(
+        "is-open",
+        isOpen
+      );
+
+      headerTools.classList.toggle(
+        "is-open",
+        isOpen
+      );
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close navigation"
+          : "Open navigation"
+      );
+
+    }
+  );
+
+
+  mobileNav
+    .querySelectorAll("a")
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
+    });
+
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (window.innerWidth > 640) {
+        closeMenu();
+      }
+
+    }
+  );
+
 </script>
-    <script>
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mobileNav = document.querySelector('.nav');
-      const headerTools = document.querySelector('.header-tools');
-      const closeMenu = () => { mobileNav.classList.remove('is-open'); headerTools.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded', 'false'); };
-      menuToggle.addEventListener('click', () => { const isOpen = mobileNav.classList.toggle('is-open'); headerTools.classList.toggle('is-open', isOpen); menuToggle.setAttribute('aria-expanded', String(isOpen)); });
-      mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-      window.addEventListener('resize', () => { if (window.innerWidth > 680) closeMenu(); });
-    </script>
-  </body>
+
+</body>
 </html>
