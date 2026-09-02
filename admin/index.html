@@ -184,6 +184,12 @@
       @media (max-width: 1180px) { .stats { grid-template-columns: repeat(2, minmax(180px, 1fr)); } .content-grid, .list-grid, .bottom-grid { grid-template-columns:1fr; } }
       @media (max-width: 900px) { .app { grid-template-columns: 1fr; } .sidebar { position: static; height:auto; border-right:none; border-bottom:1px solid var(--line);} }
       @media (max-width: 640px) { .content { padding:18px 14px 28px; } .stats { grid-template-columns:1fr; } .topbar { flex-wrap: wrap; } .topbar-tools { width:100%; justify-content:space-between; } .searchbox { min-width:0; width:100%; } }
+      .admin-menu-toggle { display:none; width:42px; height:42px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--text); cursor:pointer; place-items:center; flex:0 0 auto; }
+      .admin-menu-toggle span, .admin-menu-toggle span::before, .admin-menu-toggle span::after { display:block; width:20px; height:2px; background:currentColor; content:""; }
+      .admin-menu-toggle span::before { transform:translateY(-6px); }
+      .admin-menu-toggle span::after { transform:translateY(4px); }
+      @media (max-width:900px) { .app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;z-index:60;width:260px;transform:translateX(-105%);transition:transform .25s ease;overflow-y:auto;box-shadow:16px 0 40px rgba(17,24,39,.15)}.sidebar.is-open{transform:translateX(0)}body.menu-open::after{content:"";position:fixed;inset:0;z-index:50;background:rgba(16,24,39,.38)}.admin-menu-toggle{display:grid}.topbar{align-items:flex-start}.page-title{flex:1} }
+      @media (max-width:640px) { .content{padding:18px 14px 28px}.topbar{flex-wrap:wrap;gap:12px}.topbar-tools{width:100%;justify-content:stretch}.searchbox{min-width:0;width:100%;flex:1}.topbar-tools>*{flex:1} }
     </style>
   </head>
   <body>
@@ -224,6 +230,7 @@
       </aside>
       <main class="content">
         <header class="topbar">
+          <button class="admin-menu-toggle" type="button" aria-label="Open dashboard menu" aria-expanded="false"><span></span></button>
           <div class="page-title"><h1>Dashboard Overview</h1><small>Welcome back, Areeb. Your store is running smoothly.</small></div>
           <div class="topbar-tools">
             <label class="searchbox"><svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 6.32 13.7l4.39 4.39 1.41-1.41-4.38-4.42A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 6 6 6 6 0 0 0-6-6Z"/></svg><input type="text" placeholder="Search anything..."/></label>
@@ -272,6 +279,15 @@
           if (config) { chartLine.setAttribute('d', config.line); chartArea.setAttribute('d', config.area); }
         });
       });
+    </script>
+    <script>
+      const adminMenuToggle = document.querySelector('.admin-menu-toggle');
+      const adminSidebar = document.querySelector('.sidebar');
+      const closeAdminMenu = () => { adminSidebar.classList.remove('is-open'); document.body.classList.remove('menu-open'); adminMenuToggle.setAttribute('aria-expanded', 'false'); };
+      adminMenuToggle.addEventListener('click', () => { const isOpen = adminSidebar.classList.toggle('is-open'); document.body.classList.toggle('menu-open', isOpen); adminMenuToggle.setAttribute('aria-expanded', String(isOpen)); });
+      adminSidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeAdminMenu));
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeAdminMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 900) closeAdminMenu(); });
     </script>
   </body>
 </html>
