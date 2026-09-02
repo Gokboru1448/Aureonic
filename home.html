@@ -8,22 +8,36 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   />
 
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  />
+
   <title>AUREONIC | Home</title>
 
   <style>
+    /* =========================================================
+       ROOT
+    ========================================================= */
+
     :root {
       --bg: #f5f5f5;
-      --panel: rgba(255, 255, 255, 0.82);
       --white: #ffffff;
       --soft-white: #f1f3f5;
-      --silver: #c5c9ce;
+
       --text: #111111;
       --text-soft: #4a4d52;
+
       --red: #e31b23;
       --red-soft: #ff6a6a;
       --red-deep: #b70e16;
+
+      --border: rgba(17, 17, 17, 0.07);
       --shadow: rgba(227, 27, 35, 0.14);
+
+      --container: 1360px;
     }
+
 
     /* =========================================================
        RESET
@@ -45,7 +59,14 @@
       margin: 0;
       width: 100%;
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--text);
+
       background:
         radial-gradient(
           circle at top center,
@@ -57,13 +78,22 @@
           #fdfdfd 0%,
           #f3f3f3 100%
         );
-      color: var(--text);
+
       overflow-x: hidden;
     }
 
+    body,
+    button,
+    input {
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     button,
@@ -71,10 +101,22 @@
       font: inherit;
     }
 
+    button {
+      cursor: pointer;
+    }
+
     img {
       display: block;
       max-width: 100%;
     }
+
+    input:focus,
+    button:focus,
+    a:focus-visible {
+      outline: 2px solid rgba(227, 27, 35, 0.35);
+      outline-offset: 3px;
+    }
+
 
     /* =========================================================
        PAGE
@@ -86,39 +128,53 @@
       overflow-x: hidden;
     }
 
+
     /* =========================================================
        HEADER
     ========================================================= */
 
     .topbar {
-      width: 100%;
-      padding: 18px 28px;
-      background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
       position: sticky;
       top: 0;
-      z-index: 40;
-      border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+      z-index: 100;
+
+      width: 100%;
+
+      padding:
+        16px clamp(14px, 3vw, 32px);
+
+      background:
+        rgba(255, 255, 255, 0.82);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      border-bottom:
+        1px solid rgba(17, 17, 17, 0.06);
     }
 
     .header-inner {
       width: 100%;
-      max-width: 1360px;
+      max-width: var(--container);
+
       margin: 0 auto;
 
       display: flex;
       align-items: center;
-      justify-content: space-between;
 
-      gap: 18px;
+      gap: clamp(12px, 2vw, 24px);
     }
 
+
+    /* =========================================================
+       LOGO
+    ========================================================= */
+
     .brand {
+      flex: 0 0 auto;
+
       display: flex;
       align-items: center;
-      flex-shrink: 0;
-      min-width: 180px;
     }
 
     .brand-mark {
@@ -151,43 +207,50 @@
         );
 
       filter: blur(22px);
+
       pointer-events: none;
     }
 
     .brand-mark img {
-      width: 100%;
-      height: auto;
       position: relative;
       z-index: 1;
+
+      width: 100%;
+      height: auto;
     }
 
+
     /* =========================================================
-       DESKTOP NAV
+       DESKTOP NAVIGATION
     ========================================================= */
 
     .nav {
+      flex: 1 1 auto;
+      min-width: 0;
+
       display: flex;
       align-items: center;
       justify-content: center;
 
-      flex-wrap: nowrap;
-      gap: 26px;
-
-      flex: 1;
-      min-width: 0;
+      gap: clamp(18px, 2.5vw, 30px);
     }
 
     .nav a {
       position: relative;
 
-      font-size: 0.9rem;
+      flex: 0 0 auto;
+
+      color: var(--text-soft);
+
+      font-size:
+        clamp(0.72rem, 0.8vw, 0.9rem);
+
       font-weight: 700;
 
       letter-spacing: 0.04em;
 
-      color: var(--text-soft);
-
       text-transform: uppercase;
+
       white-space: nowrap;
     }
 
@@ -197,9 +260,9 @@
       position: absolute;
 
       left: 0;
+      right: 0;
       bottom: -8px;
 
-      width: 100%;
       height: 2px;
 
       background:
@@ -210,9 +273,11 @@
         );
 
       transform: scaleX(0);
+
       transform-origin: center;
 
-      transition: transform 0.25s ease;
+      transition:
+        transform 0.25s ease;
     }
 
     .nav a:hover {
@@ -222,6 +287,7 @@
     .nav a:hover::after {
       transform: scaleX(1);
     }
+
 
     /* =========================================================
        MOBILE MENU BUTTON
@@ -233,17 +299,18 @@
       width: 42px;
       height: 42px;
 
-      flex-shrink: 0;
+      flex: 0 0 42px;
 
       padding: 0;
 
-      border: 1px solid rgba(17, 17, 17, 0.1);
-      border-radius: 10px;
+      border:
+        1px solid rgba(17, 17, 17, 0.10);
+
+      border-radius: 11px;
 
       background: var(--white);
-      color: var(--text);
 
-      cursor: pointer;
+      color: var(--text);
 
       place-items: center;
     }
@@ -256,53 +323,69 @@
       width: 20px;
       height: 2px;
 
-      margin: auto;
-
       background: currentColor;
 
       content: "";
     }
 
+    .menu-toggle span {
+      position: relative;
+    }
+
     .menu-toggle span::before {
-      transform: translateY(-6px);
+      position: absolute;
+      top: -6px;
     }
 
     .menu-toggle span::after {
-      transform: translateY(4px);
+      position: absolute;
+      top: 6px;
     }
+
 
     /* =========================================================
        HEADER TOOLS
     ========================================================= */
 
     .header-tools {
+      flex: 0 1 auto;
+
       display: flex;
       align-items: center;
       justify-content: flex-end;
 
-      gap: 14px;
+      gap: 10px;
 
-      flex-shrink: 0;
       min-width: 0;
     }
 
+
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
     .header-search {
+      width: clamp(170px, 16vw, 230px);
+
+      min-width: 150px;
+
+      height: 42px;
+
       display: flex;
       align-items: center;
 
-      gap: 10px;
+      gap: 9px;
 
-      width: 220px;
-      min-width: 180px;
-      max-width: 280px;
+      padding:
+        0 13px;
 
-      padding: 10px 14px;
+      border:
+        1px solid rgba(17, 17, 17, 0.07);
 
       border-radius: 999px;
 
-      background: rgba(255, 255, 255, 0.8);
-
-      border: 1px solid rgba(17, 17, 17, 0.06);
+      background:
+        rgba(255, 255, 255, 0.86);
 
       box-shadow:
         inset 0 1px 2px rgba(17, 17, 17, 0.02);
@@ -312,9 +395,9 @@
       width: 16px;
       height: 16px;
 
-      fill: var(--text-soft);
+      flex: 0 0 16px;
 
-      flex-shrink: 0;
+      fill: var(--text-soft);
     }
 
     .header-search input {
@@ -322,42 +405,49 @@
       min-width: 0;
 
       border: none;
+      outline: none;
 
       background: transparent;
 
       color: var(--text);
 
-      outline: none;
+      font-size: 0.82rem;
     }
 
     .header-search input::placeholder {
       color: #7b7f85;
     }
 
-    .toolbar-icons,
-    .header-actions {
+
+    /* =========================================================
+       HEADER ICONS
+    ========================================================= */
+
+    .toolbar-icons {
       display: flex;
       align-items: center;
 
-      gap: 10px;
+      gap: 8px;
 
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
 
     .icon-btn {
       width: 38px;
       height: 38px;
 
-      flex-shrink: 0;
-
-      border-radius: 50%;
+      flex: 0 0 38px;
 
       display: grid;
       place-items: center;
 
-      background: rgba(255, 255, 255, 0.8);
+      border:
+        1px solid rgba(17, 17, 17, 0.07);
 
-      border: 1px solid rgba(17, 17, 17, 0.06);
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, 0.86);
 
       box-shadow:
         0 6px 16px rgba(17, 17, 17, 0.04);
@@ -366,6 +456,16 @@
         transform 0.25s ease,
         border-color 0.25s ease,
         box-shadow 0.25s ease;
+    }
+
+    .icon-btn svg {
+      width: 17px;
+      height: 17px;
+
+      fill: var(--text);
+
+      transition:
+        fill 0.25s ease;
     }
 
     .icon-btn:hover {
@@ -378,27 +478,26 @@
         0 10px 20px rgba(227, 27, 35, 0.12);
     }
 
-    .icon-btn svg {
-      width: 17px;
-      height: 17px;
-
-      fill: var(--text);
-
-      transition: fill 0.25s ease;
-    }
-
     .icon-btn:hover svg {
       fill: var(--red);
     }
 
+
+    /* =========================================================
+       LOGIN
+    ========================================================= */
+
     .header-link {
+      min-height: 42px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      min-height: 42px;
+      flex: 0 0 auto;
 
-      padding: 11px 20px;
+      padding:
+        0 18px;
 
       border-radius: 999px;
 
@@ -411,7 +510,7 @@
 
       color: var(--white);
 
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 700;
 
       letter-spacing: 0.08em;
@@ -435,18 +534,20 @@
         0 14px 30px rgba(227, 27, 35, 0.25);
     }
 
+
     /* =========================================================
-       MAIN / HERO
+       HERO
     ========================================================= */
 
     .hero {
       width: 100%;
-      max-width: 1360px;
+      max-width: var(--container);
 
-      margin: 28px auto 0;
+      margin:
+        24px auto 0;
 
       padding:
-        16px 22px 70px;
+        12px clamp(14px, 2vw, 24px) 60px;
     }
 
     .hero-card {
@@ -454,15 +555,16 @@
 
       min-height: 520px;
 
-      border-radius: 28px;
-
       overflow: hidden;
+
+      border-radius:
+        clamp(20px, 2vw, 30px);
 
       background:
         linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.9),
-          rgba(245, 245, 245, 0.96)
+          rgba(255, 255, 255, 0.92),
+          rgba(245, 245, 245, 0.97)
         );
 
       border:
@@ -476,6 +578,7 @@
       position: relative;
 
       width: 100%;
+
       min-height: 520px;
     }
 
@@ -484,6 +587,7 @@
       inset: 0;
 
       width: 100%;
+      height: 100%;
 
       display: grid;
 
@@ -493,9 +597,10 @@
 
       align-items: center;
 
-      gap: 26px;
+      gap: clamp(20px, 3vw, 36px);
 
-      padding: 48px 52px;
+      padding:
+        clamp(30px, 4vw, 55px);
 
       opacity: 0;
 
@@ -516,22 +621,26 @@
       transform: translateX(0);
     }
 
+
+    /* =========================================================
+       HERO CONTENT
+    ========================================================= */
+
     .slide-content {
       position: relative;
-
       z-index: 2;
 
       min-width: 0;
-
-      padding-left: 8px;
     }
 
     .eyebrow {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
 
       max-width: 100%;
 
-      padding: 8px 12px;
+      padding:
+        8px 12px;
 
       border-radius: 999px;
 
@@ -540,10 +649,10 @@
 
       color: var(--red-deep);
 
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
 
-      letter-spacing: 0.14em;
+      letter-spacing: 0.13em;
 
       text-transform: uppercase;
 
@@ -551,59 +660,70 @@
     }
 
     h1 {
-      margin: 18px 0 14px;
+      margin:
+        18px 0 14px;
 
       max-width: 700px;
 
       font-size:
-        clamp(2.2rem, 4vw, 4rem);
+        clamp(2.1rem, 4.3vw, 4rem);
 
       line-height: 1.04;
 
       letter-spacing: -0.05em;
 
-      color: #111111;
+      color: var(--text);
 
       overflow-wrap: anywhere;
     }
 
     .slide p {
-      margin: 0 0 22px;
+      margin:
+        0 0 22px;
 
-      max-width: 540px;
-
-      font-size: 1.02rem;
-
-      line-height: 1.7;
+      max-width: 550px;
 
       color: var(--text-soft);
+
+      font-size:
+        clamp(0.88rem, 1.1vw, 1.02rem);
+
+      line-height: 1.7;
     }
+
+
+    /* =========================================================
+       BUTTON ROW
+    ========================================================= */
 
     .cta-row,
     .deal-actions {
       display: flex;
       align-items: center;
 
-      gap: 14px;
+      gap: 12px;
 
       flex-wrap: wrap;
     }
 
     .primary-btn,
     .secondary-btn {
-      display: inline-flex;
+      min-height: 46px;
 
+      display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      min-height: 48px;
+      width: auto;
+
+      flex: 0 0 auto;
 
       padding:
-        0 22px;
+        0 20px;
 
       border-radius: 999px;
 
-      font-size: 0.8rem;
+      font-size: 0.73rem;
       font-weight: 800;
 
       letter-spacing: 0.08em;
@@ -633,7 +753,7 @@
 
     .secondary-btn {
       background:
-        rgba(255, 255, 255, 0.8);
+        rgba(255, 255, 255, 0.82);
 
       border:
         1px solid rgba(17, 17, 17, 0.08);
@@ -646,39 +766,37 @@
       transform: translateY(-2px);
     }
 
+
     /* =========================================================
        HERO IMAGE
     ========================================================= */
 
     .slide-visual {
-      position: relative;
+      min-width: 0;
+      min-height: 340px;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
-
-      min-width: 0;
-
-      min-height: 360px;
     }
 
     .slide-image {
-      width: min(92%, 420px);
+      position: relative;
 
-      height: 330px;
+      width: min(92%, 440px);
 
-      border-radius: 30px;
+      height:
+        clamp(270px, 29vw, 360px);
 
       overflow: hidden;
 
-      position: relative;
-
-      box-shadow:
-        0 26px 46px rgba(0, 0, 0, 0.12);
+      border-radius: 30px;
 
       border:
         1px solid rgba(255, 255, 255, 0.18);
+
+      box-shadow:
+        0 26px 46px rgba(0, 0, 0, 0.12);
     }
 
     .slide-image img {
@@ -696,7 +814,6 @@
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
@@ -709,54 +826,27 @@
       pointer-events: none;
     }
 
-    .device-badge {
-      position: absolute;
-
-      left: 28px;
-      bottom: 18px;
-
-      padding: 10px 16px;
-
-      border-radius: 999px;
-
-      background:
-        rgba(17, 17, 17, 0.62);
-
-      border:
-        1px solid rgba(255, 255, 255, 0.1);
-
-      color: var(--white);
-
-      font-size: 0.72rem;
-      font-weight: 700;
-
-      letter-spacing: 0.08em;
-
-      text-transform: uppercase;
-
-      z-index: 2;
-    }
 
     /* =========================================================
-       HERO DOTS
+       CAROUSEL DOTS
     ========================================================= */
 
     .carousel-controls {
       position: absolute;
 
-      right: 34px;
-      bottom: 26px;
+      right: 30px;
+      bottom: 24px;
+
+      z-index: 5;
 
       display: flex;
 
-      gap: 10px;
-
-      z-index: 4;
+      gap: 9px;
     }
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 11px;
+      height: 11px;
 
       padding: 0;
 
@@ -767,14 +857,12 @@
       background:
         rgba(17, 17, 17, 0.15);
 
-      cursor: pointer;
-
       transition:
         all 0.25s ease;
     }
 
     .dot.active {
-      width: 34px;
+      width: 32px;
 
       border-radius: 999px;
 
@@ -782,9 +870,10 @@
         linear-gradient(
           90deg,
           var(--red),
-          #ff9696
+          var(--red-soft)
         );
     }
+
 
     /* =========================================================
        SECTIONS
@@ -798,9 +887,7 @@
 
     .section-head {
       display: flex;
-
       align-items: flex-end;
-
       justify-content: space-between;
 
       gap: 16px;
@@ -812,7 +899,9 @@
       margin: 0;
 
       font-size:
-        clamp(1.8rem, 2.5vw, 2.6rem);
+        clamp(1.65rem, 2.8vw, 2.6rem);
+
+      line-height: 1.1;
 
       letter-spacing: -0.05em;
 
@@ -822,7 +911,7 @@
     .section-head span {
       color: var(--text-soft);
 
-      font-size: 0.78rem;
+      font-size: 0.72rem;
 
       letter-spacing: 0.12em;
 
@@ -831,8 +920,9 @@
       text-align: right;
     }
 
+
     /* =========================================================
-       PRODUCT GRID
+       PRODUCTS
     ========================================================= */
 
     .product-grid {
@@ -841,21 +931,21 @@
       grid-template-columns:
         repeat(4, minmax(0, 1fr));
 
-      gap: 22px;
+      gap: 20px;
     }
 
     .product-card {
       min-width: 0;
 
-      background:
-        rgba(255, 255, 255, 0.8);
+      padding: 15px;
 
       border:
         1px solid rgba(17, 17, 17, 0.06);
 
       border-radius: 22px;
 
-      padding: 16px;
+      background:
+        rgba(255, 255, 255, 0.82);
 
       box-shadow:
         0 18px 26px rgba(0, 0, 0, 0.03);
@@ -869,15 +959,14 @@
       transform: translateY(-4px);
 
       box-shadow:
-        0 22px 28px rgba(0, 0, 0, 0.05);
+        0 22px 28px rgba(0, 0, 0, 0.06);
     }
 
     .product-visual {
-      position: relative;
-
       width: 100%;
 
-      height: 220px;
+      height:
+        clamp(190px, 18vw, 230px);
 
       overflow: hidden;
 
@@ -899,31 +988,31 @@
     }
 
     .product-meta {
-      padding-top: 14px;
-
       min-width: 0;
+
+      padding-top: 14px;
     }
 
     .product-meta h3 {
-      margin: 0 0 8px;
+      margin:
+        0 0 8px;
 
-      font-size: 1.08rem;
+      font-size: 1.04rem;
 
       overflow-wrap: anywhere;
     }
 
     .rating {
       display: flex;
-
       align-items: center;
 
       gap: 7px;
 
-      font-size: 0.82rem;
+      margin-bottom: 10px;
 
       color: var(--text-soft);
 
-      margin-bottom: 10px;
+      font-size: 0.8rem;
     }
 
     .stars {
@@ -936,9 +1025,7 @@
 
     .price-row {
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       gap: 10px;
@@ -947,15 +1034,16 @@
     }
 
     .price {
-      font-size: 1.25rem;
-
+      font-size: 1.2rem;
       font-weight: 900;
     }
 
     .old-price {
+      margin-left: 4px;
+
       color: var(--text-soft);
 
-      font-size: 0.86rem;
+      font-size: 0.8rem;
 
       text-decoration: line-through;
 
@@ -963,9 +1051,16 @@
     }
 
     .mini-btn {
+      width: auto;
+
+      flex: 0 0 auto;
+
+      padding:
+        10px 14px;
+
       border: none;
 
-      flex-shrink: 0;
+      border-radius: 999px;
 
       background:
         linear-gradient(
@@ -976,28 +1071,20 @@
 
       color: var(--white);
 
-      padding: 10px 14px;
-
-      border-radius: 999px;
-
-      font-size: 0.72rem;
-
+      font-size: 0.68rem;
       font-weight: 700;
 
       letter-spacing: 0.08em;
 
       text-transform: uppercase;
-
-      cursor: pointer;
     }
 
+
     /* =========================================================
-       MINI CAROUSEL
+       MINI CAROUSELS
     ========================================================= */
 
     .mini-carousel {
-      position: relative;
-
       width: 100%;
 
       margin-top: 10px;
@@ -1013,22 +1100,22 @@
 
     .carousel-track {
       display: flex;
-
       align-items: stretch;
-
-      gap: 18px;
 
       width: max-content;
 
-      padding: 8px 4px 12px;
+      gap: 18px;
+
+      padding:
+        8px 4px 12px;
 
       animation:
-        marquee 18s linear infinite;
+        marquee 20s linear infinite;
     }
 
     .category-carousel .carousel-track {
       animation:
-        marquee-right 18s linear infinite;
+        marquee-right 20s linear infinite;
     }
 
     .mini-carousel:hover .carousel-track {
@@ -1056,21 +1143,20 @@
     }
 
     .mini-card {
-      flex: 0 0 220px;
+      flex:
+        0 0 clamp(190px, 18vw, 230px);
 
       min-width: 0;
 
-      background:
-        rgba(255, 255, 255, 0.82);
+      overflow: hidden;
 
       border:
         1px solid rgba(17, 17, 17, 0.06);
 
       border-radius: 22px;
 
-      position: relative;
-
-      overflow: hidden;
+      background:
+        rgba(255, 255, 255, 0.82);
 
       box-shadow:
         0 18px 28px rgba(0, 0, 0, 0.02);
@@ -1081,16 +1167,17 @@
     }
 
     .mini-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
 
       box-shadow:
         0 22px 30px rgba(0, 0, 0, 0.06);
     }
 
     .mini-card-image {
-      position: relative;
+      width: 100%;
 
-      height: 150px;
+      height:
+        clamp(135px, 13vw, 165px);
 
       overflow: hidden;
     }
@@ -1100,66 +1187,30 @@
       height: 100%;
 
       object-fit: cover;
-
-      border-radius:
-        22px 22px 0 0;
-    }
-
-    .mini-card-badge {
-      position: absolute;
-
-      left: 50%;
-      bottom: -18px;
-
-      transform: translateX(-50%);
-
-      background:
-        rgba(17, 17, 17, 0.74);
-
-      color: var(--white);
-
-      border:
-        1px solid rgba(255, 255, 255, 0.12);
-
-      border-radius: 999px;
-
-      padding: 9px 16px;
-
-      font-size: 0.7rem;
-
-      font-weight: 800;
-
-      letter-spacing: 0.1em;
-
-      text-transform: uppercase;
-
-      white-space: nowrap;
-
-      backdrop-filter: blur(8px);
-
-      box-shadow:
-        0 10px 18px rgba(17, 17, 17, 0.14);
     }
 
     .mini-card-body {
-      padding: 24px 14px 18px;
+      padding:
+        22px 14px 17px;
     }
 
     .mini-card-body h3 {
-      margin: 0 0 8px;
+      margin:
+        0 0 7px;
 
-      font-size: 1.02rem;
+      font-size: 0.98rem;
     }
 
     .mini-card-body p {
       margin: 0;
 
-      font-size: 0.88rem;
-
-      line-height: 1.65;
-
       color: var(--text-soft);
+
+      font-size: 0.83rem;
+
+      line-height: 1.6;
     }
+
 
     /* =========================================================
        PROMO STRIP
@@ -1179,6 +1230,14 @@
     .promo-box {
       min-width: 0;
 
+      padding:
+        20px 18px;
+
+      border:
+        1px solid rgba(17, 17, 17, 0.06);
+
+      border-radius: 22px;
+
       background:
         linear-gradient(
           180deg,
@@ -1186,27 +1245,21 @@
           rgba(247, 247, 247, 0.96)
         );
 
-      border:
-        1px solid rgba(17, 17, 17, 0.06);
-
-      border-radius: 22px;
-
-      padding: 20px 18px;
-
       box-shadow:
         0 18px 26px rgba(0, 0, 0, 0.02);
     }
 
     .promo-box .mini-tag {
-      display: inline-flex;
-
-      min-width: 42px;
+      width: 42px;
       height: 42px;
 
-      border-radius: 14px;
-
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+
+      margin-bottom: 12px;
+
+      border-radius: 14px;
 
       background:
         rgba(227, 27, 35, 0.09);
@@ -1214,45 +1267,33 @@
       color: var(--red-deep);
 
       font-size: 1.1rem;
-
       font-weight: 900;
-
-      margin-bottom: 12px;
     }
 
     .promo-box h3 {
-      margin: 0 0 8px;
+      margin:
+        0 0 7px;
 
-      font-size: 1.02rem;
+      font-size: 1rem;
     }
 
     .promo-box p {
       margin: 0;
 
-      line-height: 1.7;
-
       color: var(--text-soft);
 
-      font-size: 0.9rem;
+      font-size: 0.86rem;
+
+      line-height: 1.65;
     }
+
 
     /* =========================================================
        DEAL BANNER
     ========================================================= */
 
     .deal-banner {
-      margin-top: 36px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(17, 17, 17, 0.97),
-          rgba(36, 36, 36, 0.95)
-        );
-
-      border-radius: 30px;
-
-      overflow: hidden;
+      margin-top: 34px;
 
       display: grid;
 
@@ -1260,9 +1301,18 @@
         minmax(0, 1.05fr)
         minmax(0, 0.95fr);
 
-      align-items: stretch;
-
       min-height: 360px;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(17, 17, 17, 0.97),
+          rgba(36, 36, 36, 0.95)
+        );
 
       border:
         1px solid rgba(255, 255, 255, 0.06);
@@ -1272,17 +1322,14 @@
     }
 
     .deal-copy {
-      padding: 42px 40px;
-
-      color: var(--white);
-
       min-width: 0;
 
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
+
+      padding:
+        40px;
     }
 
     .deal-copy .eyebrow {
@@ -1293,34 +1340,39 @@
     }
 
     .deal-copy h2 {
-      margin: 16px 0 12px;
+      margin:
+        16px 0 12px;
+
+      max-width: 700px;
+
+      color: var(--white);
 
       font-size:
-        clamp(2rem, 3vw, 3rem);
+        clamp(1.9rem, 3vw, 3rem);
+
+      line-height: 1.05;
 
       letter-spacing: -0.06em;
-
-      line-height: 1.04;
 
       overflow-wrap: anywhere;
     }
 
     .deal-copy p {
-      margin: 0 0 22px;
+      margin:
+        0 0 22px;
 
       max-width: 500px;
 
       color:
         rgba(255, 255, 255, 0.75);
 
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
     .deal-shot {
       position: relative;
 
       width: 100%;
-
       min-height: 360px;
 
       overflow: hidden;
@@ -1340,31 +1392,30 @@
     .deal-badge {
       position: absolute;
 
-      right: 30px;
-      bottom: 24px;
+      right: 25px;
+      bottom: 22px;
+
+      padding:
+        11px 17px;
+
+      border-radius: 999px;
 
       background:
         rgba(255, 255, 255, 0.9);
 
       color: var(--text);
 
-      border-radius: 999px;
-
-      padding: 12px 18px;
-
-      font-size: 0.72rem;
-
+      font-size: 0.68rem;
       font-weight: 800;
 
-      letter-spacing: 0.12em;
+      letter-spacing: 0.11em;
 
       text-transform: uppercase;
-
-      white-space: nowrap;
     }
 
+
     /* =========================================================
-       STORY GRID
+       STORY / COLLECTIONS
     ========================================================= */
 
     .story-grid {
@@ -1373,7 +1424,7 @@
       grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-      gap: 22px;
+      gap: 20px;
 
       margin-top: 14px;
     }
@@ -1381,15 +1432,15 @@
     .story-card {
       min-width: 0;
 
-      background:
-        rgba(255, 255, 255, 0.82);
+      overflow: hidden;
 
       border:
         1px solid rgba(17, 17, 17, 0.06);
 
       border-radius: 22px;
 
-      overflow: hidden;
+      background:
+        rgba(255, 255, 255, 0.82);
 
       box-shadow:
         0 18px 28px rgba(0, 0, 0, 0.02);
@@ -1397,7 +1448,9 @@
 
     .story-photo {
       width: 100%;
-      height: 240px;
+
+      height:
+        clamp(210px, 21vw, 250px);
 
       overflow: hidden;
     }
@@ -1410,24 +1463,27 @@
     }
 
     .story-body {
-      padding: 20px 18px 22px;
+      padding:
+        19px 17px 21px;
     }
 
     .story-body h3 {
-      margin: 0 0 8px;
+      margin:
+        0 0 8px;
 
-      font-size: 1.12rem;
+      font-size: 1.08rem;
     }
 
     .story-body p {
       margin: 0;
 
-      line-height: 1.7;
-
       color: var(--text-soft);
 
-      font-size: 0.92rem;
+      font-size: 0.88rem;
+
+      line-height: 1.7;
     }
+
 
     /* =========================================================
        TESTIMONIALS
@@ -1439,7 +1495,7 @@
       grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-      gap: 22px;
+      gap: 20px;
 
       margin-top: 14px;
     }
@@ -1447,56 +1503,55 @@
     .testimonial-card {
       min-width: 0;
 
-      background:
-        rgba(255, 255, 255, 0.82);
+      padding:
+        23px 19px;
 
       border:
         1px solid rgba(17, 17, 17, 0.06);
 
       border-radius: 22px;
 
-      padding: 24px 20px;
+      background:
+        rgba(255, 255, 255, 0.82);
 
       box-shadow:
         0 18px 28px rgba(0, 0, 0, 0.02);
     }
 
     .testimonial-stars {
+      margin-bottom: 13px;
+
       color: #f7b733;
 
       letter-spacing: 0.12em;
-
-      font-size: 0.92rem;
-
-      margin-bottom: 14px;
     }
 
     .testimonial-card p {
-      margin: 0 0 18px;
+      margin:
+        0 0 17px;
 
       color: var(--text-soft);
 
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
     .person {
       display: flex;
-
       align-items: center;
 
-      gap: 12px;
+      gap: 11px;
     }
 
     .person-badge {
       width: 42px;
       height: 42px;
 
-      flex-shrink: 0;
-
-      border-radius: 50%;
+      flex: 0 0 42px;
 
       display: grid;
       place-items: center;
+
+      border-radius: 50%;
 
       background:
         linear-gradient(
@@ -1513,21 +1568,36 @@
     .person strong {
       display: block;
 
-      font-size: 0.96rem;
+      font-size: 0.92rem;
     }
 
     .person span {
       color: var(--text-soft);
 
-      font-size: 0.78rem;
+      font-size: 0.76rem;
     }
 
+
     /* =========================================================
-       CTA BANNER
+       CTA
     ========================================================= */
 
     .cta-banner {
-      margin-top: 36px;
+      margin-top: 34px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding:
+        32px 28px;
+
+      border:
+        1px solid rgba(227, 27, 35, 0.12);
+
+      border-radius: 27px;
 
       background:
         linear-gradient(
@@ -1535,21 +1605,6 @@
           rgba(227, 27, 35, 0.12),
           rgba(255, 255, 255, 0.9)
         );
-
-      border:
-        1px solid rgba(227, 27, 35, 0.12);
-
-      border-radius: 28px;
-
-      padding: 34px 28px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 20px;
 
       box-shadow:
         0 18px 32px rgba(227, 27, 35, 0.05);
@@ -1560,10 +1615,13 @@
     }
 
     .cta-banner h3 {
-      margin: 0 0 6px;
+      margin:
+        0 0 6px;
 
       font-size:
-        clamp(1.8rem, 2.4vw, 2.8rem);
+        clamp(1.7rem, 2.5vw, 2.7rem);
+
+      line-height: 1.1;
 
       letter-spacing: -0.06em;
 
@@ -1574,14 +1632,22 @@
       margin: 0;
 
       color: var(--text-soft);
+
+      line-height: 1.6;
     }
+
 
     /* =========================================================
        FOOTER
     ========================================================= */
 
     footer {
-      margin-top: 70px;
+      position: relative;
+
+      margin-top: 65px;
+
+      color:
+        rgba(255, 255, 255, 0.8);
 
       background:
         linear-gradient(
@@ -1589,18 +1655,12 @@
           #0d0d0e 0%,
           #181818 100%
         );
-
-      color:
-        rgba(255, 255, 255, 0.8);
-
-      position: relative;
     }
 
     footer::before {
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
@@ -1614,16 +1674,16 @@
     }
 
     .footer-inner {
+      position: relative;
+      z-index: 1;
+
       width: 100%;
-      max-width: 1360px;
+      max-width: var(--container);
 
       margin: 0 auto;
 
-      padding: 54px 22px 28px;
-
-      position: relative;
-
-      z-index: 1;
+      padding:
+        52px clamp(14px, 2vw, 24px) 26px;
     }
 
     .footer-grid {
@@ -1644,18 +1704,15 @@
 
     .footer-brand {
       display: inline-flex;
-
       align-items: center;
-
       justify-content: center;
 
-      gap: 14px;
+      margin-bottom: 17px;
 
-      margin-bottom: 18px;
+      padding:
+        13px 17px;
 
-      padding: 14px 18px;
-
-      border-radius: 18px;
+      border-radius: 17px;
 
       background:
         rgba(255, 255, 255, 0.04);
@@ -1668,34 +1725,35 @@
     }
 
     .footer-brand img {
-      width: 148px;
+      width: 145px;
       height: auto;
-
-      display: block;
     }
 
     .footer-copy {
-      margin: 0;
-
       max-width: 360px;
 
-      line-height: 1.9;
+      margin: 0;
 
       color:
         rgba(255, 255, 255, 0.72);
+
+      font-size: 0.88rem;
+
+      line-height: 1.8;
     }
 
     .footer-col h4 {
-      margin: 0 0 18px;
+      margin:
+        0 0 17px;
 
-      font-size: 0.8rem;
+      color:
+        rgba(255, 255, 255, 0.88);
+
+      font-size: 0.76rem;
 
       letter-spacing: 0.12em;
 
       text-transform: uppercase;
-
-      color:
-        rgba(255, 255, 255, 0.85);
     }
 
     .footer-col ul {
@@ -1705,15 +1763,16 @@
       padding: 0;
 
       display: flex;
-
       flex-direction: column;
 
-      gap: 12px;
+      gap: 11px;
     }
 
     .footer-col a {
       color:
         rgba(255, 255, 255, 0.72);
+
+      font-size: 0.86rem;
 
       transition:
         color 0.2s ease;
@@ -1725,12 +1784,11 @@
 
     .footer-socials {
       display: flex;
-
       align-items: center;
 
-      gap: 12px;
+      gap: 10px;
 
-      margin-top: 18px;
+      margin-top: 17px;
 
       flex-wrap: wrap;
     }
@@ -1739,7 +1797,7 @@
       width: 36px;
       height: 36px;
 
-      flex-shrink: 0;
+      flex: 0 0 36px;
 
       display: grid;
       place-items: center;
@@ -1772,22 +1830,29 @@
         rgba(255, 255, 255, 0.8);
     }
 
+
+    /* =========================================================
+       NEWSLETTER
+    ========================================================= */
+
     .newsletter {
+      width: 100%;
+
       display: flex;
 
-      gap: 10px;
+      gap: 9px;
 
-      margin-top: 18px;
-
-      width: 100%;
+      margin-top: 17px;
     }
 
     .newsletter input {
-      flex: 1;
-
+      width: 100%;
       min-width: 0;
 
-      height: 46px;
+      height: 44px;
+
+      padding:
+        0 15px;
 
       border:
         1px solid rgba(255, 255, 255, 0.12);
@@ -1799,8 +1864,6 @@
 
       color: var(--white);
 
-      padding: 0 16px;
-
       outline: none;
     }
 
@@ -1810,15 +1873,16 @@
     }
 
     .newsletter button {
-      flex-shrink: 0;
+      flex: 0 0 auto;
+
+      height: 44px;
+
+      padding:
+        0 17px;
 
       border: none;
 
-      height: 46px;
-
       border-radius: 999px;
-
-      padding: 0 18px;
 
       background:
         linear-gradient(
@@ -1829,54 +1893,54 @@
 
       color: var(--white);
 
-      font-size: 0.72rem;
-
+      font-size: 0.68rem;
       font-weight: 800;
 
       letter-spacing: 0.08em;
 
       text-transform: uppercase;
-
-      cursor: pointer;
     }
 
+
+    /* =========================================================
+       FOOTER BOTTOM
+    ========================================================= */
+
     .footer-bottom {
-      margin-top: 34px;
+      margin-top: 32px;
+
+      padding-top: 17px;
 
       border-top:
         1px solid rgba(255, 255, 255, 0.08);
 
-      padding-top: 18px;
-
       display: flex;
-
       flex-direction: column;
 
       align-items: center;
-
       justify-content: center;
 
       gap: 8px;
 
       text-align: center;
 
-      font-size: 0.8rem;
-
       color:
-        rgba(255, 255, 255, 0.65);
+        rgba(255, 255, 255, 0.62);
+
+      font-size: 0.76rem;
     }
 
-    .footer-bottom .footer-legal {
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
+    .footer-legal {
+      display: flex;
 
       flex-wrap: wrap;
 
-      gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
     }
+
 
     /* =========================================================
        SCROLL TOP
@@ -1885,11 +1949,18 @@
     .scroll-top {
       position: fixed;
 
-      right: 28px;
-      bottom: 28px;
+      right: 25px;
+      bottom: 25px;
 
-      width: 52px;
-      height: 52px;
+      z-index: 90;
+
+      width: 50px;
+      height: 50px;
+
+      display: grid;
+      place-items: center;
+
+      padding: 0;
 
       border: none;
 
@@ -1907,18 +1978,10 @@
       box-shadow:
         0 16px 30px rgba(227, 27, 35, 0.24);
 
-      display: grid;
-
-      place-items: center;
-
-      cursor: pointer;
-
-      z-index: 60;
-
       opacity: 0;
       visibility: hidden;
 
-      transform: translateY(16px);
+      transform: translateY(15px);
 
       transition:
         opacity 0.25s ease,
@@ -1928,94 +1991,56 @@
 
     .scroll-top.visible {
       opacity: 1;
-
       visibility: visible;
 
       transform: translateY(0);
     }
 
     .scroll-top svg {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
 
       fill: currentColor;
     }
 
+
     /* =========================================================
-       LARGE TABLET / SMALL LAPTOP
+       TABLET
        981px - 1200px
     ========================================================= */
 
     @media (max-width: 1200px) {
-
-      .topbar {
-        padding-left: 22px;
-        padding-right: 22px;
-      }
-
-      .header-inner {
-        gap: 14px;
-      }
-
-      .brand {
-        min-width: 150px;
-      }
 
       .brand-mark {
         width: 125px;
       }
 
       .nav {
-        gap: 18px;
+        gap: 17px;
       }
 
       .nav a {
-        font-size: 0.82rem;
-      }
-
-      .header-tools {
-        gap: 8px;
+        font-size: 0.76rem;
       }
 
       .header-search {
-        width: 190px;
-        min-width: 160px;
-      }
-
-      .header-link {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .hero {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .slide {
-        padding-left: 38px;
-        padding-right: 38px;
+        width: 180px;
+        min-width: 150px;
       }
 
       .product-grid {
-        grid-template-columns:
-          repeat(4, minmax(0, 1fr));
-
         gap: 16px;
       }
 
-      .product-card {
-        padding: 13px;
-      }
-
-      .product-visual {
-        height: 200px;
+      .promo-strip {
+        gap: 15px;
       }
 
       .footer-grid {
         gap: 20px;
       }
     }
+
 
     /* =========================================================
        TABLET
@@ -2025,44 +2050,48 @@
     @media (max-width: 980px) {
 
       .topbar {
-        padding: 14px 20px;
+        padding:
+          13px 20px;
       }
 
       .header-inner {
         flex-wrap: wrap;
       }
 
-      .brand {
-        min-width: auto;
+      .brand-mark {
+        width: 120px;
+        height: 56px;
       }
 
       .nav {
         order: 3;
 
+        flex: 0 0 100%;
+
         width: 100%;
 
-        flex: 0 0 100%;
+        padding-top: 5px;
 
         gap: 22px;
       }
 
       .header-tools {
-        flex: 1;
-
-        justify-content: flex-end;
+        margin-left: auto;
       }
 
       .header-search {
-        width: 200px;
+        width: 170px;
       }
 
-      /* Hero becomes stacked */
+
+      /* HERO */
+
       .hero-card {
-        min-height: 760px;
+        min-height: 700px;
       }
 
       .carousel {
-        min-height: 760px;
+        min-height: 700px;
       }
 
       .slide {
@@ -2071,25 +2100,19 @@
         grid-template-rows:
           auto auto;
 
-        align-content: center;
-
         gap: 18px;
 
         padding:
-          42px 32px 70px;
-      }
-
-      .slide-content {
-        padding-left: 0;
+          38px 32px 65px;
 
         text-align: center;
       }
 
-      .slide-content h1 {
-        margin-left: auto;
-        margin-right: auto;
+      .slide-content {
+        text-align: center;
       }
 
+      .slide-content h1,
       .slide p {
         margin-left: auto;
         margin-right: auto;
@@ -2100,21 +2123,25 @@
       }
 
       .slide-visual {
-        min-height: 300px;
+        min-height: 290px;
       }
 
       .slide-image {
-        width: min(72vw, 420px);
-        height: 300px;
+        width: min(70vw, 420px);
+        height: 290px;
       }
 
       .carousel-controls {
         right: 50%;
+
         transform: translateX(50%);
-        bottom: 22px;
+
+        bottom: 20px;
       }
 
-      /* Products */
+
+      /* PRODUCTS */
+
       .product-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
@@ -2123,64 +2150,67 @@
       }
 
       .product-visual {
-        height: 240px;
+        height: 235px;
       }
 
-      /* Promo */
+
+      /* PROMO */
+
       .promo-strip {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
       }
 
-      /* Deal */
+
+      /* DEAL */
+
       .deal-banner {
         grid-template-columns: 1fr;
-
-        min-height: auto;
       }
 
       .deal-copy {
-        padding: 38px 32px;
-      }
-
-      .deal-copy h2 {
-        max-width: 700px;
+        padding:
+          36px 32px;
       }
 
       .deal-shot {
-        min-height: 320px;
-        height: 320px;
+        min-height: 310px;
+        height: 310px;
       }
 
-      /* Story */
+
+      /* STORY */
+
       .story-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
       }
 
-      .story-grid .story-card:last-child {
-        grid-column:
-          1 / -1;
+      .story-card:last-child {
+        grid-column: 1 / -1;
       }
 
-      /* Testimonials */
+
+      /* TESTIMONIALS */
+
       .testimonial-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
       }
 
-      .testimonial-grid
       .testimonial-card:last-child {
-        grid-column:
-          1 / -1;
+        grid-column: 1 / -1;
       }
 
-      /* Footer */
+
+      /* FOOTER */
+
       .footer-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
       }
     }
+
 
     /* =========================================================
        MOBILE
@@ -2191,24 +2221,32 @@
 
       .topbar {
         padding:
-          12px 16px;
+          10px 14px;
       }
 
       .header-inner {
-        gap: 10px;
+        display: flex;
+
+        gap: 0;
       }
 
+
+      /* LOGO */
+
       .brand-mark {
-        width: 112px;
-        height: 52px;
+        width: 105px;
+        height: 48px;
       }
 
       .brand-mark::before {
-        width: 105px;
-        height: 105px;
+        width: 100px;
+        height: 100px;
 
         filter: blur(18px);
       }
+
+
+      /* MENU */
 
       .menu-toggle {
         display: grid;
@@ -2216,11 +2254,19 @@
         margin-left: auto;
       }
 
-      /* Mobile navigation */
+
+      /* =====================================================
+         MOBILE NAV
+      ===================================================== */
+
       .nav {
         display: none;
 
-        order: 4;
+        order: 10;
+
+        flex: 0 0 100%;
+
+        width: 100%;
 
         flex-direction: column;
 
@@ -2228,10 +2274,11 @@
 
         gap: 0;
 
-        width: 100%;
-
         padding:
           8px 0 2px;
+
+        border-top:
+          1px solid rgba(17, 17, 17, 0.05);
       }
 
       .nav.is-open {
@@ -2239,86 +2286,156 @@
       }
 
       .nav a {
-        padding:
-          13px 8px;
+        width: auto;
 
-        font-size: 0.78rem;
+        padding:
+          11px 4px;
+
+        font-size: 0.76rem;
 
         border-bottom:
           1px solid rgba(17, 17, 17, 0.07);
+      }
+
+      .nav a:last-child {
+        border-bottom: none;
       }
 
       .nav a::after {
         display: none;
       }
 
-      /* Header tools mobile dropdown */
+
+      /* =====================================================
+         MOBILE HEADER TOOLS
+
+         ORDER:
+         1. NAV
+         2. ICONS
+         3. SEARCH + LOGIN
+      ===================================================== */
+
       .header-tools {
         display: none;
 
-        order: 5;
-
-        width: 100%;
+        order: 20;
 
         flex: 0 0 100%;
 
+        width: 100%;
+
         flex-direction: column;
 
-        align-items: stretch;
+        align-items: center;
 
         justify-content: flex-start;
 
-        gap: 12px;
+        gap: 11px;
 
-        padding-top: 4px;
+        padding:
+          9px 0 3px;
       }
 
       .header-tools.is-open {
         display: flex;
       }
 
-      .header-search {
+
+      /* =====================================================
+         ICONS HORIZONTAL
+      ===================================================== */
+
+      .toolbar-icons {
+        width: auto;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 9px;
+      }
+
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+
+        flex: 0 0 36px;
+      }
+
+      .icon-btn svg {
+        width: 15px;
+        height: 15px;
+      }
+
+
+      /* =====================================================
+         SEARCH + LOGIN SAME ROW
+      ===================================================== */
+
+      .header-bottom-row {
         width: 100%;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+      }
+
+      .header-search {
+        width: auto;
+
+        flex: 1 1 auto;
 
         min-width: 0;
 
-        max-width: none;
+        max-width: 270px;
+
+        height: 40px;
+
+        padding:
+          0 12px;
       }
 
-      .toolbar-icons,
-      .header-actions {
-        width: 100%;
-
-        justify-content: center;
-      }
-
-      .header-actions {
-        padding-bottom: 4px;
+      .header-search input {
+        font-size: 0.76rem;
       }
 
       .header-link {
-        padding:
-          10px 18px;
+        width: auto;
 
-        font-size: 0.7rem;
+        flex: 0 0 auto;
+
+        min-height: 40px;
+
+        padding:
+          0 14px;
+
+        font-size: 0.65rem;
       }
 
-      /* Main */
+
+      /* =====================================================
+         HERO
+      ===================================================== */
+
       .hero {
-        margin-top: 14px;
+        margin-top: 12px;
 
         padding:
-          8px 12px 50px;
+          8px 10px 45px;
       }
 
       .hero-card {
-        min-height: 690px;
+        min-height: 650px;
 
-        border-radius: 22px;
+        border-radius: 20px;
       }
 
       .carousel {
-        min-height: 690px;
+        min-height: 650px;
       }
 
       .slide {
@@ -2327,114 +2444,118 @@
         grid-template-rows:
           auto auto;
 
-        gap: 18px;
+        gap: 15px;
 
         padding:
-          30px 18px 64px;
+          27px 16px 58px;
       }
 
       .eyebrow {
-        font-size: 0.62rem;
-
         padding:
           7px 10px;
 
-        letter-spacing: 0.11em;
+        font-size: 0.58rem;
+
+        letter-spacing: 0.1em;
       }
 
       h1 {
         margin:
-          14px 0 12px;
+          13px 0 11px;
 
         font-size:
-          clamp(2rem, 9vw, 3rem);
+          clamp(1.8rem, 8.5vw, 2.8rem);
 
         line-height: 1.06;
       }
 
       .slide p {
-        max-width: 100%;
+        margin-bottom: 17px;
 
-        font-size: 0.92rem;
+        font-size: 0.86rem;
 
         line-height: 1.6;
-
-        margin-bottom: 18px;
       }
 
       .cta-row {
         width: 100%;
 
-        gap: 10px;
+        justify-content: center;
+
+        gap: 8px;
       }
 
       .primary-btn,
       .secondary-btn {
-        min-height: 46px;
+        min-height: 43px;
 
         padding:
-          0 17px;
+          0 15px;
 
-        font-size: 0.7rem;
-
-        flex: 1 1 auto;
+        font-size: 0.64rem;
       }
 
       .slide-visual {
-        min-height: 260px;
+        min-height: 235px;
 
         width: 100%;
       }
 
       .slide-image {
-        width: min(88vw, 380px);
+        width: min(88vw, 370px);
 
-        height: 260px;
+        height: 235px;
 
-        border-radius: 24px;
+        border-radius: 21px;
       }
 
       .carousel-controls {
-        bottom: 17px;
+        bottom: 15px;
       }
 
-      /* Section headings */
+
+      /* =====================================================
+         SECTION HEAD
+      ===================================================== */
+
       .section {
-        padding-top: 12px;
+        padding-top: 10px;
       }
 
       .section-head {
-        align-items: flex-start;
-
         flex-direction: column;
 
-        gap: 7px;
+        align-items: flex-start;
 
-        margin-bottom: 16px;
+        gap: 6px;
+
+        margin-bottom: 15px;
       }
 
       .section-head h2 {
         font-size:
-          clamp(1.65rem, 7vw, 2.2rem);
+          clamp(1.55rem, 7vw, 2.15rem);
       }
 
       .section-head span {
         text-align: left;
 
-        font-size: 0.67rem;
-
-        letter-spacing: 0.1em;
+        font-size: 0.63rem;
       }
 
-      /* Products */
+
+      /* =====================================================
+         PRODUCTS
+      ===================================================== */
+
       .product-grid {
         grid-template-columns: 1fr;
 
-        gap: 16px;
+        gap: 15px;
       }
 
       .product-card {
-        padding: 14px;
+        padding: 13px;
 
         border-radius: 19px;
       }
@@ -2447,232 +2568,280 @@
       }
 
       .product-meta h3 {
-        font-size: 1rem;
+        font-size: 0.98rem;
       }
 
       .price {
-        font-size: 1.15rem;
+        font-size: 1.12rem;
       }
 
-      /* Mini cards */
+      .mini-btn {
+        padding:
+          9px 13px;
+      }
+
+
+      /* =====================================================
+         MINI CAROUSELS
+      ===================================================== */
+
       .carousel-track {
-        gap: 14px;
+        gap: 13px;
       }
 
       .mini-card {
         flex-basis:
-          clamp(190px, 68vw, 230px);
+          clamp(185px, 68vw, 225px);
 
         border-radius: 19px;
       }
 
       .mini-card-image {
         height:
-          clamp(135px, 45vw, 165px);
+          clamp(135px, 44vw, 165px);
       }
 
       .mini-card-body {
         padding:
-          20px 13px 16px;
+          19px 13px 16px;
       }
 
       .mini-card-body h3 {
-        font-size: 0.98rem;
+        font-size: 0.95rem;
       }
 
       .mini-card-body p {
-        font-size: 0.83rem;
+        font-size: 0.8rem;
 
         line-height: 1.55;
       }
 
-      /* Promo */
+
+      /* =====================================================
+         PROMO
+      ===================================================== */
+
       .promo-strip {
         grid-template-columns: 1fr;
 
-        gap: 14px;
+        gap: 13px;
       }
 
-      /* Deal */
-      .deal-banner {
-        margin-top: 28px;
 
-        border-radius: 22px;
+      /* =====================================================
+         DEAL
+      ===================================================== */
+
+      .deal-banner {
+        margin-top: 27px;
+
+        border-radius: 21px;
       }
 
       .deal-copy {
         padding:
-          30px 22px;
+          27px 20px;
       }
 
       .deal-copy h2 {
         font-size:
-          clamp(1.8rem, 8vw, 2.5rem);
+          clamp(1.75rem, 8vw, 2.4rem);
       }
 
       .deal-copy p {
-        font-size: 0.9rem;
+        font-size: 0.86rem;
 
-        line-height: 1.65;
+        line-height: 1.62;
       }
 
       .deal-actions {
         width: 100%;
 
-        gap: 10px;
+        justify-content: flex-start;
+
+        gap: 8px;
       }
 
       .deal-actions .primary-btn,
       .deal-actions .secondary-btn {
-        flex: 1 1 100%;
+        flex: 0 0 auto;
       }
 
       .deal-shot {
-        min-height: 250px;
+        height: 245px;
 
-        height: 250px;
+        min-height: 245px;
       }
 
       .deal-badge {
-        right: 16px;
-
-        bottom: 16px;
+        right: 14px;
+        bottom: 14px;
 
         padding:
-          10px 14px;
+          9px 13px;
 
-        font-size: 0.64rem;
+        font-size: 0.6rem;
       }
 
-      /* Story */
+
+      /* =====================================================
+         STORY
+      ===================================================== */
+
       .story-grid {
         grid-template-columns: 1fr;
 
-        gap: 16px;
+        gap: 15px;
       }
 
-      .story-grid .story-card:last-child {
+      .story-card:last-child {
         grid-column: auto;
       }
 
       .story-photo {
         height:
-          clamp(200px, 58vw, 280px);
+          clamp(195px, 58vw, 275px);
       }
 
       .story-body {
         padding:
-          18px 16px 20px;
+          17px 15px 19px;
       }
 
-      /* Testimonials */
+
+      /* =====================================================
+         TESTIMONIALS
+      ===================================================== */
+
       .testimonial-grid {
         grid-template-columns: 1fr;
 
-        gap: 16px;
+        gap: 15px;
       }
 
-      .testimonial-grid
       .testimonial-card:last-child {
         grid-column: auto;
       }
 
       .testimonial-card {
         padding:
-          20px 17px;
+          19px 16px;
       }
 
-      /* CTA */
+
+      /* =====================================================
+         CTA
+      ===================================================== */
+
       .cta-banner {
-        margin-top: 28px;
+        margin-top: 27px;
 
         padding:
-          26px 20px;
+          25px 18px;
 
-        border-radius: 22px;
+        border-radius: 21px;
 
         flex-direction: column;
 
-        align-items: stretch;
+        align-items: center;
 
         text-align: center;
       }
 
       .cta-banner h3 {
         font-size:
-          clamp(1.65rem, 7vw, 2.2rem);
+          clamp(1.55rem, 7vw, 2.15rem);
       }
 
       .cta-banner p {
-        font-size: 0.9rem;
-
-        line-height: 1.6;
+        font-size: 0.86rem;
       }
 
       .cta-banner .primary-btn {
-        width: 100%;
+        width: auto;
       }
 
-      /* Footer */
+
+      /* =====================================================
+         FOOTER
+      ===================================================== */
+
       footer {
-        margin-top: 50px;
+        margin-top: 45px;
       }
 
       .footer-inner {
         padding:
-          40px 16px 24px;
+          37px 15px 22px;
       }
 
       .footer-grid {
         grid-template-columns: 1fr;
 
-        gap: 30px;
+        gap: 28px;
       }
 
       .footer-brand {
         padding:
-          12px 15px;
+          11px 14px;
       }
 
       .footer-brand img {
-        width: 135px;
+        width: 125px;
       }
 
       .footer-copy {
         max-width: 100%;
 
-        font-size: 0.9rem;
+        font-size: 0.84rem;
 
-        line-height: 1.75;
+        line-height: 1.72;
+      }
+
+      .footer-col h4 {
+        margin-bottom: 13px;
+
+        font-size: 0.72rem;
+      }
+
+      .footer-col ul {
+        gap: 9px;
+      }
+
+      .footer-col a {
+        font-size: 0.82rem;
       }
 
       .newsletter {
-        flex-direction: column;
+        gap: 7px;
       }
 
-      .newsletter input,
-      .newsletter button {
-        width: 100%;
+      .newsletter input {
+        height: 42px;
       }
 
       .newsletter button {
-        flex-shrink: 1;
+        height: 42px;
+
+        padding:
+          0 14px;
       }
 
       .footer-bottom {
-        font-size: 0.74rem;
+        margin-top: 28px;
 
-        padding-bottom: 4px;
+        font-size: 0.68rem;
       }
 
       .scroll-top {
-        width: 46px;
-        height: 46px;
+        width: 44px;
+        height: 44px;
 
-        right: 16px;
-        bottom: 16px;
+        right: 14px;
+        bottom: 14px;
       }
     }
+
 
     /* =========================================================
        SMALL MOBILE
@@ -2682,77 +2851,135 @@
     @media (max-width: 400px) {
 
       .topbar {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding:
+          9px 11px;
       }
 
       .brand-mark {
-        width: 100px;
-        height: 48px;
+        width: 98px;
+        height: 45px;
       }
 
       .menu-toggle {
-        width: 40px;
-        height: 40px;
+        width: 39px;
+        height: 39px;
+
+        flex-basis: 39px;
       }
 
+      .toolbar-icons {
+        gap: 7px;
+      }
+
+      .icon-btn {
+        width: 34px;
+        height: 34px;
+
+        flex-basis: 34px;
+      }
+
+      .icon-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .header-bottom-row {
+        gap: 6px;
+      }
+
+      .header-search {
+        height: 38px;
+
+        padding:
+          0 10px;
+      }
+
+      .header-search input {
+        font-size: 0.72rem;
+      }
+
+      .header-link {
+        min-height: 38px;
+
+        padding:
+          0 11px;
+
+        font-size: 0.6rem;
+      }
+
+
+      /* Hero */
+
       .hero {
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-left: 8px;
+        padding-right: 8px;
       }
 
       .hero-card {
-        min-height: 660px;
+        min-height: 625px;
 
-        border-radius: 19px;
+        border-radius: 18px;
       }
 
       .carousel {
-        min-height: 660px;
+        min-height: 625px;
       }
 
       .slide {
         padding:
-          26px 15px 60px;
+          24px 13px 55px;
       }
 
       h1 {
         font-size:
-          clamp(1.8rem, 9vw, 2.4rem);
+          clamp(1.7rem, 9vw, 2.3rem);
       }
 
       .slide p {
-        font-size: 0.86rem;
-      }
-
-      .slide-visual {
-        min-height: 230px;
-      }
-
-      .slide-image {
-        height: 230px;
-
-        width: 90%;
-
-        border-radius: 20px;
+        font-size: 0.82rem;
       }
 
       .primary-btn,
       .secondary-btn {
-        padding-left: 13px;
-        padding-right: 13px;
+        min-height: 41px;
 
-        font-size: 0.65rem;
+        padding:
+          0 12px;
+
+        font-size: 0.6rem;
       }
+
+      .slide-image {
+        height: 220px;
+      }
+
+      .slide-visual {
+        min-height: 220px;
+      }
+
+
+      /* Product */
 
       .product-visual {
-        height: 230px;
+        height: 225px;
       }
 
-      .mini-card {
-        flex-basis: 185px;
+
+      /* CTA */
+
+      .cta-banner {
+        padding:
+          23px 15px;
+      }
+
+
+      /* Footer */
+
+      .newsletter {
+        flex-direction: row;
       }
     }
+
 
     /* =========================================================
        MOBILE LANDSCAPE
@@ -2761,22 +2988,22 @@
     @media (max-width: 900px) and (orientation: landscape) {
 
       .topbar {
-        padding-top: 9px;
-        padding-bottom: 9px;
+        padding-top: 8px;
+        padding-bottom: 8px;
       }
 
       .hero {
-        margin-top: 10px;
+        margin-top: 8px;
 
-        padding-bottom: 35px;
+        padding-bottom: 30px;
       }
 
       .hero-card {
-        min-height: 500px;
+        min-height: 470px;
       }
 
       .carousel {
-        min-height: 500px;
+        min-height: 470px;
       }
 
       .slide {
@@ -2789,54 +3016,44 @@
         gap: 18px;
 
         padding:
-          25px 28px 48px;
+          24px 25px 45px;
 
-        align-items: center;
+        text-align: left;
       }
 
       .slide-content {
         text-align: left;
       }
 
-      .slide-content h1 {
+      .slide-content h1,
+      .slide p {
         margin-left: 0;
         margin-right: 0;
-
-        font-size:
-          clamp(1.65rem, 5vw, 2.5rem);
       }
 
       .slide p {
-        font-size: 0.82rem;
-
-        line-height: 1.5;
+        font-size: 0.78rem;
       }
 
       .cta-row {
         justify-content: flex-start;
       }
 
-      .primary-btn,
-      .secondary-btn {
-        flex: 0 0 auto;
-
-        min-height: 42px;
-      }
-
       .slide-visual {
-        min-height: 230px;
+        min-height: 210px;
       }
 
       .slide-image {
-        height: 230px;
-
         width: 90%;
+
+        height: 210px;
       }
 
       .carousel-controls {
-        bottom: 13px;
+        bottom: 12px;
       }
     }
+
 
     /* =========================================================
        EXTRA WIDE DESKTOP
@@ -2855,6 +3072,7 @@
       }
     }
 
+
     /* =========================================================
        REDUCED MOTION
     ========================================================= */
@@ -2869,7 +3087,9 @@
       *::before,
       *::after {
         animation-duration: 0.01ms !important;
+
         animation-iteration-count: 1 !important;
+
         transition-duration: 0.01ms !important;
       }
     }
@@ -2880,6 +3100,7 @@
 
   <div class="page-shell">
 
+
     <!-- =======================================================
          HEADER
     ======================================================== -->
@@ -2888,14 +3109,24 @@
 
       <div class="header-inner">
 
+
+        <!-- LOGO -->
+
         <div class="brand" aria-label="AUREONIC logo">
+
           <div class="brand-mark">
+
             <img
               src="assets/head.png"
               alt="AUREONIC logo"
             />
+
           </div>
+
         </div>
+
+
+        <!-- MOBILE MENU -->
 
         <button
           class="menu-toggle"
@@ -2906,105 +3137,159 @@
           <span></span>
         </button>
 
+
+        <!-- NAVIGATION -->
+
         <nav
           class="nav"
           aria-label="Main navigation"
         >
-          <a href="home.html">Home</a>
-          <a href="shop.html">Shop</a>
-          <a href="contact.html">Contact</a>
+
+          <a href="home.html">
+            Home
+          </a>
+
+          <a href="shop.html">
+            Shop
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
+
         </nav>
+
+
+        <!-- HEADER TOOLS -->
 
         <div class="header-tools">
 
-          <label
-            class="header-search"
-            aria-label="Search products"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M10.5 3a7.5 7.5 0 0 1 5.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
-              />
-            </svg>
 
-            <input
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </label>
+          <!-- ICONS -->
 
           <div
             class="toolbar-icons"
             aria-label="Quick actions"
           >
 
+            <!-- CART -->
+
             <a
               href="#"
               class="icon-btn"
               aria-label="Cart"
             >
+
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
+
                 <path
                   d="M7 18a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM6.2 6h14.5l-1.9 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.1 3H2V1h4.5l.7 3.1H20v2H6.2Zm2.2 4h9.5l1.1-4.8H7.2l1.2 4.8Z"
                 />
+
               </svg>
+
             </a>
+
+
+            <!-- CHECKOUT -->
 
             <a
               href="#"
               class="icon-btn"
               aria-label="Checkout"
             >
+
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
+
                 <path
                   d="M6 2h12a2 2 0 0 1 2 2v16l-4-3-4 3-4-3-4 3V4a2 2 0 0 1 2-2Zm0 2v12.5l2-1.5 4 3 4-3 2 1.5V4H6Zm2 3h8v2H8V7Zm0 4h8v2H8v-2Z"
                 />
+
               </svg>
+
             </a>
+
+
+            <!-- ORDERS -->
 
             <a
               href="#"
               class="icon-btn"
               aria-label="My orders"
             >
+
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
+
                 <path
                   d="M3 7.5 12 2l9 5.5v9L12 22l-9-5.5v-9Zm2.2 1.3v6.8l6.8 4.2 6.8-4.2V8.8L12 13 5.2 8.8Zm7.8-3.5L6.4 7.8 12 11.3l5.6-3.5-6.6-4.1Z"
                 />
+
               </svg>
+
             </a>
 
-          </div>
 
-          <div class="header-actions">
+            <!-- PROFILE -->
 
             <a
               href="Profile.html"
               class="icon-btn"
               aria-label="Profile"
             >
+
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
+
                 <path
                   d="M12 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm-7 8a7 7 0 0 1 14 0H5Zm2-2h10a5 5 0 0 0-10 0Z"
                 />
+
               </svg>
+
             </a>
+
+          </div>
+
+
+          <!-- SEARCH + LOGIN -->
+
+          <div class="header-bottom-row">
+
+            <label
+              class="header-search"
+              aria-label="Search products"
+            >
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M10.5 3a7.5 7.5 0 0 1 5.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
+                />
+
+              </svg>
+
+              <input
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+
+            </label>
+
 
             <a
               href="login.html"
@@ -3022,11 +3307,13 @@
     </header>
 
 
+
     <!-- =======================================================
          MAIN
     ======================================================== -->
 
     <main class="hero">
+
 
       <!-- =====================================================
            HERO CAROUSEL
@@ -3039,7 +3326,9 @@
           aria-label="Featured collection carousel"
         >
 
+
           <!-- SLIDE 1 -->
+
           <div class="slide active">
 
             <div class="slide-content">
@@ -3053,8 +3342,8 @@
               </h1>
 
               <p>
-                Clean design, rich audio, and all-day comfort built for work,
-                commuting, and daily listening.
+                Clean design, rich audio, and all-day comfort
+                built for work, commuting, and daily listening.
               </p>
 
               <div class="cta-row">
@@ -3077,6 +3366,7 @@
 
             </div>
 
+
             <div class="slide-visual">
 
               <div class="slide-image">
@@ -3094,6 +3384,7 @@
 
 
           <!-- SLIDE 2 -->
+
           <div class="slide">
 
             <div class="slide-content">
@@ -3107,8 +3398,8 @@
               </h1>
 
               <p>
-                Built for clarity, mobility, and long listening sessions with
-                lightweight comfort and smart controls.
+                Built for clarity, mobility, and long listening
+                sessions with lightweight comfort and smart controls.
               </p>
 
               <div class="cta-row">
@@ -3131,6 +3422,7 @@
 
             </div>
 
+
             <div class="slide-visual">
 
               <div class="slide-image">
@@ -3148,6 +3440,7 @@
 
 
           <!-- SLIDE 3 -->
+
           <div class="slide">
 
             <div class="slide-content">
@@ -3161,8 +3454,8 @@
               </h1>
 
               <p>
-                Modern design, premium finish, and seamless wireless
-                performance for a refined everyday experience.
+                Modern design, premium finish, and seamless
+                wireless performance for a refined everyday experience.
               </p>
 
               <div class="cta-row">
@@ -3185,6 +3478,7 @@
 
             </div>
 
+
             <div class="slide-visual">
 
               <div class="slide-image">
@@ -3200,6 +3494,8 @@
 
           </div>
 
+
+          <!-- DOTS -->
 
           <div
             class="carousel-controls"
@@ -3231,6 +3527,7 @@
       </section>
 
 
+
       <!-- =====================================================
            POPULAR PRODUCTS
       ====================================================== -->
@@ -3251,6 +3548,7 @@
 
 
         <div class="product-grid">
+
 
           <article class="product-card">
 
@@ -3284,6 +3582,7 @@
               <div class="price-row">
 
                 <div>
+
                   <span class="price">
                     $129
                   </span>
@@ -3291,6 +3590,7 @@
                   <span class="old-price">
                     $149
                   </span>
+
                 </div>
 
                 <button class="mini-btn">
@@ -3336,6 +3636,7 @@
               <div class="price-row">
 
                 <div>
+
                   <span class="price">
                     $99
                   </span>
@@ -3343,6 +3644,7 @@
                   <span class="old-price">
                     $119
                   </span>
+
                 </div>
 
                 <button class="mini-btn">
@@ -3388,6 +3690,7 @@
               <div class="price-row">
 
                 <div>
+
                   <span class="price">
                     $149
                   </span>
@@ -3395,6 +3698,7 @@
                   <span class="old-price">
                     $179
                   </span>
+
                 </div>
 
                 <button class="mini-btn">
@@ -3440,6 +3744,7 @@
               <div class="price-row">
 
                 <div>
+
                   <span class="price">
                     $89
                   </span>
@@ -3447,6 +3752,7 @@
                   <span class="old-price">
                     $99
                   </span>
+
                 </div>
 
                 <button class="mini-btn">
@@ -3462,6 +3768,7 @@
         </div>
 
       </section>
+
 
 
       <!-- =====================================================
@@ -3492,174 +3799,266 @@
 
             <div class="carousel-track">
 
+
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80"
                     alt="Over-ear headphones"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Over-ear</h3>
+
+                  <h3>
+                    Over-ear
+                  </h3>
+
                   <p>
                     Comfort-first sound with deep bass and crisp clarity.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=900&q=80"
                     alt="Wireless earbuds"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Earbuds</h3>
+
+                  <h3>
+                    Earbuds
+                  </h3>
+
                   <p>
                     Compact, airy, and built for fast daily listening.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80"
                     alt="Travel audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Travel</h3>
+
+                  <h3>
+                    Travel
+                  </h3>
+
                   <p>
                     Lightweight audio designed to move with you.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80"
                     alt="Work audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Work</h3>
+
+                  <h3>
+                    Work
+                  </h3>
+
                   <p>
                     Clear calls, focused listening, and clean setup.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=900&q=80"
                     alt="Accessories"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Accessories</h3>
+
+                  <h3>
+                    Accessories
+                  </h3>
+
                   <p>
                     Cases, chargers, and premium travel add-ons.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
                     alt="Gaming audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Gaming</h3>
+
+                  <h3>
+                    Gaming
+                  </h3>
+
                   <p>
                     Clear positional sound and rich detail for focus.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80"
                     alt="Sport audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Sport</h3>
+
+                  <h3>
+                    Sport
+                  </h3>
+
                   <p>
                     Secure fit and active-ready performance for movement.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
                     alt="Studio sound"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Studio</h3>
+
+                  <h3>
+                    Studio
+                  </h3>
+
                   <p>
                     Balanced tuning for music lovers and creators.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=80"
                     alt="Everyday audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Everyday</h3>
+
+                  <h3>
+                    Everyday
+                  </h3>
+
                   <p>
                     Simple, refined gear for daily lifestyle use.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1555445091-5a3d5d2c66a7?auto=format&fit=crop&w=900&q=80"
                     alt="Charging audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Charging</h3>
+
+                  <h3>
+                    Charging
+                  </h3>
+
                   <p>
                     Portable power picks for seamless all-day use.
                   </p>
+
                 </div>
+
               </article>
+
 
             </div>
 
@@ -3668,6 +4067,7 @@
         </div>
 
       </section>
+
 
 
       <!-- =====================================================
@@ -3698,174 +4098,266 @@
 
             <div class="carousel-track">
 
+
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80"
                     alt="Noise control"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Noise Control</h3>
+
+                  <h3>
+                    Noise Control
+                  </h3>
+
                   <p>
                     Adaptive tuning that keeps sound crisp and clean.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80"
                     alt="Long battery"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Long Battery</h3>
+
+                  <h3>
+                    Long Battery
+                  </h3>
+
                   <p>
                     All-day power with quick-charge convenience.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80"
                     alt="Rich audio"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Rich Audio</h3>
+
+                  <h3>
+                    Rich Audio
+                  </h3>
+
                   <p>
                     Balanced sound with warmth, detail, and depth.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=900&q=80"
                     alt="Portable"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Portable</h3>
+
+                  <h3>
+                    Portable
+                  </h3>
+
                   <p>
                     Travel-friendly builds with dependable comfort.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
                     alt="Premium finish"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Premium Finish</h3>
+
+                  <h3>
+                    Premium Finish
+                  </h3>
+
                   <p>
                     Minimal design with a confident, elevated feel.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1555445091-5a3d5d2c66a7?auto=format&fit=crop&w=900&q=80"
                     alt="Fast pairing"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Fast Pair</h3>
+
+                  <h3>
+                    Fast Pair
+                  </h3>
+
                   <p>
                     Quick connection and seamless everyday use.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
                     alt="Low latency"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Low Latency</h3>
+
+                  <h3>
+                    Low Latency
+                  </h3>
+
                   <p>
                     Immersive response for games, media, and calls.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=80"
                     alt="Voice clarity"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Voice Clear</h3>
+
+                  <h3>
+                    Voice Clear
+                  </h3>
+
                   <p>
                     Sharper vocals and less background distraction.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80"
                     alt="Comfort fit"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Comfort Fit</h3>
+
+                  <h3>
+                    Comfort Fit
+                  </h3>
+
                   <p>
                     Soft-touch comfort for long sessions and daily wear.
                   </p>
+
                 </div>
+
               </article>
 
 
               <article class="mini-card">
+
                 <div class="mini-card-image">
+
                   <img
                     src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80"
                     alt="Smart touch controls"
                   />
+
                 </div>
 
                 <div class="mini-card-body">
-                  <h3>Smart Touch</h3>
+
+                  <h3>
+                    Smart Touch
+                  </h3>
+
                   <p>
                     Fast controls and clean handling with every tap.
                   </p>
+
                 </div>
+
               </article>
+
 
             </div>
 
@@ -3876,6 +4368,7 @@
       </section>
 
 
+
       <!-- =====================================================
            DEAL BANNER
       ====================================================== -->
@@ -3883,6 +4376,7 @@
       <section class="section">
 
         <div class="deal-banner">
+
 
           <div class="deal-copy">
 
@@ -3895,8 +4389,8 @@
             </h2>
 
             <p>
-              Discover premium gear crafted to bring studio-level clarity
-              and portable comfort into everyday life.
+              Discover premium gear crafted to bring studio-level
+              clarity and portable comfort into everyday life.
             </p>
 
             <div class="deal-actions">
@@ -3919,6 +4413,7 @@
 
           </div>
 
+
           <div class="deal-shot">
 
             <img
@@ -3935,6 +4430,7 @@
         </div>
 
       </section>
+
 
 
       <!-- =====================================================
@@ -3958,6 +4454,7 @@
 
         <div class="story-grid">
 
+
           <article class="story-card">
 
             <div class="story-photo">
@@ -3976,8 +4473,8 @@
               </h3>
 
               <p>
-                Built for deep work, calm sessions, and immersive listening
-                with zero distractions.
+                Built for deep work, calm sessions, and immersive
+                listening with zero distractions.
               </p>
 
             </div>
@@ -4003,8 +4500,8 @@
               </h3>
 
               <p>
-                Compact, durable, and ready whenever your day takes you
-                across the city or the world.
+                Compact, durable, and ready whenever your day
+                takes you across the city or the world.
               </p>
 
             </div>
@@ -4030,17 +4527,149 @@
               </h3>
 
               <p>
-                Minimal styling and premium sound for a premium routine
-                at home or on the move.
+                Minimal styling and premium sound for a premium
+                routine at home or on the move.
               </p>
 
             </div>
 
           </article>
 
+
         </div>
 
       </section>
+
+
+
+      <!-- =====================================================
+           TESTIMONIALS
+      ====================================================== -->
+
+      <section class="section">
+
+        <div class="section-head">
+
+          <h2>
+            What customers say
+          </h2>
+
+          <span>
+            Real everyday experiences
+          </span>
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+
+          <article class="testimonial-card">
+
+            <div class="testimonial-stars">
+              ★★★★★
+            </div>
+
+            <p>
+              The sound quality is excellent and the headphones
+              stay comfortable even during long work sessions.
+            </p>
+
+            <div class="person">
+
+              <div class="person-badge">
+                A
+              </div>
+
+              <div>
+
+                <strong>
+                  Ahmed
+                </strong>
+
+                <span>
+                  Verified customer
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="testimonial-card">
+
+            <div class="testimonial-stars">
+              ★★★★★
+            </div>
+
+            <p>
+              The earbuds are compact, comfortable, and the
+              battery easily lasts through my daily routine.
+            </p>
+
+            <div class="person">
+
+              <div class="person-badge">
+                S
+              </div>
+
+              <div>
+
+                <strong>
+                  Sarah
+                </strong>
+
+                <span>
+                  Verified customer
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="testimonial-card">
+
+            <div class="testimonial-stars">
+              ★★★★★
+            </div>
+
+            <p>
+              Clean design, strong performance, and a premium
+              feel. Exactly what I wanted for everyday listening.
+            </p>
+
+            <div class="person">
+
+              <div class="person-badge">
+                M
+              </div>
+
+              <div>
+
+                <strong>
+                  Michael
+                </strong>
+
+                <span>
+                  Verified customer
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
 
 
       <!-- =====================================================
@@ -4058,7 +4687,8 @@
             </h3>
 
             <p>
-              Explore our best picks and find the right audio for your lifestyle.
+              Explore our best picks and find the right audio
+              for your lifestyle.
             </p>
 
           </div>
@@ -4077,6 +4707,7 @@
     </main>
 
 
+
     <!-- =======================================================
          SCROLL TOP
     ======================================================== -->
@@ -4091,12 +4722,15 @@
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
+
         <path
           d="M12 3.5 3.5 12l1.4 1.4 6.1-6.1V21h2V7.3l6.1 6.1 1.4-1.4L12 3.5Z"
         />
+
       </svg>
 
     </button>
+
 
 
     <!-- =======================================================
@@ -4108,6 +4742,9 @@
       <div class="footer-inner">
 
         <div class="footer-grid">
+
+
+          <!-- BRAND -->
 
           <div>
 
@@ -4121,10 +4758,11 @@
             </div>
 
             <p class="footer-copy">
-              Premium audio essentials for daily listening, travel, work,
-              and performance. Clean design, dependable quality, and
-              everyday comfort.
+              Premium audio essentials for daily listening,
+              travel, work, and performance. Clean design,
+              dependable quality, and everyday comfort.
             </p>
+
 
             <div
               class="footer-socials"
@@ -4135,62 +4773,83 @@
                 href="#"
                 aria-label="Facebook"
               >
+
                 <svg
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
+
                   <path
                     d="M13.5 21v-8h2.7l.4-3h-3.1V7.2c0-.9.3-1.5 1.6-1.5H16V2.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7v3h2.5v8h4Z"
                   />
+
                 </svg>
+
               </a>
+
 
               <a
                 href="#"
                 aria-label="Instagram"
               >
+
                 <svg
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
+
                   <path
                     d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 0 0 1 1.1-1.1Z"
                   />
+
                 </svg>
+
               </a>
+
 
               <a
                 href="#"
                 aria-label="X"
               >
+
                 <svg
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
+
                   <path
                     d="M18.9 2h3.4l-7.4 8.5L23 22h-6.7l-5.2-7.6-5.9 7.6H2l7.9-9.1L1 2h6.9l4.7 7 5.3-7Zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20Z"
                   />
+
                 </svg>
+
               </a>
+
 
               <a
                 href="#"
                 aria-label="YouTube"
               >
+
                 <svg
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
+
                   <path
                     d="M23 12c0-1.8-.2-3.5-.7-5.1A3.1 3.1 0 0 0 19.3 5C17.7 4.3 15.5 4 12 4s-5.7.3-7.3 1C3.7 5.3 2.8 6.2 2.5 7.7A29 29 0 0 0 2 12a29 29 0 0 0 .5 4.3c.3 1.5 1.2 2.4 2.2 2.7 1.6.7 3.8 1 7.3 1s5.7-.3 7.3-1c1-.3 1.9-1.2 2.2-2.7.3-1.5.5-3.2.5-4.3ZM10 15.5v-7l6 3.5-6 3.5Z"
                   />
+
                 </svg>
+
               </a>
 
             </div>
 
           </div>
 
+
+          <!-- COMPANY -->
 
           <div class="footer-col">
 
@@ -4199,6 +4858,7 @@
             </h4>
 
             <ul>
+
               <li>
                 <a href="#">
                   About us
@@ -4222,10 +4882,13 @@
                   Careers
                 </a>
               </li>
+
             </ul>
 
           </div>
 
+
+          <!-- SUPPORT -->
 
           <div class="footer-col">
 
@@ -4264,6 +4927,8 @@
           </div>
 
 
+          <!-- NEWSLETTER -->
+
           <div class="footer-col">
 
             <h4>
@@ -4290,8 +4955,11 @@
 
           </div>
 
+
         </div>
 
+
+        <!-- FOOTER BOTTOM -->
 
         <div class="footer-bottom">
 
@@ -4314,6 +4982,7 @@
   </div>
 
 
+
   <!-- =========================================================
        JAVASCRIPT
   ========================================================== -->
@@ -4334,32 +5003,44 @@
 
     function updateCarousel(nextIndex) {
 
-      slides.forEach((slide, i) => {
+      slides.forEach((slide, index) => {
+
         slide.classList.toggle(
           "active",
-          i === nextIndex
+          index === nextIndex
         );
+
       });
 
-      dots.forEach((dot, i) => {
+      dots.forEach((dot, index) => {
+
         dot.classList.toggle(
           "active",
-          i === nextIndex
+          index === nextIndex
         );
+
       });
+
     }
 
-    dots.forEach((dot, i) => {
 
-      dot.addEventListener("click", () => {
+    dots.forEach((dot, index) => {
 
-        currentIndex = i;
+      dot.addEventListener(
+        "click",
+        () => {
 
-        updateCarousel(currentIndex);
+          currentIndex = index;
 
-      });
+          updateCarousel(
+            currentIndex
+          );
+
+        }
+      );
 
     });
+
 
     if (slides.length > 1) {
 
@@ -4369,16 +5050,19 @@
           (currentIndex + 1) %
           slides.length;
 
-        updateCarousel(currentIndex);
+        updateCarousel(
+          currentIndex
+        );
 
       }, 4000);
 
     }
 
 
+
     /* =========================================================
        DUPLICATE MINI CAROUSEL CARDS
-    ========================================================== */
+    ========================================================= */
 
     document
       .querySelectorAll(
@@ -4387,48 +5071,52 @@
       .forEach((track) => {
 
         const cards =
-          Array.from(track.children)
-            .slice(0, 10);
+          Array.from(
+            track.children
+          );
 
-        if (cards.length === 10) {
+        cards.forEach((card) => {
 
-          cards.forEach((card) => {
+          track.appendChild(
+            card.cloneNode(true)
+          );
 
-            track.appendChild(
-              card.cloneNode(true)
-            );
-
-          });
-
-        }
+        });
 
       });
 
 
+
     /* =========================================================
-       SCROLL TOP BUTTON
-    ========================================================== */
+       SCROLL TOP
+    ========================================================= */
 
     const scrollTopBtn =
-      document.querySelector(".scroll-top");
+      document.querySelector(
+        ".scroll-top"
+      );
 
-    window.addEventListener("scroll", () => {
+    window.addEventListener(
+      "scroll",
+      () => {
 
-      if (window.scrollY > 300) {
+        if (window.scrollY > 300) {
 
-        scrollTopBtn.classList.add(
-          "visible"
-        );
+          scrollTopBtn.classList.add(
+            "visible"
+          );
 
-      } else {
+        } else {
 
-        scrollTopBtn.classList.remove(
-          "visible"
-        );
+          scrollTopBtn.classList.remove(
+            "visible"
+          );
+
+        }
 
       }
+    );
 
-    });
 
     scrollTopBtn.addEventListener(
       "click",
@@ -4443,18 +5131,25 @@
     );
 
 
+
     /* =========================================================
        MOBILE MENU
-    ========================================================== */
+    ========================================================= */
 
     const menuToggle =
-      document.querySelector(".menu-toggle");
+      document.querySelector(
+        ".menu-toggle"
+      );
 
     const mobileNav =
-      document.querySelector(".nav");
+      document.querySelector(
+        ".nav"
+      );
 
     const headerTools =
-      document.querySelector(".header-tools");
+      document.querySelector(
+        ".header-tools"
+      );
 
 
     function closeMenu() {
@@ -4527,7 +5222,9 @@
       () => {
 
         if (window.innerWidth > 700) {
+
           closeMenu();
+
         }
 
       }
