@@ -14,6 +14,10 @@
       .logout-dialog{width:min( calc(100% - 32px), 400px);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(17,24,39,.2);color:var(--text)}
       .logout-dialog::backdrop{background:rgba(16,24,39,.45)}
       .logout-dialog h2{margin:0 0 8px;font-size:1.2rem}.logout-dialog p{margin:0;color:var(--text-soft);line-height:1.5}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+      .profile-layout{display:grid;grid-template-columns:minmax(260px,.75fr) minmax(0,1.25fr);gap:18px;align-items:start}.profile-hero,.profile-form,.security-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.profile-hero{padding:24px;background:linear-gradient(145deg,#fff,#fff6f6)}.profile-identity{text-align:center}.avatar-large{width:104px;height:104px;margin:0 auto 16px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(135deg,#fff1f2,#ffe5e7);color:var(--primary-dark);font-size:1.8rem;font-weight:800;overflow:hidden}.avatar-large img{width:100%;height:100%;object-fit:cover}.profile-identity h2{margin:0 0 5px;font-size:1.35rem}.profile-identity p{margin:0;color:var(--text-soft);font-size:.85rem}.profile-image-picker{display:inline-flex;align-items:center;justify-content:center;margin-top:16px;padding:9px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text);font-size:.78rem;font-weight:700;cursor:pointer}.profile-image-picker input{display:none}.profile-meta{display:grid;gap:10px;margin:24px 0 0;padding-top:20px;border-top:1px solid var(--line)}.meta-row{display:flex;justify-content:space-between;gap:12px;color:var(--text-soft);font-size:.8rem}.meta-row strong{color:var(--text);font-size:.8rem}.profile-content{display:grid;gap:18px}.profile-form,.security-panel{padding:22px}.panel-heading{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:20px}.panel-heading h2{margin:0 0 5px;font-size:1.1rem}.panel-heading p{margin:0;color:var(--text-soft);font-size:.8rem}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:grid;gap:8px}.field label{font-size:.78rem;color:var(--text-soft);font-weight:700}.field input,.field select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text);outline:none}.field input:focus,.field select:focus{border-color:var(--primary-soft);box-shadow:0 0 0 3px rgba(229,9,20,.08)}.form-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:10px;margin-top:22px}.security-list{display:grid;gap:12px}.security-item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-top:1px solid var(--line)}.security-item:first-child{border-top:0;padding-top:0}.security-item strong{display:block;font-size:.85rem}.security-item span{display:block;margin-top:4px;color:var(--text-soft);font-size:.75rem}.status-pill{padding:6px 9px;border-radius:999px;background:var(--success-soft);color:var(--success);font-size:.7rem;font-weight:800;white-space:nowrap}.admin-dialog{width:min(calc(100% - 32px),520px);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(17,24,39,.2);color:var(--text)}.admin-dialog::backdrop{background:rgba(16,24,39,.45)}.admin-dialog h2{margin:0 0 6px;font-size:1.25rem}.admin-dialog>p{margin:0 0 20px;color:var(--text-soft);font-size:.82rem}.admin-dialog .field-grid{margin-top:0}.admin-dialog .dialog-actions{justify-content:flex-end}.profile-notice{display:none;margin-top:12px;color:var(--success);font-size:.78rem;font-weight:700}
+      .form-section{padding-top:18px;border-top:1px solid var(--line)}.form-section:first-of-type{padding-top:0;border-top:0}.form-section-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px}.form-section-title strong{font-size:.85rem}.form-section-title span{color:var(--muted);font-size:.72rem;text-align:right}
+      @media(max-width:900px){.profile-layout{grid-template-columns:1fr}}
+      @media(max-width:640px){.profile-hero,.profile-form,.security-panel{padding:18px 16px}.field-grid{grid-template-columns:1fr}.field input,.field select{max-width:340px}.panel-heading{flex-direction:column}.panel-heading .secondary-btn{align-self:flex-start}.form-actions{justify-content:flex-start}.admin-dialog .field-grid{grid-template-columns:1fr}}
       @media(max-width:640px){.topbar-tools{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:10px}.topbar-tools>*{width:auto;flex:0 0 auto}.field input{width:min(100%,340px)}.form-actions,.submit-row{flex-wrap:wrap;flex-direction:row;align-items:center}.form-actions>*,.submit-row>*{width:auto}}
     </style>
   </head>
@@ -49,25 +53,24 @@
           <div class="topbar-tools"><button class="secondary-btn">Cancel</button><button class="primary-btn">Save Profile</button></div>
         </header>
 
-        <section class="profile-grid">
-          <div class="panel">
-            <div class="profile-card">
-              <div class="avatar-large">AR</div>
-              <div>
-                <h3 style="margin:0 0 6px;">Areeb Rashid</h3>
-                <div style="color: var(--text-soft);">Super Admin</div>
-              </div>
+        <section class="profile-layout">
+          <aside class="profile-hero">
+            <div class="profile-identity">
+              <div class="avatar-large" id="profileAvatar">AR</div>
+              <h2>Areeb Rashid</h2>
+              <p>Super Administrator</p>
+              <label class="profile-image-picker">Choose profile image<input id="profileImageInput" type="file" accept="image/png,image/jpeg,image/webp" /></label>
             </div>
-          </div>
-
-          <div class="panel">
-            <div class="field-grid">
-              <div class="field"><label>Full Name</label><input type="text" value="Areeb Rashid" /></div>
-              <div class="field"><label>Username</label><input type="text" value="areeb_admin" /></div>
-              <div class="field"><label>Email</label><input type="email" value="areeb@aureonic.com" /></div>
-              <div class="field"><label>Phone</label><input type="text" value="+92 300 1234567" /></div>
-            </div>
-            <div class="form-actions"><button class="secondary-btn">Change Password</button><button class="primary-btn">Update</button><button class="secondary-btn" id="logoutButton" type="button">Logout</button></div>
+            <div class="profile-meta"><div class="meta-row"><span>Account status</span><strong class="status-pill">Active</strong></div><div class="meta-row"><span>Last sign in</span><strong>Today, 09:40 AM</strong></div><div class="meta-row"><span>Member since</span><strong>September 2024</strong></div></div>
+          </aside>
+          <div class="profile-content">
+            <section class="profile-form">
+              <div class="panel-heading"><div><h2>Personal information</h2><p>Keep your administrator details current.</p></div><button class="secondary-btn" id="addAdminButton" type="button">+ Add New Admin</button></div>
+              <div class="form-section"><div class="form-section-title"><strong>Account details</strong><span>How you access the admin panel</span></div><div class="field-grid"><div class="field"><label for="fullName">Full name</label><input id="fullName" type="text" value="Areeb Rashid" /></div><div class="field"><label for="username">Username</label><input id="username" type="text" value="areeb_admin" /></div></div></div>
+              <div class="form-section"><div class="form-section-title"><strong>Contact information</strong><span>Used for account updates and alerts</span></div><div class="field-grid"><div class="field"><label for="email">Email address</label><input id="email" type="email" value="areeb@aureonic.com" /></div><div class="field"><label for="phone">Phone number</label><input id="phone" type="text" value="+92 300 1234567" /></div></div></div>
+              <div class="form-actions"><button class="secondary-btn" type="button">Change Password</button><button class="primary-btn" type="button" id="updateProfile">Save Changes</button><button class="secondary-btn" id="logoutButton" type="button">Logout</button></div><div class="profile-notice" id="profileNotice">Profile changes saved successfully.</div>
+            </section>
+            <section class="security-panel"><div class="panel-heading"><div><h2>Security overview</h2><p>Your account protection at a glance.</p></div></div><div class="security-list"><div class="security-item"><div><strong>Password</strong><span>Last updated 24 days ago</span></div><span class="status-pill">Protected</span></div><div class="security-item"><div><strong>Two-factor authentication</strong><span>Extra verification is currently enabled.</span></div><span class="status-pill">Enabled</span></div></div></section>
           </div>
         </section>
         <dialog class="logout-dialog" id="logoutDialog">
@@ -75,15 +78,17 @@
           <p>You will be returned to the admin login page.</p>
           <div class="dialog-actions"><button class="secondary-btn" id="cancelLogout" type="button">Cancel</button><button class="primary-btn" id="confirmLogout" type="button">Logout</button></div>
         </dialog>
+        <dialog class="admin-dialog" id="adminDialog"><h2>Add new administrator</h2><p>Create an account with the right access level for your team.</p><div class="field-grid"><div class="field"><label for="newAdminName">Full name</label><input id="newAdminName" type="text" placeholder="Enter full name" /></div><div class="field"><label for="newAdminEmail">Email address</label><input id="newAdminEmail" type="email" placeholder="name@example.com" /></div><div class="field"><label for="newAdminRole">Role</label><select id="newAdminRole"><option>Administrator</option><option>Editor</option><option>Support Manager</option></select></div><div class="field"><label for="newAdminPassword">Temporary password</label><input id="newAdminPassword" type="password" placeholder="Create a password" /></div></div><div class="dialog-actions"><button class="secondary-btn" id="cancelAdmin" type="button">Cancel</button><button class="primary-btn" id="saveAdmin" type="button">Create Admin</button></div></dialog>
       </main>
     </div>
     <script>
-      const adminMenuToggle = document.querySelector('.admin-menu-toggle'); const adminSidebar = document.querySelector('.sidebar'); const logoutDialog = document.getElementById('logoutDialog');
+      const adminMenuToggle = document.querySelector('.admin-menu-toggle'); const adminSidebar = document.querySelector('.sidebar'); const logoutDialog = document.getElementById('logoutDialog'); const adminDialog = document.getElementById('adminDialog');
       const closeAdminMenu = () => { adminSidebar.classList.remove('is-open'); document.body.classList.remove('menu-open'); adminMenuToggle.setAttribute('aria-expanded', 'false'); };
       adminMenuToggle.addEventListener('click', () => { const isOpen = adminSidebar.classList.toggle('is-open'); document.body.classList.toggle('menu-open', isOpen); adminMenuToggle.setAttribute('aria-expanded', String(isOpen)); });
       document.body.addEventListener('click', (event) => { if (event.target === document.body && document.body.classList.contains('menu-open')) closeAdminMenu(); });
       adminSidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeAdminMenu)); document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeAdminMenu(); }); window.addEventListener('resize', () => { if (window.innerWidth > 900) closeAdminMenu(); });
       document.getElementById('logoutButton').addEventListener('click', () => logoutDialog.showModal()); document.getElementById('cancelLogout').addEventListener('click', () => logoutDialog.close()); document.getElementById('confirmLogout').addEventListener('click', () => { window.location.href = 'login.html'; });
+      document.getElementById('profileImageInput').addEventListener('change', (event) => { const file = event.target.files[0]; if (!file) return; const image = document.createElement('img'); image.src = URL.createObjectURL(file); image.alt = 'Profile image preview'; document.getElementById('profileAvatar').replaceChildren(image); }); document.getElementById('addAdminButton').addEventListener('click', () => adminDialog.showModal()); document.getElementById('cancelAdmin').addEventListener('click', () => adminDialog.close()); document.getElementById('saveAdmin').addEventListener('click', () => { adminDialog.close(); }); document.getElementById('updateProfile').addEventListener('click', () => { document.getElementById('profileNotice').style.display = 'block'; });
     </script>
   </body>
 </html>
