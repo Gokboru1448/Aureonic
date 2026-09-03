@@ -192,6 +192,8 @@
       .admin-menu-toggle span::after { transform:translateY(4px); }
       @media (max-width:900px) { .app{grid-template-columns:1fr;height:auto;min-height:100vh}.content{height:auto;overflow:visible}.sidebar{position:fixed;left:0;top:0;z-index:60;width:280px;max-width:85vw;height:100vh;transform:translateX(-105%);transition:transform .25s ease;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;box-shadow:16px 0 40px rgba(17,24,39,.15)}.sidebar.is-open{transform:translateX(0)}body.menu-open{overflow:hidden}body.menu-open::after{content:"";position:fixed;inset:0;z-index:50;background:rgba(16,24,39,.38)}.admin-menu-toggle{display:grid}.topbar{align-items:flex-start}.page-title{flex:1} }
       @media (max-width:640px) { body{overflow-x:hidden}.content{padding:16px 12px 28px}.topbar{flex-wrap:wrap;gap:12px;align-items:flex-start}.page-title{flex:1;min-width:0}.page-title h1{font-size:1.5rem}.page-title small{font-size:.78rem;line-height:1.4;display:block}.topbar-tools{width:100%;flex-direction:column;align-items:stretch;gap:10px}.topbar-tools>.searchbox,.topbar-tools>.primary-btn,.topbar-tools>.secondary-btn,.topbar-tools>.profile-chip{width:100%;flex:0 0 auto}.topbar-tools .icon-btn{width:42px;height:42px;flex:0 0 42px;align-self:flex-start}.searchbox{width:100%;min-width:0}.profile-chip{justify-content:flex-start}.stats{grid-template-columns:1fr}.panel-header{flex-direction:column;align-items:stretch;gap:12px}.panel-header .secondary-btn{align-self:flex-end}.list-grid .table-wrap{overflow:visible}.list-grid table{min-width:0}.list-grid table thead{display:none}.list-grid table tbody{display:block}.list-grid table tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;padding:16px;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.list-grid table tbody td{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0;border-bottom:none;font-size:.88rem;overflow-wrap:anywhere}.list-grid table tbody td::before{content:attr(data-label);font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.ring-card,.task-item,.team-item,.sales-item{flex-wrap:wrap}.segmented{max-width:100%;overflow-x:auto} }
+      @media(max-width:640px){.topbar-tools{width:auto;flex-direction:row;align-items:center}.topbar-tools>*{width:auto}.topbar-tools .searchbox{width:min(100%,320px);min-width:0}}
+      .nav a[href="settings.html"],.nav a[href="login.html"]{display:none}
     </style>
   </head>
   <body>
@@ -223,11 +225,6 @@
             <a href="profile.html"><svg viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5A9.5 9.5 0 0 0 12 2.5Zm0 17a7.5 7.5 0 1 1 7.5-7.5A7.5 7.5 0 0 1 12 19.5Zm1-11h-2v6h5v-2h-3Z"/></svg>Admin Profile</a>
             <a href="login.html"><svg viewBox="0 0 24 24"><path d="M10 17 5 12l1.41-1.41L10 14.17l7.59-7.58L19 8l-9 9Zm-7 3h18v2H3v-2Z"/></svg>Logout</a>
           </nav>
-        </div>
-        <div class="sidebar-card">
-          <h4>Storage</h4>
-          <div class="meter"><span></span></div>
-          <div class="meter-meta"><span>72% used</span><span>1.8 TB</span></div>
         </div>
       </aside>
       <main class="content">
