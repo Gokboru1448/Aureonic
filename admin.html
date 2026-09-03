@@ -34,6 +34,7 @@
       html { scroll-behavior: smooth; }
       body {
         margin: 0;
+        overflow-x: hidden;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(180deg, #f8f9fb 0%, #f2f4f7 100%);
         color: var(--text);
@@ -188,6 +189,7 @@
 
       .content {
         padding: 24px;
+        min-width: 0;
       }
 
       .topbar {
@@ -849,35 +851,27 @@
 
       @media (max-width: 900px) {
         .app { grid-template-columns: 1fr; }
-        .sidebar {
-          position: static;
-          height: auto;
-          border-right: none;
-          border-bottom: 1px solid var(--line);
-        }
-        .mobile-toggle {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 42px;
-          height: 42px;
-          border-radius: 12px;
-          background: #fff;
-          border: 1px solid var(--line);
-          cursor: pointer;
-        }
       }
 
       @media (max-width: 640px) {
-        .content { padding: 18px 14px 28px; }
+        .content { padding: 16px 12px 28px; }
         .stats { grid-template-columns: 1fr; }
-        .topbar {
-          flex-wrap: wrap;
-          align-items: flex-start;
-        }
-        .topbar-tools { width: 100%; justify-content: space-between; }
+        .topbar { flex-wrap: wrap; align-items: flex-start; gap: 12px; }
+        .page-title { flex: 1; min-width: 0; }
+        .page-title h1 { font-size: 1.55rem; }
+        .topbar-tools { width: 100%; flex-direction: column; align-items: stretch; gap: 10px; }
+        .topbar-tools > .searchbox, .topbar-tools > .primary-btn, .topbar-tools > .secondary-btn, .topbar-tools > .profile-chip { width: 100%; flex: 0 0 auto; }
+        .topbar-tools .icon-btn { width: 42px; height: 42px; flex: 0 0 42px; align-self: flex-start; }
         .searchbox { min-width: 0; width: 100%; }
-        .page-title h1 { font-size: 1.7rem; }
+        .panel-header { flex-direction: column; align-items: stretch; gap: 12px; }
+        .panel-header .secondary-btn { align-self: flex-end; }
+        .table-wrap { overflow: visible; }
+        table { min-width: 0; }
+        table thead { display: none; }
+        table tbody { display: block; }
+        table tbody tr { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; padding: 16px; margin-bottom: 14px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+        table tbody td { display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 0; border-bottom: none; font-size: 0.88rem; overflow-wrap: anywhere; }
+        table tbody td::before { content: attr(data-label); font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); }
       }
       .admin-menu-toggle { display:none; width:42px; height:42px; border:1px solid var(--line); border-radius:12px; background:#fff; color:var(--text); cursor:pointer; place-items:center; flex:0 0 auto; }
       .admin-menu-toggle span, .admin-menu-toggle span::before, .admin-menu-toggle span::after { display:block; width:20px; height:2px; background:currentColor; content:""; }
@@ -885,19 +879,17 @@
       .admin-menu-toggle span::after { transform:translateY(4px); }
       @media (max-width:900px) {
         .app { grid-template-columns:1fr; }
-        .sidebar { position:fixed; left:0; top:0; z-index:60; width:260px; transform:translateX(-105%); transition:transform .25s ease; overflow-y:auto; box-shadow:16px 0 40px rgba(17,24,39,.15); }
+        .sidebar { position:fixed; left:0; top:0; z-index:60; width:280px; max-width:85vw; height:100vh; transform:translateX(-105%); transition:transform .25s ease; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; box-shadow:16px 0 40px rgba(17,24,39,.15); }
         .sidebar.is-open { transform:translateX(0); }
+        body.menu-open { overflow:hidden; }
         body.menu-open::after { content:""; position:fixed; inset:0; z-index:50; background:rgba(16,24,39,.38); }
         .admin-menu-toggle { display:grid; }
         .topbar { align-items:flex-start; }
         .page-title { flex:1; }
       }
-      @media (max-width:640px) {
-        .content { padding:18px 14px 28px; }
-        .topbar { flex-wrap:wrap; gap:12px; }
-        .topbar-tools { width:100%; justify-content:stretch; }
-        .searchbox { min-width:0; width:100%; flex:1; }
-        .topbar-tools > button, .topbar-tools > .profile-chip { flex:1; }
+      @media (max-width:900px) {
+        .app { grid-template-columns:1fr; }
+        .content { min-width: 0; }
       }
     </style>
   </head>
@@ -1188,48 +1180,48 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <td data-label="Customer">
                       <div class="user-box">
                         <div class="mini-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">MS</div>
                         <span>Maya Stone</span>
                       </div>
                     </td>
-                    <td>Elite Runner X1</td>
-                    <td>$1,240</td>
-                    <td><span class="status paid">Paid</span></td>
+                    <td data-label="Product">Elite Runner X1</td>
+                    <td data-label="Amount">$1,240</td>
+                    <td data-label="Status"><span class="status paid">Paid</span></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td data-label="Customer">
                       <div class="user-box">
                         <div class="mini-avatar" style="background:linear-gradient(135deg,#f59e0b,#fb7185);">AJ</div>
                         <span>Aaron James</span>
                       </div>
                     </td>
-                    <td>Street Lite Pro</td>
-                    <td>$860</td>
-                    <td><span class="status pending">Pending</span></td>
+                    <td data-label="Product">Street Lite Pro</td>
+                    <td data-label="Amount">$860</td>
+                    <td data-label="Status"><span class="status pending">Pending</span></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td data-label="Customer">
                       <div class="user-box">
                         <div class="mini-avatar" style="background:linear-gradient(135deg,#22c55e,#14b8a6);">KH</div>
                         <span>Khalid Hassan</span>
                       </div>
                     </td>
-                    <td>Hydra Backpack</td>
-                    <td>$520</td>
-                    <td><span class="status refund">Refund</span></td>
+                    <td data-label="Product">Hydra Backpack</td>
+                    <td data-label="Amount">$520</td>
+                    <td data-label="Status"><span class="status refund">Refund</span></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td data-label="Customer">
                       <div class="user-box">
                         <div class="mini-avatar" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);">ET</div>
                         <span>Elisa Turner</span>
                       </div>
                     </td>
-                    <td>Summit Watch</td>
-                    <td>$1,660</td>
-                    <td><span class="status shipped">Shipped</span></td>
+                    <td data-label="Product">Summit Watch</td>
+                    <td data-label="Amount">$1,660</td>
+                    <td data-label="Status"><span class="status shipped">Shipped</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -1421,6 +1413,7 @@
       const adminSidebar = document.querySelector('.sidebar');
       const closeAdminMenu = () => { adminSidebar.classList.remove('is-open'); document.body.classList.remove('menu-open'); adminMenuToggle.setAttribute('aria-expanded', 'false'); };
       adminMenuToggle.addEventListener('click', () => { const isOpen = adminSidebar.classList.toggle('is-open'); document.body.classList.toggle('menu-open', isOpen); adminMenuToggle.setAttribute('aria-expanded', String(isOpen)); });
+      document.body.addEventListener('click', (event) => { if (event.target === document.body && document.body.classList.contains('menu-open')) closeAdminMenu(); });
       adminSidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeAdminMenu));
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeAdminMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth > 900) closeAdminMenu(); });
