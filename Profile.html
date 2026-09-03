@@ -37,9 +37,10 @@
 
       .topbar {
         width: 100%;
-        padding: 18px 28px;
-        background: rgba(255,255,255,0.76);
-        backdrop-filter: blur(6px);
+        padding: 14px 24px;
+        background: rgba(255, 255, 255, 0.86);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         position: sticky;
         top: 0;
         z-index: 40;
@@ -47,24 +48,25 @@
       }
 
       .header-inner {
+        width: 100%;
         max-width: 1360px;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 18px;
+        gap: 20px;
       }
 
       .brand {
+        flex: 0 0 auto;
         display: flex;
         align-items: center;
-        min-width: 180px;
       }
 
       .brand-mark {
         position: relative;
         width: 142px;
-        height: 64px;
+        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -73,8 +75,8 @@
       .brand-mark::before {
         content: "";
         position: absolute;
-        width: 130px;
-        height: 130px;
+        width: 125px;
+        height: 125px;
         border-radius: 50%;
         background: radial-gradient(circle, rgba(227, 27, 35, 0.36) 0%, rgba(227, 27, 35, 0.18) 28%, rgba(255,255,255,0) 70%);
         filter: blur(22px);
@@ -91,9 +93,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 26px;
+        gap: clamp(18px, 2.5vw, 34px);
         flex: 1;
+        min-width: 0;
       }
 
       .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 1px solid rgba(17,17,17,.1); border-radius: 10px; background: var(--white); color: var(--text); cursor: pointer; }
@@ -103,7 +105,8 @@
 
       .nav a {
         position: relative;
-        font-size: 0.9rem;
+        white-space: nowrap;
+        font-size: 0.86rem;
         font-weight: 700;
         letter-spacing: 0.04em;
         color: var(--text-soft);
@@ -114,7 +117,7 @@
         content: "";
         position: absolute;
         left: 0;
-        bottom: -8px;
+        bottom: -3px;
         width: 100%;
         height: 2px;
         background: linear-gradient(90deg, var(--red), var(--red-soft));
@@ -133,25 +136,27 @@
       }
 
       .header-tools {
+        flex: 0 0 auto;
         display: flex;
         align-items: center;
-        gap: 14px;
-        flex-wrap: wrap;
+        gap: 10px;
         justify-content: flex-end;
+        min-width: 0;
       }
 
       .header-search {
         display: flex;
         align-items: center;
-        gap: 10px;
-        min-width: 220px;
-        max-width: 280px;
-        width: 100%;
-        padding: 10px 14px;
+        gap: 9px;
+        width: 210px;
+        min-width: 0;
+        padding: 9px 13px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(17, 17, 17, 0.06);
-        box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.02);
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid rgba(17, 17, 17, 0.07);
+        box-shadow:
+          inset 0 1px 2px rgba(17, 17, 17, 0.02),
+          0 5px 15px rgba(0, 0, 0, 0.025);
       }
 
       .header-search svg {
@@ -166,6 +171,7 @@
         border: none;
         background: transparent;
         font: inherit;
+        font-size: 0.88rem;
         color: var(--text);
         outline: none;
       }
@@ -177,17 +183,19 @@
       .toolbar-icons {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 7px;
+        flex-shrink: 0;
       }
 
       .icon-btn {
-        width: 38px;
-        height: 38px;
+        width: 37px;
+        height: 37px;
+        flex: 0 0 37px;
         border-radius: 50%;
         display: grid;
         place-items: center;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(17, 17, 17, 0.06);
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(17, 17, 17, 0.07);
         box-shadow: 0 6px 16px rgba(17, 17, 17, 0.04);
         transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       }
@@ -199,8 +207,8 @@
       }
 
       .icon-btn svg {
-        width: 17px;
-        height: 17px;
+        width: 16px;
+        height: 16px;
         fill: var(--text);
         transition: fill 0.25s ease;
       }
@@ -211,15 +219,18 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 11px 20px;
+        width: auto;
+        min-width: 76px;
+        min-height: 38px;
+        padding: 0 17px;
         border-radius: 999px;
         background: linear-gradient(135deg, var(--red), var(--red-soft));
         color: var(--white);
-        font-size: 0.76rem;
+        font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        box-shadow: 0 12px 24px rgba(227, 27, 35, 0.18);
+        box-shadow: 0 10px 22px rgba(227, 27, 35, 0.18);
         transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
 
@@ -257,13 +268,13 @@
       }
 
       .avatar-wrap {
-        position: relative;
         width: 110px;
         height: 110px;
         border-radius: 50%;
         overflow: hidden;
         background: #efefef;
-        border: 3px solid rgba(227,27,35,0.12);
+        border: 3px solid rgba(17,17,17,0.08);
+        flex: 0 0 auto;
       }
 
       .avatar-wrap img {
@@ -273,24 +284,45 @@
       }
 
       .upload-label {
-        position: absolute;
-        right: 4px;
-        bottom: 4px;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--red), var(--red-soft));
-        color: var(--white);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid rgba(17,17,17,0.12);
+        border-radius: 10px;
+        background: var(--white);
+        color: var(--text);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         cursor: pointer;
-        box-shadow: 0 10px 18px rgba(227,27,35,0.18);
+        transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+      }
+
+      .upload-label:hover {
+        border-color: var(--red);
+        color: var(--red-deep);
+        background: rgba(227,27,35,0.04);
       }
 
       .upload-label svg {
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         fill: currentColor;
+      }
+
+      .avatar-controls {
+        display: grid;
+        gap: 8px;
+      }
+
+      .avatar-hint {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.72rem;
       }
 
       .user-meta h1 {
@@ -340,6 +372,111 @@
       .save-btn.hidden {
         display: none;
       }
+
+      .account-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 22px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(17,17,17,0.08);
+      }
+
+      .account-actions h2 {
+        margin: 0 0 5px;
+        font-size: 1.1rem;
+      }
+
+      .account-actions p {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.84rem;
+      }
+
+      .account-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .account-btn {
+        min-height: 40px;
+        padding: 0 15px;
+        border: 1px solid rgba(17,17,17,0.12);
+        border-radius: 10px;
+        background: var(--white);
+        color: var(--text);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .account-btn:hover { border-color: var(--text); }
+
+      .account-btn.danger {
+        border-color: rgba(183,14,22,0.22);
+        color: var(--red-deep);
+      }
+
+      .account-btn.danger:hover {
+        background: rgba(227,27,35,0.05);
+        border-color: var(--red);
+      }
+
+      .confirm-dialog {
+        width: min(420px, calc(100% - 28px));
+        border: none;
+        border-radius: 18px;
+        padding: 0;
+        color: var(--text);
+        box-shadow: 0 24px 70px rgba(0,0,0,0.2);
+      }
+
+      .confirm-dialog::backdrop { background: rgba(17,17,17,0.42); }
+
+      .dialog-content { padding: 26px; }
+
+      .dialog-content h2 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+      }
+
+      .dialog-content p {
+        margin: 0;
+        color: var(--text-soft);
+        line-height: 1.55;
+      }
+
+      .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .dialog-btn {
+        min-height: 40px;
+        padding: 0 15px;
+        border: 1px solid rgba(17,17,17,0.12);
+        border-radius: 10px;
+        background: var(--white);
+        color: var(--text);
+        font-size: 0.72rem;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .dialog-btn.confirm {
+        border-color: var(--red);
+        background: var(--red);
+        color: var(--white);
+      }
+
+      .dialog-btn.confirm.danger { background: var(--red-deep); }
 
       .profile-layout {
         display: grid;
@@ -615,6 +752,17 @@
         .footer-grid { grid-template-columns: 1fr 1fr; }
       }
 
+      @media (max-width: 900px) {
+        .header-inner { gap: 14px; }
+        .nav { gap: 15px; }
+        .nav a { font-size: 0.74rem; }
+        .header-tools { gap: 7px; }
+        .header-search { width: 155px; }
+        .toolbar-icons { gap: 5px; }
+        .icon-btn { width: 35px; height: 35px; flex-basis: 35px; }
+        .header-link { min-height: 35px; }
+      }
+
       @media (max-width: 680px) {
         .topbar { padding: 14px 16px; }
         .header-inner { justify-content: space-between; }
@@ -626,12 +774,34 @@
         .nav a::after { display: none; }
         .header-tools { display: none; order: 3; width: 100%; }
         .header-tools.is-open { display: flex; }
-        .header-search { min-width: 0; max-width: none; flex: 1; }
-        .header-link { font-size: 0.7rem; padding: 10px 15px; }
+        .header-search { min-width: 0; max-width: none; flex: 1; min-height: 39px; padding: 9px 13px; }
+        .toolbar-icons { gap: 9px; }
+        .icon-btn { width: 38px; height: 38px; flex-basis: 38px; }
+        .header-link { min-height: 37px; font-size: 0.66rem; padding: 0 17px; }
+        .account-actions { align-items: flex-start; flex-direction: column; }
+        .account-buttons { justify-content: flex-start; }
         .profile-shell { padding-left: 14px; padding-right: 14px; }
         .profile-layout,
         .field-grid,
         .footer-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 420px) {
+        .profile-card { padding: 20px 16px; }
+        .profile-header { align-items: stretch; }
+        .user-box { align-items: flex-start; gap: 14px; }
+        .avatar-wrap { width: 88px; height: 88px; }
+        .user-meta h1 { font-size: 1.65rem; }
+        .edit-btn { width: 100%; }
+        .account-buttons { width: 100%; }
+        .account-btn { flex: 1 1 120px; }
+        .dialog-content { padding: 22px 18px; }
+        .dialog-actions { flex-direction: column-reverse; }
+        .dialog-btn { width: 100%; }
+        .footer-inner { padding-left: 16px; padding-right: 16px; }
+        .newsletter { flex-wrap: wrap; }
+        .newsletter input,
+        .newsletter button { width: 100%; }
       }
     </style>
   </head>
@@ -683,12 +853,16 @@
         <section class="profile-card">
           <div class="profile-header">
             <div class="user-box">
-              <div class="avatar-wrap">
-                <img id="profileImage" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Profile photo" />
-                <label class="upload-label" for="avatarInput" aria-label="Upload profile picture">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 7.8A7.5 7.5 0 0 0 5.7 9.5a5.2 5.2 0 0 0 .4 10.3h12.8a5.5 5.5 0 0 0 .5-10.9ZM13 9v4h-2V9H8l4-4 4 4h-3Zm-1 7h2v-1h-2v1Z"/></svg>
+              <div class="avatar-controls">
+                <div class="avatar-wrap">
+                  <img id="profileImage" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Profile photo" />
+                </div>
+                <label class="upload-label" for="avatarInput">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 10.5 2h3L15 4h3a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h3Zm3 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg>
+                  <span>Change photo</span>
                 </label>
-                <input id="avatarInput" type="file" accept="image/*" hidden />
+                <input id="avatarInput" type="file" accept="image/png, image/jpeg, image/webp" hidden />
+                <p class="avatar-hint">JPG, PNG or WEBP. Max 5 MB.</p>
               </div>
 
               <div class="user-meta">
@@ -757,8 +931,30 @@
               </div>
             </div>
           </div>
+
+          <section class="account-actions" aria-labelledby="accountActionsTitle">
+            <div>
+              <h2 id="accountActionsTitle">Account actions</h2>
+              <p>Manage your session or permanently remove your account.</p>
+            </div>
+            <div class="account-buttons">
+              <button class="account-btn" id="logoutBtn" type="button">Log out</button>
+              <button class="account-btn danger" id="deleteAccountBtn" type="button">Delete account</button>
+            </div>
+          </section>
         </section>
       </main>
+
+      <dialog class="confirm-dialog" id="confirmDialog" aria-labelledby="dialogTitle" aria-describedby="dialogMessage">
+        <div class="dialog-content">
+          <h2 id="dialogTitle">Are you sure?</h2>
+          <p id="dialogMessage"></p>
+          <div class="dialog-actions">
+            <button class="dialog-btn" id="cancelDialogBtn" type="button">Cancel</button>
+            <button class="dialog-btn confirm" id="confirmDialogBtn" type="button">Confirm</button>
+          </div>
+        </div>
+      </dialog>
 
       <footer>
         <div class="footer-inner">
@@ -822,9 +1018,14 @@
       const scrollTopBtn = document.querySelector('.scroll-top');
       const editBtn = document.querySelector('.edit-btn');
       const saveBtn = document.querySelector('.save-btn');
-      const fields = document.querySelectorAll('input, textarea');
+      const fields = document.querySelectorAll('.field input, .field textarea');
       const avatarInput = document.getElementById('avatarInput');
       const profileImage = document.getElementById('profileImage');
+      const confirmDialog = document.getElementById('confirmDialog');
+      const dialogMessage = document.getElementById('dialogMessage');
+      const confirmDialogBtn = document.getElementById('confirmDialogBtn');
+      const cancelDialogBtn = document.getElementById('cancelDialogBtn');
+      let pendingAccountAction = null;
 
       const toggleScrollTopButton = () => {
         if (window.scrollY > 260) {
@@ -860,12 +1061,46 @@
         const file = event.target.files[0];
         if (!file) return;
 
+        if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+          avatarInput.value = '';
+          window.alert('Please choose a JPG, PNG, or WEBP image under 5 MB.');
+          return;
+        }
+
         const reader = new FileReader();
         reader.onload = (e) => {
           profileImage.src = e.target.result;
         };
         reader.readAsDataURL(file);
       });
+
+      const openAccountDialog = (action) => {
+        pendingAccountAction = action;
+        const isDelete = action === 'delete';
+        dialogMessage.textContent = isDelete
+          ? 'Deleting your account is permanent and cannot be undone.'
+          : 'You will be signed out of this device and returned to the login page.';
+        confirmDialogBtn.textContent = isDelete ? 'Delete account' : 'Log out';
+        confirmDialogBtn.classList.toggle('danger', isDelete);
+        confirmDialog.showModal();
+      };
+
+      document.getElementById('logoutBtn').addEventListener('click', () => openAccountDialog('logout'));
+      document.getElementById('deleteAccountBtn').addEventListener('click', () => openAccountDialog('delete'));
+      cancelDialogBtn.addEventListener('click', () => confirmDialog.close());
+      confirmDialog.addEventListener('cancel', () => { pendingAccountAction = null; });
+      confirmDialogBtn.addEventListener('click', () => {
+        if (pendingAccountAction === 'logout') {
+          window.location.href = 'login.html';
+          return;
+        }
+
+        if (pendingAccountAction === 'delete') {
+          confirmDialog.close();
+          window.alert('Your account deletion request has been received.');
+        }
+      });
+      confirmDialog.addEventListener('close', () => { pendingAccountAction = null; });
     </script>
     <script>
       const menuToggle = document.querySelector('.menu-toggle');
